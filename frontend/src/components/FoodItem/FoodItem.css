@@ -21,7 +21,11 @@
 }
 .food-item-name-rating p{
     font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 500;
+
 }
 .food-item-name-rating img{
     width: 70px;
