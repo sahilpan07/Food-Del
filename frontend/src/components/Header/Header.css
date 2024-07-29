@@ -15,11 +15,12 @@
     bottom: 10%;
     left: 6vw;
     animation: fadeIn 3s;
+    font-size: max(4vw,22px);
 }
 .header-contents h2{
     font-weight: 500;
     color: white;
-    font-size: max(4vw,22px);
+    
 }
 .header-contents p{
     color: white;
@@ -33,4 +34,65 @@
     background-color: white;
     font-size: max(1vw,13px);
     border-radius: 50px;
+}
+@media (max-width:1280px){
+    .header{
+        height: 36vw;
+    }
+    .header-contents{
+        max-width: 50%;
+        bottom: 20%;
+    }
+}
+@media (max-width:1024px){
+    
+    .header-contents{
+        max-width: 50%;
+        bottom: 25%;
+    }
+}
+@media (max-width:900px){
+    .header{
+        height: 40vw;
+    }
+    .header-contents{
+        max-width: 45%;
+        bottom: 25%;
+    }
+    .header-contents h2{
+        font-size: 30px;
+    }
+    .header-contents button{
+        padding: 1vw 1.8vw;
+    }
+}
+@media (max-width:750px){
+    .header-contents{
+        max-width: 65%;
+        bottom: 25%;
+    }
+    .header-contents h2{
+        font-size: 25px;
+    }
+    .header-contents p{
+        display: none;
+    }
+    .header-contents button{
+        padding: 2vw 4vw;
+    }
+}
+@media (max-width:500px){
+    .header-contents{
+        max-width: 65%;
+        bottom: 25%;
+    }
+    .header-contents h2{
+        font-size: 22px;
+    }
+    .header-contents p{
+        display: none;
+    }
+    .header-contents button{
+        padding: 2vw 3vw;
+    }
 }

@@ -44,3 +44,78 @@
     top: -8px;
     right: -8px;
 }
+
+@media (max-width:1024px){
+    .navbar .logo{
+        width: 140px;
+    }
+    .navbar-menu{
+        font-size: 17px;
+        gap: 20px;
+    }
+    .navbar-right{
+        gap: 30px;
+    }
+    .navbar-right img{
+        width: 22px;
+    }
+    .navbar-right button{
+        padding: 8px 25px;
+    }
+}
+@media (max-width:900px){
+    .navbar .logo{
+        width: 130px;
+    }
+    .navbar-menu{
+        font-size: 16px;
+        gap: 15px;
+    }
+    .navbar-right{
+        gap: 20px;
+    }
+    .navbar-right img{
+        width: 20px;
+    }
+    .navbar-right button{
+        padding: 7px 20px;
+        font-size: 15px;
+    }
+}
+@media (max-width:800px){
+    .navbar .logo{
+        width: 120px;
+    }
+    .navbar-menu{
+        font-size: 15px;
+        gap: 13px;
+    }
+    .navbar-right{
+        gap: 16px;
+    }
+    .navbar-right img{
+        width: 18px;
+    }
+    .navbar-right button{
+        padding: 6px 18px;
+        font-size: 13px;
+    }
+}
+@media (max-width:750px){
+    .navbar .logo{
+        width: 110px;
+    }
+    .navbar-menu{
+        display: none;
+    }
+    .navbar-right{
+        gap: 16px;
+    }
+    .navbar-right img{
+        width: 17px;
+    }
+    .navbar-right button{
+        padding: 5px 15px;
+        font-size: 12px;
+    }
+}
