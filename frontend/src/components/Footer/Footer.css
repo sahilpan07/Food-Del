@@ -13,6 +13,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
+    column-gap: 30px;
 }
 .footer-social-icons{
     display: flex;
@@ -27,6 +28,9 @@
     flex-direction: column;gap: 20px;
     align-items: start;
     gap: 20px;
+}
+.footer-content-left p{
+    text-align: justify;
 }
 .footer-content-left li, .footer-content-right li, .footer-content-center li{
     list-style: none;
@@ -46,4 +50,15 @@
     margin: 2px 0;
     background-color: gray;
     border: none;
+}
+
+@media (max-width:750px){
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .footer-copyright{
+        text-align: center;
+    }
 }
