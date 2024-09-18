@@ -4,36 +4,38 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className='w-[18%] min-h-screen border border-[#a9a9a9]'>
-      <div className='pt-12 pl-12 flex flex-col gap-5'>
+    <div className='w-[18%] min-h-screen bg-white shadow-md border border-gray-300'>
+      <div className='pt-12 pl-8 flex flex-col gap-6'>
+        <h2 className='text-xl font-bold text-gray-800 mb-4'>Menu</h2>
+        
         <NavLink
           to='/add'
           className={({ isActive }) => 
-            `flex items-center gap-4 border border-[#a9a9a9] px-2 py-3 pointer border-r-0 rounded-tl-[4px] rounded-br-[0px] rounded-tr-[0px] rounded-bl-[4px] ${isActive ? 'bg-orange-50 border-orange-600' : ''}`
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600'}`
           }
         >
-          <img src={assets.add_icon} alt="" />
-          <p className='lg:block hidden'>Add Items</p>
+          <img src={assets.add_icon} alt="Add Items" className="w-6" />
+          <p className='hidden lg:block'>Add Items</p>
         </NavLink>
         
         <NavLink
           to='/list'
           className={({ isActive }) => 
-            `flex items-center gap-4 border border-[#a9a9a9] px-2 py-3 pointer border-r-0 rounded-tl-[4px] rounded-br-[0px] rounded-tr-[0px] rounded-bl-[4px] ${isActive ? 'bg-orange-50 border-orange-600' : ''}`
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900  border border-r-0 border-orange-600'}`
           }
         >
-          <img src={assets.order_icon} alt="" />
-          <p className='lg:block hidden'>List Items</p>
+          <img src={assets.order_icon} alt="List Items" className="w-6" />
+          <p className='hidden lg:block'>List Items</p>
         </NavLink>
         
         <NavLink
           to='/orders'
           className={({ isActive }) => 
-            `flex items-center gap-4 border border-[#a9a9a9] px-2 py-3 pointer border-r-0 rounded-tl-[4px] rounded-br-[0px] rounded-tr-[0px] rounded-bl-[4px] ${isActive ? 'bg-orange-50 border-orange-600' : ''}`
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600'}`
           }
         >
-          <img src={assets.order_icon} alt="" />
-          <p className='lg:block hidden'>Orders</p>
+          <img src={assets.order_icon} alt="Orders" className="w-6" />
+          <p className='hidden lg:block'>Orders</p>
         </NavLink>
       </div>
     </div>
