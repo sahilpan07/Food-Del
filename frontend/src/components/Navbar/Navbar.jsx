@@ -53,6 +53,15 @@ const Navbar = ({ setShowLogin }) => {
         >
           Contact us
         </a>
+        <Link
+          to="/aboutUs"
+          onClick={() => setMenu("aboutUs")}
+          className={
+            menu == "aboutUs" ? "pb-[2px] border-b-[2px] border-[#49557e]" : ""
+          }
+        >
+          About Us
+        </Link>
       </ul>
       <div className="flex gap-6 items-center">
         <img className="w-5" src={assets.search_icon} alt="" />
