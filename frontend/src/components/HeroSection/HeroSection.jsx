@@ -4,7 +4,7 @@ import './HeroSection.css'
 const HeroSection = () => {
   return (
     <div>HeroSection
-      hello0oooo
+      hello0oooo shrijan
 
     </div>
   )
