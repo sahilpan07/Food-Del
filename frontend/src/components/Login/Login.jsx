@@ -27,10 +27,10 @@ const Login = ({ setShowLogin }) => {
     //create instance of url to api call
     let newUrl  = url;
     if (currState==="Login") {
-      newUrl += "api/user/login"
+      newUrl += "/api/user/login"
     }
     else{
-      newUrl += "api/user/register"
+      newUrl += "/api/user/register"
     }
     //call api
     const response = await axios.post(newUrl,data);
