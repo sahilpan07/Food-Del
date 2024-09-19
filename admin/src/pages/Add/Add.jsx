@@ -3,8 +3,7 @@ import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Add = () => {
-  const url = "http://localhost:4000";
+const Add = ({url}) => {
   const [image, setImage] = useState(false);
   const [data,setData] = useState({
     name:"",
@@ -46,7 +45,7 @@ const Add = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-12 p-8 bg-gradient-to-r from-blue-50 to-white shadow-xl rounded-2xl">
+    <div className="max-w-4xl mb-20 mx-auto mt-12 p-8 bg-gradient-to-r from-blue-50 to-white shadow-xl rounded-2xl">
       <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Add New Product</h2>
       <form className="space-y-6" onSubmit={onSubmitHandler}>
         <div className="flex flex-col">
