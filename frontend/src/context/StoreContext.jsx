@@ -12,16 +12,24 @@ const StoreContextProvider = (props) => {
 
   const [food_list,setFoodList] = useState([]);
 
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+    //from backend
+    if (token) {
+      await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
+    }
   };
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    //from backend 
+    if (token) {
+      await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
+    }
   };
 
   const getTotalCartAmount = () => {
@@ -40,6 +48,7 @@ const StoreContextProvider = (props) => {
     const response = await axios.get(url+"/api/food/list");
     setFoodList(response.data.data);
   };
+  
 
   //protect from logout when reload page
 useEffect(() => {
