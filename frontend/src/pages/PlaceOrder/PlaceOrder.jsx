@@ -24,34 +24,8 @@ const PlaceOrder = () => {
     setData(data=>({...data,[name]:value}))
   }
 
-  const placeOrder = async (event) => {
-    event.preventDefault();
-    let orderItems = [];
-    food_list.map((item)=>{
-      if(cartItems[item._id]>0){
-        let itemInfo = item;
-        itemInfo["quantity"] = cartItems[item._id]
-        orderItems.push(itemInfo);
-      }
-    })
-    let orderData = {
-      address:data,
-      items:orderItems,
-      amount:getTotalCartAmount()+150,
-    }
-    let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}})
-    if (response.data.success) {
-      const {session_url} = response.data;
-      window.location.replace(session_url);
-    }
-    else{
-      alert("Failed to place order");
-    }
-    
-  }
-
   return (
-    <form onSubmit={placeOrder} className='flex align-start justify-between gap-24 mt-20'>
+    <form  className='flex align-start justify-between gap-24 mt-20'>
       <div className='w-full '>
         <p className='text-xl font-semibold mb-4'>Delivery Information</p>
         <div className='flex gap-3'>
