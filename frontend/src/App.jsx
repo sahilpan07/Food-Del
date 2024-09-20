@@ -6,6 +6,7 @@ import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
+import ContactUs from "./components/ContactUs/ContactUs";
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
         </Routes>
+        <ContactUs />
       </div>
       <Footer />
     </>
