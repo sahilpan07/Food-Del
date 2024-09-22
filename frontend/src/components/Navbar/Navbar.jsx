@@ -33,27 +33,27 @@ const Navbar = ({ setShowLogin }) => {
         >
           Home
         </Link>
-        <a
-          href="#explore-menu"
+        <Link
+          to="/menu"
           onClick={() => setMenu("menu")}
           className={menu === "menu" ? "pb-[2px] border-b-[2px] border-[#49557e]" : ""}
         >
           Menu
-        </a>
-        <a
-          href="#app-download"
-          onClick={() => setMenu("mobile-app")}
-          className={menu === "mobile-app" ? "pb-[2px] border-b-[2px] border-[#49557e]" : ""}
+        </Link>
+        <Link
+          to="/restaurant"
+          onClick={() => setMenu("restaurant")}
+          className={menu === "restaurant" ? "pb-[2px] border-b-[2px] border-[#49557e]" : ""}
         >
-          Mobile-app
-        </a>
-        <a
-          href="#footer"
-          onClick={() => setMenu("contact-us")}
-          className={menu === "contact-us" ? "pb-[2px] border-b-[2px] border-[#49557e]" : ""}
+          Restaurant
+        </Link>
+        <Link
+          to="/contact"
+          onClick={() => setMenu("contact")}
+          className={menu === "contact" ? "pb-[2px] border-b-[2px] border-[#49557e]" : ""}
         >
-          Contact us
-        </a>
+          Contact Us
+        </Link>
         <Link
           to="/aboutUs"
           onClick={() => setMenu("aboutUs")}
