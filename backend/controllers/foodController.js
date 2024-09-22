@@ -11,6 +11,7 @@ const addFood = async (req, res) => {
     description: req.body.description,
     price: req.body.price,
     category: req.body.category,
+    restaurant: req.body.restaurant,
     image: image_filename,
   });
   try{
@@ -29,7 +30,7 @@ const listFood = async (req,res) =>{
         const foods = await foodModel.find({});
         res.json({success:true,data:foods})
     }
-    catch(eroor){
+    catch(error){
         console.log(error);
         res.json({success:false,message:"Error"})
     }
