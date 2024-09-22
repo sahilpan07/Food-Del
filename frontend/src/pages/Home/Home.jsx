@@ -1,5 +1,4 @@
 import React from 'react'
-import './Home.css'
 import App from '../../components/App/App'
 import HeroSection from '../../components/HeroSection/HeroSection'
 

@@ -6,10 +6,10 @@ import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
-import Aboutus from "./components/Aboutus/Aboutus";
-import Menu from "./components/Menu/Menu";
-import Restaurant from "./components/Restaurant/Restaurant";
-import ContactUs from "./components/ContactUs/ContactUs";
+import Aboutus from "./pages/Aboutus/Aboutus";
+import Menu from "./pages/Menu/Menu";
+import Restaurant from "./pages/Restaurant/Restaurant";
+import ContactUs from "./pages/ContactUs/ContactUs";
 
 const App = () => {
 
@@ -22,13 +22,13 @@ const App = () => {
       <div className="app">
         <Navbar setShowLogin={setShowLogin} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/cart" element={<Cart/>} />
           <Route path ="/menu" element={<Menu/>}/>
           <Route path ="/restaurant" element={<Restaurant/>}/>
           <Route path ="/contact" element={<ContactUs/>}/>
           <Route path ="/aboutUs" element={<Aboutus/>}/>
-          <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/order" element={<PlaceOrder/>} />
         </Routes>
       </div>
       <Footer />
