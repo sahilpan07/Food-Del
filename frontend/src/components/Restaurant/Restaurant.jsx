@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from "react";
+import ExploreRestaurant from "../../components/ExploreRestaurant/ExploreRestaurant";
+import FoodDisplay from "../../components/FoodDisplay/FoodDisplay";
 
 const Restaurant = () => {
-  return (
-    <div>Restaurant</div>
-  )
-}
+  const [restaurant, setRestaurant] = useState("All");
 
-export default Restaurant
+  return (
+    <div>
+      <ExploreRestaurant restaurant={restaurant} setRestaurant={setRestaurant} /> {/* Fixed prop name here */}
+      <FoodDisplay restaurant={restaurant} />
+    </div>
+  );
+};
+
+export default Restaurant;
