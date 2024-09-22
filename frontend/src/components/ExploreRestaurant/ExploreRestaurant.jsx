@@ -13,10 +13,10 @@ const ExploreRestaurant = ({ restaurant, setRestaurant }) => {
                     <div 
                         key={index} 
                         onClick={() => setRestaurant(prev => (prev === item.restaurant_name ? "All" : item.restaurant_name))} 
-                        className={`flex flex-col items-center cursor-pointer ${restaurant === item.restaurant_name ? "active" : ""}`}
+                        className={`flex flex-col items-center cursor-pointer  ${restaurant === item.restaurant_name ? "active" : ""}`}
                     >
                         <img 
-                            className={`w-[7.5vw] min-w-[80px] rounded-full transition duration-200 ${restaurant === item.restaurant_name ? "border-4 border-tomato-500" : ""}`} 
+                            className={`w-[7.5vw] min-w-[80px] rounded-full transition duration-200 p-[2px]  ${restaurant === item.restaurant_name ? " border-4 border-orange-500" : ""}`} 
                             src={item.restaurant_image} 
                             alt={item.restaurant_name} 
                         />

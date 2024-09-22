@@ -8,7 +8,6 @@ const Home = () => {
   return (
     <div>
       <HeroSection/>
-
       <App/>
     </div>
   )
