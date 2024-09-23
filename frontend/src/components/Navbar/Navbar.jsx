@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
-
+import { Icon } from '@iconify/react';
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
@@ -77,12 +77,16 @@ const Navbar = ({ setShowLogin }) => {
           ></div>
         </div>
         {!token ? (
-          <button
-            onClick={() => setShowLogin(true)}
-            className="bg-red-500 text-[16px] text-white border-[1.5px] border-black py-2.5 px-5 rounded-full cursor-pointer hover:bg-red-400 transition-colors duration-200 sm:text-[14px] sm:py-2 sm:px-4 md:text-[15px] md:py-2.5 md:px-5 lg:text-[16px] lg:py-3 lg:px-6"
-          >
-            Sign in
-          </button>
+
+
+<button
+  onClick={() => setShowLogin(true)}
+  className="bg-[#040A27] text-[16px] text-white border-[1.5px] border-black py-2.5 px-5 rounded-full shadow-lg transition-all duration-200 hover:bg-red-500 hover:shadow-xl flex items-center justify-center space-x-2 sm:text-[14px] sm:py-2 sm:px-4 md:text-[15px] md:py-2.5 md:px-5 lg:text-[16px] lg:py-3 lg:px-6"
+>
+  <Icon icon="mdi:login" className="text-white" />
+  <span>Sign in</span>
+</button>
+
         ) : (
           <div className="relative group">
             <img
