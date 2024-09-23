@@ -39,7 +39,7 @@ const Banner = () => {
             <div className="flex flex-col gap-3 text-left pl-12 pb-8">
               <p className="text-orange-400 font-semibold">{banner.subtitle}</p>
               <p className="text-3xl font-bold">{banner.title}</p>
-              <button className="w-1/3 h-12 bg-orange-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl">
+              <button className="w-1/3 h-12 bg-violet-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl">
                 Get Started
               </button>
             </div>

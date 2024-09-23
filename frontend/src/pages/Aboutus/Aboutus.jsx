@@ -1,8 +1,11 @@
 import React from 'react'
+import AboutBanner from '../../components/AboutBanner/AboutBanner'
 
 const Aboutus = () => {
   return (
-    <div>Aboutus </div>
+    <div>
+      <AboutBanner/>
+    </div>
   )
 }
 
