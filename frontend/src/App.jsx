@@ -20,7 +20,10 @@ const App = () => {
     <>
     {showLogin?<Login setShowLogin={setShowLogin}/>:<></>}
       <div className="app">
-        <Navbar setShowLogin={setShowLogin} />
+      <div className="sticky top-0 z-50 bg-white shadow">
+      <Navbar setShowLogin={setShowLogin} />
+    </div>
+        
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/cart" element={<Cart/>} />
