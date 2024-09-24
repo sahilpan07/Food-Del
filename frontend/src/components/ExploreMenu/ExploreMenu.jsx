@@ -16,7 +16,7 @@ const ExploreMenu = ({ category, setCategory }) => {
             className={`flex flex-col items-center cursor-pointer ${category === item.menu_name ? "active" : ""}`}
           >
             <img 
-              className={`w-[7.5vw] min-w-[80px] rounded-full transition duration-200 p-[2px] ${category === item.menu_name ? "border-4 border-orange-500" : ""}`} 
+              className={`w-[7.5vw] min-w-[80px] rounded-full transition duration-400 p-[2px] ${category === item.menu_name ? "border-4 border-orange-500" : ""}`} 
               src={item.menu_image} 
               alt={item.menu_name} 
             />

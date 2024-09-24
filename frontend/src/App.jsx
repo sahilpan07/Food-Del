@@ -12,31 +12,32 @@ import Restaurant from "./pages/Restaurant/Restaurant";
 import ContactUs from "./pages/ContactUs/ContactUs";
 
 const App = () => {
-
-  const [showLogin,setShowLogin] = useState(false)
-
+  window.onload = function () {
+    window.scrollTo(0, 0);
+  };
+  const [showLogin, setShowLogin] = useState(false);
 
   return (
     <>
-    {showLogin?<Login setShowLogin={setShowLogin}/>:<></>}
+      {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-      <div className="sticky top-0 z-50 bg-white shadow">
-      <Navbar setShowLogin={setShowLogin} />
-    </div>
-        
+        <div className="sticky top-0 z-50 bg-white shadow">
+          <Navbar setShowLogin={setShowLogin} />
+        </div>
+
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path ="/menu" element={<Menu/>}/>
-          <Route path ="/restaurant" element={<Restaurant/>}/>
-          <Route path ="/contact" element={<ContactUs/>}/>
-          <Route path ="/aboutUs" element={<Aboutus/>}/>
-          <Route path="/order" element={<PlaceOrder/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/restaurant" element={<Restaurant />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/aboutUs" element={<Aboutus />} />
+          <Route path="/order" element={<PlaceOrder />} />
         </Routes>
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
 export default App;

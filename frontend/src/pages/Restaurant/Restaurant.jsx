@@ -6,7 +6,7 @@ const Restaurant = () => {
   const [restaurant, setRestaurant] = useState("All");
 
   return (
-    <div>
+    <div className="mx-12">
       <ExploreRestaurant restaurant={restaurant} setRestaurant={setRestaurant} /> {/* Fixed prop name here */}
       <FoodDisplay restaurant={restaurant} />
     </div>

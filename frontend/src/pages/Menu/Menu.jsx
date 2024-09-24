@@ -4,9 +4,9 @@ import FoodDisplay from "../../components/FoodDisplay/FoodDisplay";
 
 const Menu = () => {
   const [category, setCategory] = useState("All");
-
+  
   return (
-    <div>
+    <div className="mx-12">
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category} />
     </div>

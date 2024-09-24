@@ -18,20 +18,25 @@ const Service = () => {
       title: 'Best Quality',
       description: 'Not only fast, for us quality is also number one',
     },
+    {
+      image: assets.body_3,
+      title: 'Best Quality',
+      description: 'Not only fast, for us quality is also number one',
+    },
   ];
 
   return (
-    <div className='pl-5 pr-5 flex flex-col gap-10 bg-gray-50 py-10'>
+    <div className='px-12 flex flex-col gap-10  py-10'>
       <div className='flex flex-col gap-3 items-center'>
-        <p className='text-red-600 text-lg font-semibold'>What we Serve</p>
-        <h2 className='text-4xl font-bold text-gray-800'>Your Favorite Food</h2>
-        <h2 className='text-4xl font-bold text-gray-800'>Delivery Partner</h2>
+        <p className='text-red-600 text-md md:text-lg font-semibold'>What we Serve</p>
+        <h2 className='text-2xl md:text-3xl font-bold text-gray-800 text'>Your Favorite Food</h2>
+        <h2 className='text-2xl md:text-3xl font-bold text-gray-800'>Delivery Partner</h2>
       </div>
-      <div className='flex flex-wrap justify-center gap-5'>
+      <div className='focus:outline-none animate-fadeIn flex flex-wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-5'>
         {services.map((service, index) => (
           <div
             key={index}
-            className='w-full sm:w-80 items-center flex flex-col gap-2 border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 bg-white'
+            className='w-full items-center flex flex-col gap-2 border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 bg-white'
           >
             <img className='w-48  object-cover rounded-md' src={service.image} alt={service.title} />
             <p className='text-lg font-semibold text-gray-800 text-center'>{service.title}</p>

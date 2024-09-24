@@ -3,7 +3,7 @@ import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 
 const PlaceOrder = () => {
-
+  
   const {getTotalCartAmount,token,food_list,cartItems,url} = useContext(StoreContext)
 
   const [data,setData] = useState({
