@@ -1,20 +1,16 @@
-import React, { useState } from 'react'
-import './Home.css'
-import Header from '../../components/Header/Header'
-import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
-import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
+import React from 'react'
 import App from '../../components/App/App'
 import HeroSection from '../../components/HeroSection/HeroSection'
+import Service from '../../components/Service/Service'
+import Banner from '../../components/Banner/Banner'
 
 const Home = () => {
-  const [category,setCategory] = useState("All");
 
   return (
-    <div>
+    <div className='flex flex-col gap-12'>
       <HeroSection/>
-      {/* <Header/> */}
-      <ExploreMenu category={category} setCategory={setCategory} />
-      <FoodDisplay category={category}/>
+      <Service/>
+      <Banner/>
       <App/>
     </div>
   )

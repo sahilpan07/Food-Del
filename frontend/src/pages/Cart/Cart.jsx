@@ -57,7 +57,7 @@ const Cart = () => {
               <p>Rs.{getTotalCartAmount()===0?0:getTotalCartAmount()+150}</p>
             </div>
           </div>
-          <button onClick={()=>{navigate('/order')}} className="text-white h-12 py-3 w-full md:w-64 rounded-lg bg-orange-600">PROCEED TO CHECKOUT</button>
+          <button onClick={()=>{navigate('/order')}} className="text-white h-12 py-3 w-full md:w-64 rounded-lg bg-violet-900">PROCEED TO CHECKOUT</button>
         </div>
         <div className="flex-1">
           <div className="flex flex-col gap-5">

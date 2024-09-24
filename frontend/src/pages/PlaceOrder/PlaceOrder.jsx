@@ -3,7 +3,7 @@ import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 
 const PlaceOrder = () => {
-
+  
   const {getTotalCartAmount,token,food_list,cartItems,url} = useContext(StoreContext)
 
   const [data,setData] = useState({
@@ -63,7 +63,7 @@ const PlaceOrder = () => {
               <p>Rs.{getTotalCartAmount()===0?0:getTotalCartAmount()+150}</p>
             </div>
           </div>
-          <button type='submit' className="text-white h-12 py-3 mt-6 w-full md:w-64 rounded-lg bg-orange-600">PROCEED TO Payment</button>
+          <button type='submit' className="text-white h-12 py-3 mt-6 w-full md:w-64 rounded-lg bg-violet-900">PROCEED TO Payment</button>
         </div>
       </div>
 
