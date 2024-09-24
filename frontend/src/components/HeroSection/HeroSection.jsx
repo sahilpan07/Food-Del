@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const HeroSection = () => {
   return (
     <div className='flex felx-col items-center bg-gray-50 min-h-96'> {/* headersection */}
@@ -23,8 +24,8 @@ const HeroSection = () => {
         </div>
         <div className='md:w-1/2 mt-8 md:mt-0'>
           <div className='flex space-x-4'>
-            <img src='https://via.placeholder.com/150' alt='Dish' className='
-            rounded-md shadow-md'/>
+           {/*} <img src='{homeImage}' alt='Dish' className='
+            rounded-md shadow-md'/> */}
           </div>
 
         </div>
