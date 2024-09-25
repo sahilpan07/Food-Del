@@ -2,37 +2,7 @@ import React from 'react'
 
 const HeroSection = () => {
   return (
-    <div className='flex felx-col items-center bg-gray-50 min-h-96'> {/* headersection */}
-      <div className='container mx-auto flex flex-col md:flex-row items-center justify-between p-6 mt-0 ml-6'> {/*text section */}
-        <div className='md:w-1/2 text-center md:text-left'>
-          <h1 className='text-4xl font-bold text-gray-900 font-sans'>
-            Premium <span className='text-orange-500'>quality</span><br />
-            Food for your <span className='atext-orange-500'>healthy</span><br />
-            <span className='text-orange-500'>& Daily life</span>
-          </h1>
-          <p className='pt-1 mt-3 text-gray-500'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil explicabo blanditiis voluptates ex, delectus distinctio expedita!
-            Laborum vitae eum fugit earum dolore alias placeat molestiae non, odio autem corporis modi?
-          </p>
-
-          <div className='mt-6 flex items-center justify-center md:justify-start'>
-            <input type='text' placeholder='Enter your delivery location' className='p-3 rounded-l-md border border-gray-300
-            w-full md:w-96'/>
-            <button className='p-3 ml-5 bg-black text-white rounded-r-md'>Get Started</button>
-          </div>
-        </div>
-        <div className='md:w-1/2 mt-8 md:mt-0'>
-          <div className='flex space-x-4'>
-            <img src='https://via.placeholder.com/150' alt='Dish' className='
-            rounded-md shadow-md'/>
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </div>
+    <div>HeroSection</div>
   )
 }
 
