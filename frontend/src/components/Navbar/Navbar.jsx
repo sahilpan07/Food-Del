@@ -10,7 +10,7 @@ const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
 
   const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
+    setDropdownOpen((prev) => !prev); 
   };
 
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Navbar = ({ setShowLogin }) => {
     navigate("/");
   };
   return (
-    <div className="navbar flex py-3 px-12  justify-between items-center">
+    <div className="navbar flex py-3 px-12 md:px-20 justify-between items-center">
       <Link to="/">
         <img src={assets.logo_food} className="w-32 pointer md:w-36 sm:w-32" />
       </Link>
@@ -65,7 +65,7 @@ const Navbar = ({ setShowLogin }) => {
           Contact Us
         </Link>
       </ul>
-      <div className="flex gap-2 md:gap-4 lg:gap-6 items-center">
+      <div className="flex gap-2 sm:gap-3 md:gap-4 items-center">
         <img className="w-5" src={assets.search_icon} alt="" />
         <div className="relative">
           <Link to="/cart">

@@ -3,13 +3,13 @@ import { assets } from "../../assets/assets";
 
 const bannerData = [
   {
-    image: assets.body_4,
+    image: assets.body_5,
     title: "Earn more with us",
     signup: "Partner with us",
     subtitle: "Signup as a business",
   },
   {
-    image: assets.body_5,
+    image: assets.body_6,
     title: "Avail exclusive perks",
     signup: "Ride with us",
     subtitle: "Signup as a rider",
@@ -18,7 +18,7 @@ const bannerData = [
 
 const Banner = () => {
   return (
-    <div className="flex flex-col sm:flex-row gap-8 mx-12">
+    <div className="flex flex-col sm:flex-row gap-8 px-12 md:px-20">
       {bannerData.map((banner, index) => (
         <div
           key={index}

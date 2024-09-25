@@ -36,7 +36,13 @@ const Footer = () => {
           </h2>
           <ul className="flex flex-col gap-2">
             <li className="cursor-pointer hover:text-white">Home</li>
-            <Link onClick={handleScrollToTop} className="cursor-pointer hover:text-white" to="/aboutUs">About Us</Link>
+            <Link
+              onClick={handleScrollToTop}
+              className="cursor-pointer hover:text-white"
+              to="/aboutUs"
+            >
+              About Us
+            </Link>
             <li className="cursor-pointer hover:text-white">Delivery</li>
             <li className="cursor-pointer hover:text-white">Privacy Policy</li>
           </ul>
