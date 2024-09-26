@@ -25,7 +25,7 @@ const PlaceOrder = () => {
   }
 
   return (
-    <form  className='flex align-start justify-between gap-24 mt-20'>
+    <form  className='flex align-start justify-between gap-24 mt-12 mx-20'>
       <div className='w-full '>
         <p className='text-xl font-semibold mb-4'>Delivery Information</p>
         <div className='flex gap-3'>

@@ -8,7 +8,7 @@ const Cart = () => {
   const navigate = useNavigate();
   
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-20 mx-20 mt-12">
       <div className="cart-items ">
         <div className="grid grid-cols-6 items-center text-gray-500" style={{ gridTemplateColumns: '1fr 1.5fr 1fr 1fr 1fr 1fr' }}>
           <p>Items</p>

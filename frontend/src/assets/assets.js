@@ -2,6 +2,7 @@ import basket_icon from './basket_icon.png'
 import logo from './logo.png'
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
+import faq from './faq.png'
 
 import body_1 from './body_1.png'
 import body_2 from './body_2.png'
@@ -78,6 +79,7 @@ export const assets = {
     basket_icon,
     header_img,
     search_icon,
+    faq,
     body_1,
     body_2,
     body_3,

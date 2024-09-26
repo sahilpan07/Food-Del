@@ -22,7 +22,7 @@ const Navbar = ({ setShowLogin }) => {
   };
   return (
     <div className="navbar flex py-3 px-12 md:px-20 justify-between items-center">
-      <Link to="/">
+      <Link to="/" onClick={() => setMenu("home")}>
         <img src={assets.logo_food} className="w-32 pointer md:w-36 sm:w-32" />
       </Link>
       <ul className="hidden 2xl:flex 2xl:gap-5 2xl:text-lg 2xl:text-[#49557e] xl:text-lg md:gap-4 lg:text-base lg:gap-4 md:flex">
