@@ -3,6 +3,10 @@ import logo from './logo.png'
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
 
+import home_1 from './home_1.png'
+import home_2 from './home_2.jpg'
+import home_3 from './home_3.jpg'
+
 import body_1 from './body_1.png'
 import body_2 from './body_2.png'
 import body_3 from './body_3.png'
@@ -74,6 +78,9 @@ export const assets = {
     basket_icon,
     header_img,
     search_icon,
+    home_1,
+    home_2,
+    home_3,
     body_1,
     body_2,
     body_3,
