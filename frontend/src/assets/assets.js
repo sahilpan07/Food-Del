@@ -10,6 +10,9 @@ import body_4 from './body_4.png'
 import body_5 from './body_5.png'
 import body_6 from './body_6.png'
 
+import roadhouse_cafe from './roadhouse_cafe.jpg';
+import roadhouse_pizza from './roadhouse_pizza.jpg';
+
 import menu_1 from './menu_1.png'
 import menu_2 from './menu_2.png'
 import menu_3 from './menu_3.png'
@@ -134,35 +137,38 @@ export const menu_list = [
 export const restaurant_list = [
     {
         restaurant_name: "restaurant1",
-        restaurant_image: menu_1
+        restaurant_image: roadhouse_cafe,
+        location: "Thamel",
+        description:"asdjbisabijabauksbdkjsabdks"
     },
     {
         restaurant_name: "restaurant2",
-        restaurant_image: menu_2
+        restaurant_image: roadhouse_pizza,
+        location: "Labim Mall"
     },
     {
         restaurant_name: "restaurant3",
-        restaurant_image: menu_3
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant4",
-        restaurant_image: menu_4
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant5",
-        menu_image: menu_5
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant6",
-        restaurant_image: menu_6
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant7",
-        restaurant_image: menu_7
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant8",
-        restaurant_image: menu_8
+        restaurant_image: roadhouse_cafe
     }]
 
 

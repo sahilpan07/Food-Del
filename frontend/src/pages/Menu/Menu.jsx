@@ -6,7 +6,7 @@ const Menu = () => {
   const [category, setCategory] = useState("All");
   
   return (
-    <div className="mx-12">
+    <div className="">
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category} />
     </div>

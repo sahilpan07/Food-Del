@@ -3,7 +3,7 @@ import { menu_list } from '../../assets/assets';
 
 const ExploreMenu = ({ category, setCategory }) => {
   return (
-    <div className="flex flex-col gap-5" id="explore-menu">
+    <div className="flex flex-col mx-20 gap-5" id="explore-menu">
       <h1 className="text-gray-800 text-lg font-semibold">Explore Our Menu</h1>
       <p className="max-w-[60%] text-gray-600">
         Welcome to Delicious Bites Online Ordering! Explore our mouthwatering menu featuring a variety of appetizers, main courses, desserts, and beverages delivered right to your door.

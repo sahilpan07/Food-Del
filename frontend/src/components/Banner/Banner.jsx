@@ -18,7 +18,7 @@ const bannerData = [
 
 const Banner = () => {
   return (
-    <div className="flex flex-col sm:flex-row gap-8 px-12 md:px-20">
+    <div className="flex flex-col sm:flex-row gap-8 mx-12 md:mx-20">
       {bannerData.map((banner, index) => (
         <div
           key={index}

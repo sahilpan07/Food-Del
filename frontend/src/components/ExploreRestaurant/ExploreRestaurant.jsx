@@ -1,27 +1,35 @@
 import React from 'react';
 import { restaurant_list } from '../../assets/assets';
+import { Link } from "react-router-dom";
 
-const ExploreRestaurant = ({ restaurant, setRestaurant }) => {
+const ExploreRestaurant = ({ setRestaurant }) => {
     return (
-        <div className="flex flex-col gap-5" id="restaurant-menu">
+        <div className="flex flex-col gap-5 mx-20" id="restaurant-menu">
             <h1 className="text-gray-800 text-lg font-semibold">Our Restaurants</h1>
             <p className="max-w-[60%] text-gray-600">
                 Welcome to Delicious Bites Online Ordering! Explore our mouthwatering menu featuring a variety of appetizers, main courses, desserts, and beverages delivered right to your door.
             </p>
-            <div className="flex gap-7 justify-between items-center text-center my-5 overflow-x-scroll cursor-pointer">
+            <div className="grid grid-cols-6 gap-4 items-center text-center cursor-pointer">
                 {restaurant_list.map((item, index) => (
-                    <div 
-                        key={index} 
-                        onClick={() => setRestaurant(prev => (prev === item.restaurant_name ? "All" : item.restaurant_name))} 
-                        className={`flex flex-col items-center cursor-pointer  ${restaurant === item.restaurant_name ? "active" : ""}`}
+                    <Link
+                        key={index}
+                        to="/restaurant"
+                        state={item}
                     >
-                        <img 
-                            className={`w-[7.5vw] min-w-[80px] rounded-full transition duration-400 p-[2px]  ${restaurant === item.restaurant_name ? " border-4 border-orange-500" : ""}`} 
-                            src={item.restaurant_image} 
-                            alt={item.restaurant_name} 
-                        />
-                        <p className="mt-2 text-gray-500 text-lg">{item.restaurant_name}</p>
-                    </div>
+                        <div 
+                            className="flex flex-col border border-black items-center"
+                            onClick={() => setRestaurant(item.restaurant_name)}
+                        >
+                            <img 
+                                className="w-48 border border-grey-400 transition duration-400 p-[2px]" 
+                                src={item.restaurant_image} 
+                                alt={item.restaurant_name} 
+                            />
+                            
+                            <p className="mt-2 text-gray-500 text-lg">{item.restaurant_name}</p>
+                            <p className="mt-2 text-gray-500 text-md">{item.location}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
             <hr className="my-2 h-[2px] bg-gray-300 border-0" />

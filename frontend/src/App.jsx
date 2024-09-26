@@ -10,6 +10,7 @@ import Aboutus from "./pages/Aboutus/Aboutus";
 import Menu from "./pages/Menu/Menu";
 import Restaurant from "./pages/Restaurant/Restaurant";
 import ContactUs from "./pages/ContactUs/ContactUs";
+import ExploreRestaurant from "./components/ExploreRestaurant/ExploreRestaurant";
 
 const App = () => {
   window.onload = function () {
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/restaurant" element={<Restaurant />} />
+          <Route path="/explore-res" element={<ExploreRestaurant/>}/>
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/aboutUs" element={<Aboutus />} />
           <Route path="/order" element={<PlaceOrder />} />

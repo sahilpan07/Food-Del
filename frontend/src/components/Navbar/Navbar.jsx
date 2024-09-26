@@ -45,7 +45,7 @@ const Navbar = ({ setShowLogin }) => {
           Menu
         </Link>
         <Link
-          to="/restaurant"
+          to="/explore-res"
           onClick={() => setMenu("restaurant")}
           className={
             menu === "restaurant"
