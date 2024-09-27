@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { assets } from '../../assets/assets'; 
+import { assets } from '../../assets/assets';
 
 const HeroSection = () => {
-  const images = [assets.home_1, assets.home_2, assets.home_3]; 
+  const images = [assets.home_1, assets.home_2, assets.home_3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Automatically change the current image 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-    }, 5000); 
+    }, 5000);
 
     return () => clearInterval(interval); // 
   }, [images.length]);
