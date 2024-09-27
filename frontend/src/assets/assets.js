@@ -2,6 +2,7 @@ import basket_icon from './basket_icon.png'
 import logo from './logo.png'
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
+import faq from './faq.png'
 
 import home_1 from './home_1.png'
 import home_2 from './home_2.jpg'
@@ -12,6 +13,10 @@ import body_2 from './body_2.png'
 import body_3 from './body_3.png'
 import body_4 from './body_4.png'
 import body_5 from './body_5.png'
+import body_6 from './body_6.png'
+
+import roadhouse_cafe from './roadhouse_cafe.jpg';
+import roadhouse_pizza from './roadhouse_pizza.jpg';
 
 import menu_1 from './menu_1.png'
 import menu_2 from './menu_2.png'
@@ -78,14 +83,13 @@ export const assets = {
     basket_icon,
     header_img,
     search_icon,
-    home_1,
-    home_2,
-    home_3,
+    faq,
     body_1,
     body_2,
     body_3,
     body_4,
     body_5,
+    body_6,
     rating_starts,
     add_icon_green,
     add_icon_white,
@@ -139,35 +143,38 @@ export const menu_list = [
 export const restaurant_list = [
     {
         restaurant_name: "restaurant1",
-        restaurant_image: menu_1
+        restaurant_image: roadhouse_cafe,
+        location: "Thamel",
+        description:"asdjbisabijabauksbdkjsabdks"
     },
     {
         restaurant_name: "restaurant2",
-        restaurant_image: menu_2
+        restaurant_image: roadhouse_pizza,
+        location: "Labim Mall"
     },
     {
         restaurant_name: "restaurant3",
-        restaurant_image: menu_3
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant4",
-        restaurant_image: menu_4
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant5",
-        menu_image: menu_5
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant6",
-        restaurant_image: menu_6
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant7",
-        restaurant_image: menu_7
+        restaurant_image: roadhouse_cafe
     },
     {
         restaurant_name: "restaurant8",
-        restaurant_image: menu_8
+        restaurant_image: roadhouse_cafe
     }]
 
 

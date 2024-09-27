@@ -10,7 +10,7 @@ const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
 
   const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
+    setDropdownOpen((prev) => !prev); 
   };
 
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ const Navbar = ({ setShowLogin }) => {
     navigate("/");
   };
   return (
-    <div className="navbar flex py-3 px-12  justify-between items-center">
-      <Link to="/">
+    <div className="navbar flex py-3 px-12 md:px-20 justify-between items-center">
+      <Link to="/" onClick={() => setMenu("home")}>
         <img src={assets.logo_food} className="w-32 pointer md:w-36 sm:w-32" />
       </Link>
       <ul className="hidden 2xl:flex 2xl:gap-5 2xl:text-lg 2xl:text-[#49557e] xl:text-lg md:gap-4 lg:text-base lg:gap-4 md:flex">
@@ -45,7 +45,7 @@ const Navbar = ({ setShowLogin }) => {
           Menu
         </Link>
         <Link
-          to="/restaurant"
+          to="/explore-res"
           onClick={() => setMenu("restaurant")}
           className={
             menu === "restaurant"
@@ -65,7 +65,7 @@ const Navbar = ({ setShowLogin }) => {
           Contact Us
         </Link>
       </ul>
-      <div className="flex gap-2 md:gap-4 lg:gap-6 items-center">
+      <div className="flex gap-2 sm:gap-3 md:gap-4 items-center">
         <img className="w-5" src={assets.search_icon} alt="" />
         <div className="relative">
           <Link to="/cart">

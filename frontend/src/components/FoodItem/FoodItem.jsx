@@ -27,7 +27,6 @@ const FoodItem = ({ id, name, price, description, image, restaurant }) => {
       <div className="p-5">
         <div className="flex justify-between items-center mb-2">
           <p className="text-lg font-medium truncate">{name}</p>
-          <img className="w-16" src={assets.rating_starts} alt="" />
         </div>
         <p className="text-gray-600 text-xs">{description}</p>
         <p className="text-gray-600 text-xs">{restaurant}</p>
