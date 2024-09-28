@@ -1,16 +1,39 @@
 import React from "react";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
+const socialIcons = [
+  {
+    icon: "uil:facebook",
+    label: "Facebook",
+    hoverColor: "hover:text-blue-600",
+  },
+  {
+    icon: "mdi:instagram",
+    label: "Instagram",
+    hoverColor: "hover:text-pink-500",
+  },
+  {
+    icon: "prime:twitter",
+    label: "Twitter",
+    hoverColor: "hover:text-blue-600",
+  },
+  {
+    icon: "mingcute:youtube-fill",
+    label: "YouTube",
+    hoverColor: "hover:text-red-600",
+  },
+];
 const Footer = () => {
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
   };
+
   return (
-    <div className=" relative text-[#d9d9d9] flex flex-col items-center gap-5 py-12 px-[8vw] mt-[100px] bg-gradient-to-r from-purple-500 to-blue-500">
-      <div className=" items-center absolute inset-0 bg-black opacity-40 z-0"></div>
-      <div className=" w-full items-center grid sm:grid-cols-1 md:grid-cols-3 gap-[30px] relative z-10">
-        <div className=" flex flex-col gap-5 items-start">
+    <div className="mx-12 md:mx-20 rounded-t-xl relative text-black flex flex-col items-center gap-5 py-12 px-4 mt-20 bg-gradient-to-r from-purple-200 to-blue-200">
+      <div className="flex flex-col md:flex-row  w-full gap-4 items-center relative z-10">
+        <div className=" flex flex-col gap-5 items-start md:w-3/5 px-8">
           <div className=" border border-white p-3 rounded-xl bg-violet-300">
             <img
               className="w-32 md:w-48 sm:w-28"
@@ -24,42 +47,58 @@ const Footer = () => {
             eos placeat voluptatem, iste maiores deserunt fuga! In a provident
             ipsum explicabo illum.
           </p>
-          <div className=" flex gap-5">
-            <img className="w-10" src={assets.facebook_icon} alt="Facebook" />
-            <img className="w-10" src={assets.twitter_icon} alt="Twitter" />
-            <img className="w-10" src={assets.linkedin_icon} alt="LinkedIn" />
+          <div className="flex gap-5">
+            {socialIcons.map(({ icon, label, hoverColor }, index) => (
+              <div key={index} className="relative group">
+                <Icon
+                  className={`text-4xl text-neutral-400 ${hoverColor} cursor-pointer`}
+                  icon={icon}
+                />
+                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:block bg-black text-white text-sm p-1 rounded">
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
-        <div className=" flex flex-col gap-5 items-center">
-          <h2 className="text-white cursor-pointer font-semibold text-lg">
-            Company
-          </h2>
-          <ul className="flex flex-col gap-2">
-            <Link className="cursor-pointer hover:text-white" to="/">
-              Home
-            </Link>
+        <div className="flex flex-col sm:flex-row gap-8 sm:gap-24 justify-between">
+          <div className=" flex flex-col gap-2 sm:gap-5 ">
+            <p className="text-black cursor-pointer font-semibold text-base md:text-lg">
+              Company
+            </p>
+            <ul className="flex flex-col gap-2">
+              <Link className="cursor-pointer hover:text-white" to="/">
+                <p className="text-base md:text-lg">Home</p>
+              </Link>
 
-            <Link
-              onClick={handleScrollToTop}
-              className="cursor-pointer hover:text-white"
-              to="/aboutUs"
-            >
-              About Us
-            </Link>
-            <li className="cursor-pointer hover:text-white">Delivery</li>
-            <li className="cursor-pointer hover:text-white">Privacy Policy</li>
-          </ul>
-        </div>
-        <div className=" flex flex-col gap-5 items-center">
-          <h2 className="text-white cursor-pointer font-semibold text-lg">
-            GET IN TOUCH
-          </h2>
-          <ul className="flex flex-col gap-2">
-            <li className="cursor-pointer hover:text-white">+977 9846572383</li>
-            <li className="cursor-pointer hover:text-white">
-              contact@food.com
-            </li>
-          </ul>
+              <Link
+                onClick={handleScrollToTop}
+                className="cursor-pointer hover:text-white"
+                to="/aboutUs"
+              >
+                <p className="text-base md:text-lg">About Us</p>
+              </Link>
+              <li className="cursor-pointer hover:text-white">
+                <p className="text-base md:text-lg">Delivery</p>
+              </li>
+              <li className="cursor-pointer hover:text-white">
+                <p className="text-base md:text-lg">Privacy Policy</p>
+              </li>
+            </ul>
+          </div>
+          <div className=" flex flex-col gap-5 ">
+            <p className="text-black cursor-pointer font-semibold text-base md:text-lg">
+              GET IN TOUCH
+            </p>
+            <ul className="flex flex-col gap-2">
+              <li className="cursor-pointer  hover:text-white">
+                <p className="text-base md:text-lg">+977 9846572383</p>
+              </li>
+              <li className="cursor-pointer hover:text-white">
+                <p className="text-base md:text-lg">contact@food.com</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <hr className="w-full h-[2px] bg-gray-500 my-2 border-none" />

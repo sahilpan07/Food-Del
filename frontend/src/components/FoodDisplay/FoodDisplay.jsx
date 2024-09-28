@@ -8,7 +8,7 @@ const FoodDisplay = ({ category, restaurant }) => {
     return (
         <div className='mt-8' id='food-display'>
             <h2 className='text-[min(2vw,24px)] font-semibold'>Top Dishes</h2>
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] mt-8 gap-8 row-gap-[50px]">
+            <div className="grid grid-cols-5 mt-8 gap-10 row-gap-[50px]">
                 {food_list.map((item, index) => {
                     if (category === "All" || category === item.category) {
                         return (

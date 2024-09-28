@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios"
+import { Icon } from '@iconify/react';
+
 
 const Login = ({ setShowLogin }) => {
 
@@ -48,12 +50,7 @@ const Login = ({ setShowLogin }) => {
       <form onSubmit={onLogin} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md box-border relative transition-transform transform hover:scale-105">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold text-gray-800">{currState}</h2>
-          <img
-            onClick={() => setShowLogin(false)}
-            src={assets.cross_icon}
-            alt="Close"
-            className="cursor-pointer w-6 h-6 text-gray-600 hover:text-red-500 transition-colors"
-          />
+          <Icon onClick={() => setShowLogin(false)} className="cursor-pointer w-6 h-6 text-gray-600 hover:text-red-500 transition-colors" icon="mingcute:close-line"/>
         </div>
         <div className="flex flex-col gap-4 mb-4">
           {currState === "Login" ? <></> : (

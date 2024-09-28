@@ -32,26 +32,26 @@ const FAQ = () => {
   };
 
   return (
-    <div className='flex justify-between'>
-      <div className='w-1/2'>
-        <h2 className='text-2xl font-bold mb-4'>Frequently Asked Questions</h2>
+    <div className='flex lg:gap-20 justify-center'>
+      <div className='w-full lg:w-1/2'>
+        <h2 className=' text-md font-bold mb-4 lg:text-xl'>Frequently Asked Questions</h2>
         {faqs.map((faq, index) => (
           <div key={index} className='mb-2'>
             <div 
               className='cursor-pointer flex justify-between items-center p-2 border-b' 
               onClick={() => toggleFAQ(index)}
             >
-              <h3 className='font-semibold'>{faq.question}</h3>
-              <span className='text-xl'>{expandedIndex === index ? '-' : '+'}</span>
+              <h3 className='font-semibold text-xs lg:text-base'>{faq.question}</h3>
+              <span className='text-sm '>{expandedIndex === index ? '-' : '+'}</span>
             </div>
             {expandedIndex === index && (
-              <p className='pl-4'>{faq.answer}</p>
+              <p className='pl-4 text-xs lg:text-md'>{faq.answer}</p>
             )}
           </div>
         ))}
       </div>
       <div>
-        <img className='w-96' src={assets.faq} alt="FAQ illustration" />
+        <img className='w-96 hidden lg:block' src={assets.faq} alt="FAQ illustration" />
       </div>
     </div>
   );

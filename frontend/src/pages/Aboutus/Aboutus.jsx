@@ -10,13 +10,13 @@ const Aboutus = () => {
   const renderContent = () => {
     switch (activeSection) {
       case 'faq':
-        return <div className="mt-4 "><FAQ/></div>;
+        return <FAQ />;
       case 'whoWeAre':
-        return <div className="mt-4 "><CompanyDetail/></div>;
+        return <CompanyDetail />;
       case 'partnerProgram':
-        return <div className="mt-4 "><Partner/></div>;
+        return <Partner />;
       case 'helpSupport':
-        return <div className="mt-4 "><HelpSupport/></div>;
+        return <HelpSupport />;
       default:
         return null;
     }
@@ -24,47 +24,34 @@ const Aboutus = () => {
 
   const getButtonClass = (section) => {
     return `
-       p-3 rounded-3xl 
-      ${activeSection === section ? 'bg-violet-500' : ' hover:bg-blue-700'} 
-       font-semibold cursor-pointer
+      rounded-3xl text-xs sm:text-sm lg:text-md
+      ${activeSection === section ? 'text-violet-800' : 'hover:text-violet-600'} 
+      font-semibold cursor-pointer text-sm
     `;
   };
 
   return (
-    <div className='flex flex-col mx-20 items-center'>
-      <div className='flex p-12  items-center'>
-        <p className='text-xl font-bold'>Know more about us!</p>
-        <div className='flex gap-6 items-center'>
-          <p 
-            onClick={() => setActiveSection('faq')} 
-            className={getButtonClass('faq')}
-          >
+    <div className='flex flex-col gap-12 mx-12 md:mx-20 mt-12 '>
+      <div className='flex flex-col lg:items-center lg:flex-row lg:justify-between '>
+        <h1 className='text-lg lg:text-2xl  font-bold justify-items-start'>Know More About Us!</h1>
+        <div className='grid grid-cols-2 gap-2 sm:grid-cols-4 justify-center  lg:gap-4 mt-4'>
+          <p onClick={() => setActiveSection('faq')} className={getButtonClass('faq')}>
             Frequent Questions
           </p>
-          <p 
-            onClick={() => setActiveSection('whoWeAre')} 
-            className={getButtonClass('whoWeAre')}
-          >
-            Who we are?
+          <p onClick={() => setActiveSection('whoWeAre')} className={getButtonClass('whoWeAre')}>
+            Who We Are?
           </p>
-          <p 
-            onClick={() => setActiveSection('partnerProgram')} 
-            className={getButtonClass('partnerProgram')}
-          >
+          <p onClick={() => setActiveSection('partnerProgram')} className={getButtonClass('partnerProgram')}>
             Partner Program
           </p>
-          <p 
-            onClick={() => setActiveSection('helpSupport')} 
-            className={getButtonClass('helpSupport')}
-          >
+          <p onClick={() => setActiveSection('helpSupport')} className={getButtonClass('helpSupport')}>
             Help & Support
           </p>
         </div>
       </div>
-      <div className= 'w-11/12 border border-black'>
+      <div className='w-full border border-black p-0 sm:p-4'>
         {renderContent()}
       </div>
-      
     </div>
   );
 };

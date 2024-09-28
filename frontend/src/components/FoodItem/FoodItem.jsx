@@ -1,17 +1,20 @@
 import React, { useContext } from "react";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
+import { Icon } from '@iconify/react';
+import { Link } from "react-router-dom";
+
 
 const FoodItem = ({ id, name, price, description, image, restaurant }) => {
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
   return (
-    <div className="w-full mx-auto rounded-lg shadow-md transition duration-300 animate-fadeIn">
+    <div className="w-full mx-auto bg-slate rounded-lg shadow-md transition duration-300 animate-fadeIn">
       <div className="relative">
-        <img className="w-full rounded-t-lg" src={`${url}/images/${image}`} alt="" />
+        <img className="w-full rounded-2xl p-3" src={`${url}/images/${image}`} alt="" />
         {!cartItems[id] ? (
           <img
-            className="w-9 absolute bottom-4 right-4 cursor-pointer rounded-full"
+            className="w-9 absolute bottom-4 p-2 right-4 cursor-pointer rounded-full"
             onClick={() => addToCart(id)}
             src={assets.add_icon_white}
             alt=""
@@ -24,13 +27,15 @@ const FoodItem = ({ id, name, price, description, image, restaurant }) => {
           </div>
         )}
       </div>
-      <div className="p-5">
+      <div className="px-5 py-1">
         <div className="flex justify-between items-center mb-2">
           <p className="text-lg font-medium truncate">{name}</p>
         </div>
         <p className="text-gray-600 text-xs">{description}</p>
-        <p className="text-gray-600 text-xs">{restaurant}</p>
-        <p className="text-tomato text-xl font-medium my-2">Rs{price}</p>
+        <Link to='/restaurant'>
+                <p className="flex items-center gap-1 text-gray-600 text-xs hover:text-orange-500 cursor-pointer"><Icon className="text-md text-orange-500" icon="system-uicons:location"/>{restaurant}</p>
+        </Link>
+        <p className="text-tomato text-xl font-medium">Rs{price}</p>
       </div>
     </div>
   );
