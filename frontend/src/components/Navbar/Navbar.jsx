@@ -9,7 +9,7 @@ const Navbar = ({ setShowLogin }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
-  
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -28,7 +28,16 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div className="navbar flex py-3 px-12 md:px-20 justify-between items-center">
       <Link to="/" onClick={() => setMenu("home")}>
-        <img src={assets.logo_food} className="w-32 pointer md:w-36 sm:w-32" />
+        <img
+          className="hidden sm:block w-36"
+          src={assets.logo}
+          alt="Logo"
+        />
+        <img
+          className="block sm:hidden w-10"
+          src={assets.logo_mobile}
+          alt="Logo"
+        />
       </Link>
 
       {/* Desktop Menu */}
@@ -38,7 +47,11 @@ const Navbar = ({ setShowLogin }) => {
             key={path}
             to={path}
             onClick={() => setMenu(label.toLowerCase())}
-            className={menu === label.toLowerCase() ? "pb-2 border-b-2 border-[#49557e]" : ""}
+            className={
+              menu === label.toLowerCase()
+                ? "pb-2 border-b-2 border-[#49557e]"
+                : ""
+            }
           >
             {label}
           </Link>
@@ -93,13 +106,26 @@ const Navbar = ({ setShowLogin }) => {
             {isDropdownOpen && (
               <ul className="absolute right-0 w-28 flex flex-col gap-2 bg-white rounded-lg border border-orange-600 shadow-lg z-10">
                 <li className="flex items-center p-2 gap-2 hover:bg-gray-100 cursor-pointer rounded-lg">
-                  <Icon className="text-orange-600 text-2xl" icon="ph:bag-duotone" />
-                  <p className="text-md hover:text-orange-500 cursor-pointer">Orders</p>
+                  <Icon
+                    className="text-orange-600 text-2xl"
+                    icon="ph:bag-duotone"
+                  />
+                  <p className="text-md hover:text-orange-500 cursor-pointer">
+                    Orders
+                  </p>
                 </li>
                 <hr />
-                <li onClick={logout} className="flex items-center p-2 gap-2 hover:bg-gray-100 cursor-pointer rounded-lg">
-                  <Icon className="text-orange-600 text-2xl" icon="carbon:logout" />
-                  <p className="text-md cursor-pointer hover:text-orange-500">Logout</p>
+                <li
+                  onClick={logout}
+                  className="flex items-center p-2 gap-2 hover:bg-gray-100 cursor-pointer rounded-lg"
+                >
+                  <Icon
+                    className="text-orange-600 text-2xl"
+                    icon="carbon:logout"
+                  />
+                  <p className="text-md cursor-pointer hover:text-orange-500">
+                    Logout
+                  </p>
                 </li>
               </ul>
             )}

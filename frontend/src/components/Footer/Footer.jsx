@@ -31,13 +31,13 @@ const Footer = () => {
   };
 
   return (
-    <div className="mx-12 md:mx-20 rounded-t-xl relative text-black flex flex-col items-center gap-5 py-12 px-4 mt-20 bg-gradient-to-r from-purple-200 to-blue-200">
+    <div className="mx-12 md:mx-20 rounded-t-xl relative text-black flex flex-col items-center gap-5 py-12 px-4 mt-20 bg-[#040A27] text-white">
       <div className="flex flex-col md:flex-row  w-full gap-4 items-center relative z-10">
         <div className=" flex flex-col gap-5 items-start md:w-3/5 px-8">
           <div className=" border border-white p-3 rounded-xl bg-violet-300">
             <img
               className="w-32 md:w-48 sm:w-28"
-              src={assets.logo_food}
+              src={assets.logo}
               alt="Logo"
             />
           </div>
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col sm:flex-row gap-8 sm:gap-24 justify-between">
           <div className=" flex flex-col gap-2 sm:gap-5 ">
-            <p className="text-black cursor-pointer font-semibold text-base md:text-lg">
+            <p className=" cursor-pointer font-semibold text-base md:text-lg">
               Company
             </p>
             <ul className="flex flex-col gap-2">
@@ -87,7 +87,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className=" flex flex-col gap-5 ">
-            <p className="text-black cursor-pointer font-semibold text-base md:text-lg">
+            <p className="cursor-pointer font-semibold text-base md:text-lg">
               GET IN TOUCH
             </p>
             <ul className="flex flex-col gap-2">

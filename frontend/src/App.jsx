@@ -12,9 +12,9 @@ import Restaurant from "./pages/Restaurant/Restaurant";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ExploreRestaurant from "./components/ExploreRestaurant/ExploreRestaurant";
 import FAQ from "./components/aboutUsComponents/FAQ";
-import Partner from "./components/aboutUsComponents/Partner";
 import HelpSupport from "./components/aboutUsComponents/HelpSupport";
 import CompanyDetail from "./components/aboutUsComponents/CompanyDetail";
+import OrderStep from "./components/aboutUsComponents/OrderStep";
 
 const App = () => {
   window.onload = function () {
@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/aboutUs" element={<Aboutus />} />
           <Route path="/faq" element={<FAQ/>} />
           <Route path="company" element={<CompanyDetail/>}/>
-          <Route path="/about" element={<Partner/>}/>
+          <Route path="/order-step" element={<OrderStep/>}/>
           <Route path="/Help" element={<HelpSupport/>}/>
           <Route path="/order" element={<PlaceOrder />} />
         </Routes>
