@@ -1,9 +1,9 @@
 import React from "react";
 
-const CompanyDetail = () => {
+const AboutUs = () => {
   return (
     <div className="flex flex-col gap-8 mx-12 md:mx-20 lg:mx-32">
-      <h1 className="text-base font-bold md:text-xl lg:ml-8">About Us</h1>
+      <h1 className="text-xl">About Us</h1>
       <div className="flex flex-col items-center">
         <p className="text-sm sm:text-base lg:text-lg w-11/12 text-justify text-zinc-600">
           Welcome to Bhojan Point, where culinary delight meets convenience!
@@ -32,4 +32,4 @@ const CompanyDetail = () => {
   );
 };
 
-export default CompanyDetail;
+export default AboutUs;

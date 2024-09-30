@@ -3,14 +3,14 @@ import { assets } from '../../assets/assets';
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between items-center mx-8 py-4 bg-white shadow-md rounded-b-lg">
+    <div className="flex w-full justify-between items-center px-8 py-4 bg-white shadow-md  ">
       <img
-        className="hidden sm:block w-36" // Hide on mobile, show on medium screens and up
+        className="hidden sm:block w-36"
         src={assets.logo}
         alt="Logo"
       />
       <img
-        className="block sm:hidden w-10"
+        className="block sm:hidden w-12"
         src={assets.logo_mobile}
         alt="Logo"
       />

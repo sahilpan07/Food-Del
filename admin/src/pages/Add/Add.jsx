@@ -109,7 +109,7 @@ const Add = ({ url }) => {
           <select
             onChange={onChangeHandler}
             className="p-4 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
-            name="restaurant" // Updated to "restaurant"
+            name="restaurant" 
             value={data.restaurant} // Control the selected value
             required
           >
@@ -130,7 +130,7 @@ const Add = ({ url }) => {
             <select
               onChange={onChangeHandler}
               className="p-4 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
-              name="category" // Keep this as "category"
+              name="category" 
               value={data.category} // Control the selected value
               required
             >

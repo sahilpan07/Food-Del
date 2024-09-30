@@ -31,13 +31,13 @@ const Footer = () => {
   };
 
   return (
-    <div className="mx-12 md:mx-20 rounded-t-xl relative text-black flex flex-col items-center gap-5 py-12 px-4 mt-20 bg-[#040A27] text-white">
-      <div className="flex flex-col md:flex-row  w-full gap-4 items-center relative z-10">
-        <div className=" flex flex-col gap-5 items-start md:w-3/5 px-8">
-          <div className=" border border-white p-3 rounded-xl bg-violet-300">
+    <div className="mx-12 md:mx-20 rounded-t-xl relative text-black flex flex-col items-center gap-5 py-12 px-8 sm:px-12 mt-20 bg-[#040A27] text-white">
+      <div className="flex flex-col md:flex-row  w-full gap-8 items-center relative z-10">
+        <div className=" flex flex-col gap-6 items-start md:w-1/2">
+          <div className="  p-3 rounded-xl">
             <img
               className="w-32 md:w-48 sm:w-28"
-              src={assets.logo}
+              src={assets.logo_footer}
               alt="Logo"
             />
           </div>
@@ -61,41 +61,55 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row gap-8 sm:gap-24 justify-between">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3  justify-between">
           <div className=" flex flex-col gap-2 sm:gap-5 ">
-            <p className=" cursor-pointer font-semibold text-base md:text-lg">
+            <p className=" cursor-pointer font-semibold text-base lg:text-lg">
               Company
             </p>
             <ul className="flex flex-col gap-2">
               <Link className="cursor-pointer hover:text-white" to="/">
-                <p className="text-base md:text-lg">Home</p>
+                <p className="text-base">Home</p>
               </Link>
 
               <Link
                 onClick={handleScrollToTop}
                 className="cursor-pointer hover:text-white"
-                to="/aboutUs"
+                to="/aboutPage"
               >
-                <p className="text-base md:text-lg">About Us</p>
+                <p className="text-base">About Us</p>
               </Link>
               <li className="cursor-pointer hover:text-white">
-                <p className="text-base md:text-lg">Delivery</p>
+                <p className="text-base">Delivery</p>
               </li>
               <li className="cursor-pointer hover:text-white">
-                <p className="text-base md:text-lg">Privacy Policy</p>
+                <p className="text-base ">Privacy Policy</p>
               </li>
             </ul>
           </div>
           <div className=" flex flex-col gap-5 ">
-            <p className="cursor-pointer font-semibold text-base md:text-lg">
+            <p className="cursor-pointer font-semibold text-base ">GET HELP</p>
+            <ul className="flex flex-col gap-2">
+              <li className="cursor-pointer  hover:text-white">
+                <p className="text-base">How to Order?</p>
+              </li>
+              <li className="cursor-pointer hover:text-white">
+                <p className="text-base">FAQs</p>
+              </li>
+              <li className="cursor-pointer hover:text-white">
+                <p className="text-base">Contact Us</p>
+              </li>
+            </ul>
+          </div>
+          <div className=" flex flex-col gap-5 ">
+            <p className="cursor-pointer font-semibold text-base ">
               GET IN TOUCH
             </p>
             <ul className="flex flex-col gap-2">
               <li className="cursor-pointer  hover:text-white">
-                <p className="text-base md:text-lg">+977 9846572383</p>
+                <p className="text-base ">+977 9846572383</p>
               </li>
               <li className="cursor-pointer hover:text-white">
-                <p className="text-base md:text-lg">contact@food.com</p>
+                <p className="text-base ">contact@food.com</p>
               </li>
             </ul>
           </div>

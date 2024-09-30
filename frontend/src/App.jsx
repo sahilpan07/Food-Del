@@ -6,15 +6,15 @@ import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
-import Aboutus from "./pages/Aboutus/Aboutus";
 import Menu from "./pages/Menu/Menu";
 import Restaurant from "./pages/Restaurant/Restaurant";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ExploreRestaurant from "./components/ExploreRestaurant/ExploreRestaurant";
 import FAQ from "./components/aboutUsComponents/FAQ";
 import HelpSupport from "./components/aboutUsComponents/HelpSupport";
-import CompanyDetail from "./components/aboutUsComponents/CompanyDetail";
 import OrderStep from "./components/aboutUsComponents/OrderStep";
+import AboutPage from "./pages/Aboutus/AboutPage";
+import AboutUs from "./components/aboutUsComponents/AboutUs";
 
 const App = () => {
   window.onload = function () {
@@ -37,9 +37,9 @@ const App = () => {
           <Route path="/restaurant" element={<Restaurant />} />
           <Route path="/explore-res" element={<ExploreRestaurant/>}/>
           <Route path="/contact" element={<ContactUs />} />
-          <Route path="/aboutUs" element={<Aboutus />} />
+          <Route path="/aboutpage" element={<AboutPage />} />
           <Route path="/faq" element={<FAQ/>} />
-          <Route path="company" element={<CompanyDetail/>}/>
+          <Route path="aboutUs" element={<AboutUs/>}/>
           <Route path="/order-step" element={<OrderStep/>}/>
           <Route path="/Help" element={<HelpSupport/>}/>
           <Route path="/order" element={<PlaceOrder />} />

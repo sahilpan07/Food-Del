@@ -34,7 +34,7 @@ const Navbar = ({ setShowLogin }) => {
           alt="Logo"
         />
         <img
-          className="block sm:hidden w-10"
+          className="block sm:hidden w-12"
           src={assets.logo_mobile}
           alt="Logo"
         />
