@@ -15,6 +15,7 @@ import HelpSupport from "./components/aboutUsComponents/HelpSupport";
 import OrderStep from "./components/aboutUsComponents/OrderStep";
 import AboutPage from "./pages/Aboutus/AboutPage";
 import AboutUs from "./components/aboutUsComponents/AboutUs";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   window.onload = function () {
@@ -24,10 +25,13 @@ const App = () => {
 
   return (
     <>
+    
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-        <div className="sticky top-0 z-50 bg-white shadow">
+        <div className="sticky top-0 bg-white shadow">
+          <ToastContainer/>
           <Navbar setShowLogin={setShowLogin} />
+          
         </div>
 
         <Routes>

@@ -42,9 +42,9 @@ const OrderCount = () => {
   return (
     <div className='grid grid-cols-2 mx-12 md:mx-20 sm:grid-cols-4 gap-4 justify-around py-6 px-2 bg-[#040A27] text-white rounded-lg shadow-md'>
       {counts.map((item, index) => (
-        <div key={index} className='text-center text-xs flex flex-col gap-3 lg:text-base font-semibold'>
-          <p className=''>{item.current}+</p>
-          <p className=''>{item.label}</p>
+        <div key={index} className='text-center text-xs flex flex-col gap-3  font-semibold'>
+          <p className='md:text-2xl'>{item.current}+</p>
+          <p className='md:text-base lg:text-xl'>{item.label}</p>
         </div>
       ))}
     </div>
