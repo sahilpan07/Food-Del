@@ -30,7 +30,6 @@ const placeOrder = async (req, res) => {
         
         // eSewa payment URL
         const sessionUrl = `${esewa_url}?${esewaParams.toString()}`;
-        console.log(`eSewa URL: ${sessionUrl}`); // Log the URL
         res.json({ success: true, session_url: sessionUrl });
         
     } catch (error) {
