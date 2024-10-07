@@ -18,6 +18,32 @@ const PlaceOrder = () => {
     phone:"",
   })
 
+  const placeOrder = async (event) => {
+    event.preventDefault();
+    let orderItems = [];
+    food_list.map((item) => {
+        if (cartItems[item._id] > 0) {
+            let itemInfo = item;
+            itemInfo["quantity"] = cartItems[item._id];
+            orderItems.push(itemInfo);
+        }
+    });
+    
+    let orderData = {
+        address: data,
+        items: orderItems,
+        amount: getTotalCartAmount() + 150, // Adjust total amount if needed
+    };
+
+    let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
+    if (response.data.success) {
+        const { session_url } = response.data;
+        window.location.replace(session_url); // Redirect to eSewa payment
+    } else {
+        alert("Failed to place order");
+    }
+};
+
   const onChangeHandler = (event) =>{
     const name = event.target.name;
     const value = event.target.value;
@@ -63,7 +89,7 @@ const PlaceOrder = () => {
               <p>Rs.{getTotalCartAmount()===0?0:getTotalCartAmount()+150}</p>
             </div>
           </div>
-          <button type='submit' className="text-white h-12 py-3 mt-6 w-full md:w-64 rounded-lg bg-violet-900">PROCEED TO Payment</button>
+          <button type='submit' onClick={placeOrder} className="text-white h-12 py-3 mt-6 w-full md:w-64 rounded-lg bg-violet-900">PROCEED TO Payment</button>
         </div>
       </div>
 
