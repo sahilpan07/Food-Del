@@ -4,7 +4,7 @@ import crypto from 'crypto';
 
 const placeOrder = async (req, res) => {
     const frontend_url = "http://localhost:5173";
-    const esewa_url = "https://epay.esewa.com.np/api/epay/main/v2/form "; 
+    const esewa_url = "https://esewa.com.np/epay/main"; 
     const serviceCode = "EPAYTEST"; 
     const productId = "EPAYTEST";
 
