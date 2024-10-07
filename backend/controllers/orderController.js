@@ -4,8 +4,9 @@ import crypto from 'crypto';
 
 const placeOrder = async (req, res) => {
     const frontend_url = "http://localhost:5173";
-    const esewa_url = "https://esewa.com.np/epay/main"; 
+    const esewa_url = "https://epay.esewa.com.np/api/epay/main/v2/form "; 
     const serviceCode = "EPAYTEST"; 
+    const productId = "EPAYTEST";
 
     try {
         const totalAmount = req.body.amount + 2; 
@@ -34,9 +35,10 @@ const placeOrder = async (req, res) => {
             psc: '0',
             pdc: '1',
             product_code: serviceCode,        
-            pid: "EPAYTEST",                  
+            pid: productId,                  
             signature: signature,
             txId: newOrder._id,
+            scd: serviceCode,
             su: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
             fu: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
         });
