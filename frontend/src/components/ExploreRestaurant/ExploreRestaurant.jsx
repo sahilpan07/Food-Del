@@ -17,7 +17,7 @@ const ExploreRestaurant = ({ setRestaurant }) => {
                         state={item}
                     >
                         <div 
-                            className="flex flex-col border border-gray-300 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105"
+                            className="flex flex-col border text-white bg-[#040A27] border-gray-300 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105"
                             onClick={() => setRestaurant(item.restaurant_name)}
                         >
                             <img 
@@ -26,8 +26,8 @@ const ExploreRestaurant = ({ setRestaurant }) => {
                                 alt={item.restaurant_name} 
                             />
                             <div className="p-3">
-                                <p className="text-gray-800 text-lg font-medium">{item.restaurant_name}</p>
-                                <p className="mt-1 text-gray-500 text-sm">{item.location}</p>
+                                <p className=" text-lg font-medium">{item.restaurant_name}</p>
+                                <p className="mt-1 text-sm">{item.location}</p>
                             </div>
                         </div>
                     </Link>
