@@ -3,7 +3,7 @@ import { StoreContext } from "../../context/StoreContext";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 
-const FoodItem = ({ id, name, price, description, image, restaurant }) => {
+const FoodItem = ({ id, name, price, description, image, restaurant, location, restaurant_description }) => {
   const { cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
 
@@ -26,7 +26,14 @@ const FoodItem = ({ id, name, price, description, image, restaurant }) => {
         </div>
         <p className="text-xs truncate">{description}</p>
         {restaurant && ( // Only render if restaurant name is present
-          <Link to="/restaurant">
+          <Link to="/restaurant"
+          state={{
+            restaurant_name: restaurant, 
+            restaurant_image: image, 
+            location: location,
+            restaurant_description: restaurant_description,
+          }}
+          >
             <p className="flex items-center gap-1 text-xs hover:text-orange-500 cursor-pointer">
               <Icon
                 className="text-md text-orange-500"

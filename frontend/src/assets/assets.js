@@ -143,12 +143,13 @@ export const restaurant_list = [
         restaurant_name: "restaurant1",
         restaurant_image: roadhouse_cafe,
         location: "Thamel",
-        description:"asdjbisabijabauksbdkjsabdks"
+        restaurant_description:"asdjbisabijabauksbdkjsabdks"
     },
     {
         restaurant_name: "restaurant2",
         restaurant_image: roadhouse_pizza,
-        location: "Labim Mall"
+        location: "Labim Mall",
+        restaurant_description:"asdjbisabijabauksbdkjsabdks"
     },
     {
         restaurant_name: "restaurant3",
