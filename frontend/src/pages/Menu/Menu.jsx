@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import ExploreMenu from "../../components/ExploreMenu/ExploreMenu";
-import FoodDisplay from "../../components/FoodDisplay/FoodDisplay";
+import MenuFood from "../../components/MenuFood/MenuFood";
 
 const Menu = () => {
-  const [category, setCategory] = useState("All");
-  
+
+
   return (
     <div className="mx-12 md:mx-20">
-      <ExploreMenu category={category} setCategory={setCategory} />
-      <FoodDisplay category={category} />
+      <h1 className="text-gray-800 text-lg font-semibold">Explore Our Menu</h1>
+      <p className="max-w-[60%] text-gray-600">
+        Welcome to Delicious Bites Online Ordering! Explore our mouthwatering
+        menu featuring a variety of appetizers, main courses, desserts, and
+        beverages delivered right to your door.
+      </p>
+      <MenuFood/>
     </div>
   );
 };

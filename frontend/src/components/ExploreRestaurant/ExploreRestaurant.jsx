@@ -3,6 +3,7 @@ import { restaurant_list } from '../../assets/assets';
 import { Link } from "react-router-dom";
 
 const ExploreRestaurant = ({ setRestaurant }) => {
+
     return (
         <div className="flex flex-col gap-5 mx-12 md:mx-20" id="restaurant-menu">
             <h1 className="text-gray-800 text-lg font-semibold">Our Restaurants</h1>
