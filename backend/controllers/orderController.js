@@ -4,9 +4,8 @@ import crypto from 'crypto';
 
 const placeOrder = async (req, res) => {
     const frontend_url = "http://localhost:5173";
-    const esewa_url = "https://esewa.com.np/epay/main"; 
+    const esewa_url = "https://rc-epay.esewa.com.np/api/epay/main/v2/form"; 
     const serviceCode = "EPAYTEST"; 
-    const productId = "EPAYTEST";
 
     try {
         const totalAmount = req.body.amount + 2; 
@@ -29,18 +28,17 @@ const placeOrder = async (req, res) => {
 
         // Prepare eSewa parameters
         const esewaParams = new URLSearchParams({
-            amt: transactionAmount,
-            txAmt: transactionAmount,
-            tAmt: totalAmount,
-            psc: '0',
-            pdc: '1',
-            product_code: serviceCode,        
-            pid: productId,                  
+            amount: transactionAmount,
+            failure_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
+            product_delivery_charge: '1',
+            product_service_charge: '0',
+            product_code: "EPAY",                  
             signature: signature,
+            signed_field_name: "total_amount,transaction_uuid,product_code",
+            success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
+            tax_amount: '0',
+            total_amount: totalAmount,
             txId: newOrder._id,
-            scd: serviceCode,
-            su: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-            fu: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
         });
 
         // Create the session URL for eSewa
