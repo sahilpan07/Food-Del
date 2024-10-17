@@ -23,7 +23,7 @@ const Cart = () => {
         {food_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
-              <div className="flex flex-col gap-3 mt-3">
+              <div className="flex flex-col gap-3 mt-3" key={item._id}>
                 <div className="grid grid-cols-6 items-center text-xs md:text-base" style={{ gridTemplateColumns: '1fr 1.5fr 1fr 1fr 1fr 1fr' }}>
                   <img className="w-10 md:w-20 rounded-3xl sm: w-10" src={url+"/images/"+item.image} alt="" />
                   <p>{item.name}</p>
@@ -36,6 +36,7 @@ const Cart = () => {
               </div>
             );
           }
+          return null;
         })}
       </div>
       <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-20">
