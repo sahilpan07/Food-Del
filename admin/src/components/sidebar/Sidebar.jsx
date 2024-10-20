@@ -44,7 +44,7 @@ const Sidebar = () => {
           }
         >
           <img src={assets.order_icon} alt="Orders" className="w-6" />
-          <p className='hidden lg:block'>Add Category</p>
+          <p className='hidden lg:block'>Add Categoryy</p>
         </NavLink>
       </div>
     </div>

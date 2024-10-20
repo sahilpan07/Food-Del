@@ -12,6 +12,8 @@ const StoreContextProvider = (props) => {
 
   const [food_list,setFoodList] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
@@ -69,10 +71,24 @@ const StoreContextProvider = (props) => {
       return response.data; 
     };
 
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(url + "/api/categories");
+        if (response.data.success) {
+          setCategories(response.data.data); // Assuming response.data.data contains the category array
+        } else {
+          console.error("Failed to fetch categories:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
   //protect from logout when reload page
 useEffect(() => {
   async function loadData() {
     await fetchFoodList();
+    await fetchCategories(); 
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
       await loadCartData(localStorage.getItem("token"));
@@ -85,6 +101,7 @@ useEffect(() => {
   const contextValue = {
     food_list,
     cartItems,
+    categories,
     setCartItems,
     addToCart,
     removeFromCart,
