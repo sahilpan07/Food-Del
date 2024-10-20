@@ -62,9 +62,13 @@ const AdminCategoryPanel = ({ url }) => {
   // Remove category
   const removeCategory = async (categoryId) => {
     try {
-      const response = await axios.delete(`${url}/api/categories/remove/${categoryId}`);
+      const response = await axios.delete(
+        `${url}/api/categories/remove/${categoryId}`
+      );
       if (response.data.success) {
-        setCategories(categories.filter((category) => category._id !== categoryId));
+        setCategories(
+          categories.filter((category) => category._id !== categoryId)
+        );
         toast.success("Category removed successfully!");
       } else {
         toast.error(response.data.message);
@@ -78,7 +82,9 @@ const AdminCategoryPanel = ({ url }) => {
     <div className="max-w-xl mx-auto p-8 bg-white shadow-xl rounded-lg">
       <h2 className="text-2xl font-bold mb-6">Manage Categories</h2>
       <div className="flex flex-col">
-        <label htmlFor="image" className="mb-2 font-semibold text-gray-700">Upload Image</label>
+        <label htmlFor="image" className="mb-2 font-semibold text-gray-700">
+          Upload Image
+        </label>
         <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 rounded-xl cursor-pointer hover:bg-gray-200 transition">
           <input
             onChange={(e) => setImage(e.target.files[0])}
@@ -94,7 +100,9 @@ const AdminCategoryPanel = ({ url }) => {
               src={image ? URL.createObjectURL(image) : assets.upload_area}
               alt="Upload Area"
             />
-            <span className="text-gray-500 mt-2">{image ? image.name : "Click to upload an image"}</span>
+            <span className="text-gray-500 mt-2">
+              {image ? image.name : "Click to upload an image"}
+            </span>
           </label>
         </div>
       </div>
@@ -107,7 +115,10 @@ const AdminCategoryPanel = ({ url }) => {
           placeholder="Enter category name"
           className="w-full p-3 border border-gray-300 rounded-md mb-4"
         />
-        <button type="submit" className="w-full bg-blue-600 text-white p-3 rounded-md">
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white p-3 rounded-md"
+        >
           Add Category
         </button>
       </form>
@@ -115,15 +126,24 @@ const AdminCategoryPanel = ({ url }) => {
       {/* List of existing categories */}
       <h3 className="text-lg font-semibold mb-4">Existing Categories</h3>
       <ul className="list-disc list-inside">
-        {categories.map((category,idx) => (
-          <li key={idx} className="flex items-center mb-2">
-            <img
-              src={`${url}/images/${category.image}`}
-              className="w-16 h-16 object-cover rounded mr-2"
-            />
-            <span>{category.name}</span>
-            <button onClick={() => removeCategory(category._id)} className="ml-4 text-red-600">Remove</button>
-            </li>
+        {categories.map((category, idx) => (
+          <li key={idx} className="flex mb-2">
+            <div className="flex flex-row justify-between w-full">
+              <div className="flex items-center">
+                <img
+                  src={`${url}/images/${category.image}`}
+                  className="w-16 h-16 object-cover rounded mr-2"
+                />
+                <span>{category.name}</span>
+              </div>
+              <button
+                onClick={() => removeCategory(category._id)}
+                className="ml-4 text-red-600"
+              >
+                Remove
+              </button>
+            </div>
+          </li>
         ))}
       </ul>
     </div>
