@@ -1,7 +1,8 @@
 import React from 'react';
 import { menu_list } from '../../assets/assets';
 
-const ExploreMenu = ({ category, setCategory }) => {
+const ExploreMenu = ({ category, setCategory,url }) => {
+  
   return (
     <div className="flex flex-col gap-5" id="explore-menu">
       <div className="flex gap-7 justify-between items-center text-center my-5 overflow-x-scroll cursor-pointer">
