@@ -32,8 +32,8 @@ const FAQ = () => {
   };
 
   return (
-    <div className='flex lg:gap-20 justify-center mx-12 md:mx-20'>
-      <div className='w-full lg:w-1/2'>
+    <div className='flex mt-10 lg:gap-10 bg-white rounded-lg p-10 items-center justify-center mx-12 md:mx-20'>
+      <div className='w-full '>
         <h2 className=' text-md font-bold mb-4 lg:text-xl'>Frequently Asked Questions</h2>
         {faqs.map((faq, index) => (
           <div key={index} className='mb-2'>
@@ -51,7 +51,7 @@ const FAQ = () => {
         ))}
       </div>
       <div>
-        <img className='w-96 hidden lg:block' src={assets.faq} alt="FAQ illustration" />
+        <img className='w-full hidden lg:block' src={assets.faq} alt="FAQ illustration" />
       </div>
     </div>
   );
