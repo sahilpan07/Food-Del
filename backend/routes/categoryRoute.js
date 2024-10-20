@@ -22,8 +22,4 @@ categoryRouter.get('/', getCategories);
 
 categoryRouter.delete('/remove/:id', removeCategory);
 
-<<<<<<< HEAD
 export default categoryRouter;
-=======
-export default categoryRouter;
->>>>>>> f1594920f26d79959b5c66f683bfc4644b48e11e
