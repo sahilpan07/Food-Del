@@ -30,7 +30,7 @@ export const getCategories = async (req, res) => {
     const categories = await categoryModel.find({}); // Fetch all categories
     res.status(200).json({ success: true, data: categories });
   } catch (error) {
-    console.error(error); // Log the error to the console
+    console.error(error);
     res.status(500).json({ success: false, message: 'Server Error' });
   }
 };

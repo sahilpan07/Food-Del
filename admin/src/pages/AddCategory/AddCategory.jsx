@@ -5,7 +5,7 @@ import { assets } from "../../assets/assets";
 
 const AdminCategoryPanel = ({ url }) => {
   const [categoryName, setCategoryName] = useState("");
-  const [image, setImage] = useState(null); // Changed to null
+  const [image, setImage] = useState(null); 
   const [categories, setCategories] = useState([]);
 
   // Fetch existing categories from backend
@@ -26,7 +26,7 @@ const AdminCategoryPanel = ({ url }) => {
     fetchCategories();
   }, [url]);
 
-  // Handle adding a new category
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (categoryName.trim() === "") {
@@ -50,7 +50,7 @@ const AdminCategoryPanel = ({ url }) => {
       if (response.data.success) {
         setCategories([...categories, { name: categoryName }]);
         setCategoryName("");
-        setImage(null); // Reset the image
+        setImage(null); 
         toast.success("Category added successfully!");
       } else {
         toast.error(response.data.message);
@@ -104,7 +104,7 @@ const AdminCategoryPanel = ({ url }) => {
         {categories.map((category, index) => (
           <li key={index} className="flex items-center mb-2">
 <img
-  src={`${url}/images/${category.image}`} // Ensure that category.image contains just the filename
+  src={`${url}/images/${category.image}`} 
   className="w-16 h-16 object-cover rounded mr-2"
 />
             <span>{category.name}</span>
