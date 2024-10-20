@@ -8,4 +8,8 @@ const categorySchema = new mongoose.Schema({
 
 const categoryModel = mongoose.models.category || mongoose.model("category",categorySchema)
 
+<<<<<<< HEAD
 export default categoryModel;
+=======
+export default categoryModel;
+>>>>>>> f1594920f26d79959b5c66f683bfc4644b48e11e
