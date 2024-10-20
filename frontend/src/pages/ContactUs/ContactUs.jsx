@@ -1,9 +1,11 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { StoreContext } from "../../context/StoreContext";
 
 const ContactUs = () => {
+  const { sendEmail } = useContext(StoreContext);
   const initialValues = {
     first_name: "",
     last_name: "",
@@ -24,11 +26,17 @@ const ContactUs = () => {
     message: Yup.string().required("Required"),
   });
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    // Simulate form submission
-    console.log("Form submitted:", values);
-    setSubmitting(false);
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const data = await sendEmail(values); 
+      console.log(data); 
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setSubmitting(false);
+    }
   };
+
   const socialIcons = [
     {
       icon: "uil:facebook",

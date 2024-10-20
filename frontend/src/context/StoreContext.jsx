@@ -54,6 +54,20 @@ const StoreContextProvider = (props) => {
     setCartItems(response.data.cartData);
   }
   
+    // New sendEmail function
+    const sendEmail = async (formData) => {
+      if (!token) {
+        throw new Error("No token found. User is not authorized.");
+      }
+      const response = await axios.post(url + "/api/contact/send-email", formData, {
+        headers: {token },
+      });
+  
+      if (!response.data.success) {
+        throw new Error(response.data.message || "Error sending email");
+      }
+      return response.data; // Return response data on success
+    };
 
   //protect from logout when reload page
 useEffect(() => {
@@ -78,6 +92,7 @@ useEffect(() => {
     url,
     token,
     setToken,
+    sendEmail,
   };
 
   return (
