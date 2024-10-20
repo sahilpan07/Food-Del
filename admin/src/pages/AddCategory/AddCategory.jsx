@@ -5,7 +5,7 @@ import { assets } from "../../assets/assets";
 
 const AdminCategoryPanel = ({ url }) => {
   const [categoryName, setCategoryName] = useState("");
-  const [image, setImage] = useState(null); 
+  const [image, setImage] = useState(null);
   const [categories, setCategories] = useState([]);
 
   // Fetch existing categories from backend
@@ -26,7 +26,7 @@ const AdminCategoryPanel = ({ url }) => {
     fetchCategories();
   }, [url]);
 
-
+  // Handle adding a new category
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (categoryName.trim() === "") {
@@ -34,29 +34,43 @@ const AdminCategoryPanel = ({ url }) => {
       return;
     }
 
-    // Create FormData to send category name and image
     const formData = new FormData();
     formData.append("name", categoryName);
     if (image) {
-      formData.append("image", image); // Include the image file if it exists
+      formData.append("image", image);
     }
 
     try {
       const response = await axios.post(`${url}/api/categories/add`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Set the content type for form data
+          "Content-Type": "multipart/form-data",
         },
       });
       if (response.data.success) {
         setCategories([...categories, { name: categoryName }]);
         setCategoryName("");
-        setImage(null); 
+        setImage(null);
         toast.success("Category added successfully!");
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
       toast.error("Error adding category.");
+    }
+  };
+
+  // Remove category
+  const removeCategory = async (categoryId) => {
+    try {
+      const response = await axios.delete(`${url}/api/categories/remove/${categoryId}`);
+      if (response.data.success) {
+        setCategories(categories.filter((category) => category._id !== categoryId));
+        toast.success("Category removed successfully!");
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Error removing category.");
     }
   };
 
@@ -101,14 +115,15 @@ const AdminCategoryPanel = ({ url }) => {
       {/* List of existing categories */}
       <h3 className="text-lg font-semibold mb-4">Existing Categories</h3>
       <ul className="list-disc list-inside">
-        {categories.map((category, index) => (
-          <li key={index} className="flex items-center mb-2">
-<img
-  src={`${url}/images/${category.image}`} 
-  className="w-16 h-16 object-cover rounded mr-2"
-/>
+        {categories.map((category,idx) => (
+          <li key={idx} className="flex items-center mb-2">
+            <img
+              src={`${url}/images/${category.image}`}
+              className="w-16 h-16 object-cover rounded mr-2"
+            />
             <span>{category.name}</span>
-          </li>
+            <button onClick={() => removeCategory(category._id)} className="ml-4 text-red-600">Remove</button>
+            </li>
         ))}
       </ul>
     </div>
