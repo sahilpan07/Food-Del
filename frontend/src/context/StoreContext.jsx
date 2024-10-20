@@ -66,7 +66,7 @@ const StoreContextProvider = (props) => {
       if (!response.data.success) {
         throw new Error(response.data.message || "Error sending email");
       }
-      return response.data; // Return response data on success
+      return response.data; 
     };
 
   //protect from logout when reload page

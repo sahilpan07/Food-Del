@@ -1,11 +1,14 @@
-import React,{useContext} from "react";
+import React, { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { StoreContext } from "../../context/StoreContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactUs = () => {
   const { sendEmail } = useContext(StoreContext);
+  const [isSent, setIsSent] = useState(false);
   const initialValues = {
     first_name: "",
     last_name: "",
@@ -26,12 +29,13 @@ const ContactUs = () => {
     message: Yup.string().required("Required"),
   });
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting,re }) => {
     try {
-      const data = await sendEmail(values); 
-      console.log(data); 
+      const data = await sendEmail(values);
+      toast.success(data.message);
+      setIsSent(true);
     } catch (error) {
-      console.error('Error:', error);
+      toast.error(error.message || "Error sending email");
     } finally {
       setSubmitting(false);
     }
@@ -62,6 +66,7 @@ const ContactUs = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen mx-12 md:mx-20">
+      <ToastContainer />
       <div className="flex flex-col gap-8 w-full p-2 bg-white rounded-lg shadow-md md:p-6">
         <div>
           <h1 className="text-2xl font-bold text-center text-gray-800">
@@ -259,12 +264,16 @@ const ContactUs = () => {
                   </div>
 
                   <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-56 p-2 py-2 bg-[#040A27] text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </button>
+                type="submit"
+                disabled={isSubmitting || isSent} // Disable after submission
+                className="w-56 p-2 py-2 bg-[#040A27] text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {isSubmitting
+                  ? "Sending..."
+                  : isSent
+                  ? "Sent"      
+                  : "Send Message"}
+              </button>
                 </Form>
               )}
             </Formik>
