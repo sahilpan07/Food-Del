@@ -10,9 +10,9 @@ const contactController = async (req, res) => {
     address,
     subject,
     message,
-    email,
+    
   } = req.body;
-
+const userEmail = req.body.email;
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -22,7 +22,7 @@ const contactController = async (req, res) => {
   });
 
   const mailOptions = {
-    from: email,
+    from: userEmail,
     to: "test423559@gmail.com",
     subject: `New message from ${first_name} ${last_name}: ${subject}`,
     text: `
