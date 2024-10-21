@@ -1,63 +1,85 @@
-import React from 'react';
-import { assets } from '../../assets/assets';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { assets } from "../../assets/assets";
+import { NavLink } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 const Sidebar = () => {
   return (
-    <div className='w-[18%] min-h-screen bg-white shadow-md border border-gray-300'>
-      <div className='pt-12 pl-8 flex flex-col gap-6'>
-        <h2 className='text-xl font-bold text-gray-800 mb-4'>Menu</h2>
+    <div className="w-[18%] min-h-screen bg-white shadow-md border border-gray-300">
+      <div className="pt-12 pl-8 flex flex-col gap-6">
+        <h2 className="text-xl font-bold text-gray-800 mb-4">Menu</h2>
         <NavLink
-          to='/addcategory'
-          className={({ isActive }) => 
-            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600'}`
+          to="/addcategory"
+          className={({ isActive }) =>
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${
+              isActive
+                ? "bg-orange-100 text-orange-600 border-l-4 border-orange-600"
+                : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600"
+            }`
           }
         >
-          <img src={assets.order_icon} alt="Orders" className="w-6" />
-          <p className='hidden lg:block'>Add Categoryy</p>
+          <Icon icon="iconamoon:category" className="w-6 h-6 " />
+          <p className="hidden lg:block">Add Categoryy</p>
         </NavLink>
         <NavLink
-          to='/addrestaurant'
-          className={({ isActive }) => 
-            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600'}`
+          to="/addrestaurant"
+          className={({ isActive }) =>
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${
+              isActive
+                ? "bg-orange-100 text-orange-600 border-l-4 border-orange-600"
+                : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600"
+            }`
           }
         >
-          <img src={assets.order_icon} alt="Orders" className="w-6" />
-          <p className='hidden lg:block'>Add Restaurant</p>
+          <Icon icon="lineicons:restaurant" className="w-6 h-6 " />
+          <p className="hidden lg:block">Add Restaurant</p>
         </NavLink>
         <NavLink
-          to='/add'
-          className={({ isActive }) => 
-            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600'}`
+          to="/add"
+          className={({ isActive }) =>
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${
+              isActive
+                ? "bg-orange-100 text-orange-600 border-l-4 border-orange-600"
+                : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600"
+            }`
           }
         >
-          <img src={assets.add_icon} alt="Add Items" className="w-6" />
-          <p className='hidden lg:block'>Add Items</p>
-        </NavLink>
-        
-        <NavLink
-          to='/list'
-          className={({ isActive }) => 
-            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900  border border-r-0 border-orange-600'}`
-          }
-        >
-          <img src={assets.order_icon} alt="List Items" className="w-6" />
-          <p className='hidden lg:block'>List Items</p>
-        </NavLink>
-        
-        <NavLink
-          to='/orders'
-          className={({ isActive }) => 
-            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600'}`
-          }
-        >
-          <img src={assets.order_icon} alt="Orders" className="w-6" />
-          <p className='hidden lg:block'>Orders</p>
+          <Icon icon="mdi:tab-add" className="w-6 h-6 " />
+
+          <p className="hidden lg:block">Add Items</p>
         </NavLink>
 
+        <NavLink
+          to="/list"
+          className={({ isActive }) =>
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${
+              isActive
+                ? "bg-orange-100 text-orange-600 border-l-4 border-orange-600"
+                : "text-gray-700 hover:bg-gray-100 hover:text-gray-900  border border-r-0 border-orange-600"
+            }`
+          }
+        >
+          <Icon icon="majesticons:list-box" className="w-6 h-6 " />
+
+          <p className="hidden lg:block">List Items</p>
+        </NavLink>
+
+        <NavLink
+          to="/orders"
+          className={({ isActive }) =>
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${
+              isActive
+                ? "bg-orange-100 text-orange-600 border-l-4 border-orange-600"
+                : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600"
+            }`
+          }
+        >
+          <Icon icon="material-symbols:orders-rounded" className="w-6 h-6 " />
+          <p className="hidden lg:block">Orders</p>
+        </NavLink>
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;
