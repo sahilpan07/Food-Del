@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./components/sidebar/sidebar";
+import Sidebar from "./components/sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddFood from "./pages/AddFood/AddFood";
 import AddCategory from "./pages/AddCategory/AddCategory";
+import AddRestaurant from "./pages/AddRestaurant/AddRestaurant";
 
 const App = () => {
   const url = "http://localhost:4000";
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/list" element={<List url={url} />} />
           <Route path="/orders" element={<Orders url={url} />} />
           <Route path="/addcategory" element={<AddCategory url={url} />} />
+          <Route path="/addrestaurant" element={<AddRestaurant url={url} />} />
 
 
         </Routes>
