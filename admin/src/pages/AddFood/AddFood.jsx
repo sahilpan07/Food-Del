@@ -4,15 +4,15 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const AddFood = ({ url }) => {
-  const [image, setImage] = useState(null); // Changed to null for proper state management
+  const [image, setImage] = useState(null);
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
-    category: "", // Initialize as an empty string
+    category: "",
     restaurant: "restaurant1",
   });
-  const [categories, setCategories] = useState([]); // State for categories
+  const [categories, setCategories] = useState([]);
 
   // Fetch categories on component mount
   useEffect(() => {
