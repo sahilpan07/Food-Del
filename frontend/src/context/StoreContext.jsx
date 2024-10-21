@@ -12,6 +12,8 @@ const StoreContextProvider = (props) => {
 
   const [food_list,setFoodList] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
@@ -54,11 +56,39 @@ const StoreContextProvider = (props) => {
     setCartItems(response.data.cartData);
   }
   
+    // New sendEmail function
+    const sendEmail = async (formData) => {
+      if (!token) {
+        throw new Error("No token found. User is not authorized.");
+      }
+      const response = await axios.post(url + "/api/contact/send-email", formData, {
+        headers: {token },
+      });
+  
+      if (!response.data.success) {
+        throw new Error(response.data.message || "Error sending email");
+      }
+      return response.data; 
+    };
+
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(url + "/api/categories");
+        if (response.data.success) {
+          setCategories(response.data.data); // Assuming response.data.data contains the category array
+        } else {
+          console.error("Failed to fetch categories:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
 
   //protect from logout when reload page
 useEffect(() => {
   async function loadData() {
     await fetchFoodList();
+    await fetchCategories(); 
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
       await loadCartData(localStorage.getItem("token"));
@@ -71,6 +101,7 @@ useEffect(() => {
   const contextValue = {
     food_list,
     cartItems,
+    categories,
     setCartItems,
     addToCart,
     removeFromCart,
@@ -78,6 +109,7 @@ useEffect(() => {
     url,
     token,
     setToken,
+    sendEmail,
   };
 
   return (

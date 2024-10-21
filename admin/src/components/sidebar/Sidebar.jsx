@@ -37,6 +37,15 @@ const Sidebar = () => {
           <img src={assets.order_icon} alt="Orders" className="w-6" />
           <p className='hidden lg:block'>Orders</p>
         </NavLink>
+        <NavLink
+          to='/addcategory'
+          className={({ isActive }) => 
+            `flex items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-300 ${isActive ? 'bg-orange-100 text-orange-600 border-l-4 border-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-r-0 border-orange-600'}`
+          }
+        >
+          <img src={assets.order_icon} alt="Orders" className="w-6" />
+          <p className='hidden lg:block'>Add Categoryy</p>
+        </NavLink>
       </div>
     </div>
   );

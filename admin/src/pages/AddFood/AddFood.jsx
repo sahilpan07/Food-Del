@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Add = ({ url }) => {
-  const [image, setImage] = useState(false);
+const AddFood = ({ url }) => {
+  const [image, setImage] = useState(null); // Changed to null for proper state management
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
-    category: "Salad",
+    category: "", // Initialize as an empty string
     restaurant: "restaurant1",
   });
+  const [categories, setCategories] = useState([]); // State for categories
+
+  // Fetch categories on component mount
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${url}/api/categories`); // Adjust this endpoint based on your API
+        if (response.data.success) {
+          setCategories(response.data.data); // Assuming the data structure contains a 'data' field with categories
+          if (response.data.data.length > 0) {
+            setData((prevData) => ({ ...prevData, category: response.data.data[0].name })); // Set default category
+          }
+        } else {
+          toast.error("Failed to load categories.");
+        }
+      } catch (error) {
+        toast.error("Error fetching categories.");
+      }
+    };
+
+    fetchCategories();
+  }, [url]);
 
   // Handle data updates
   const onChangeHandler = (event) => {
@@ -39,10 +61,10 @@ const Add = ({ url }) => {
           name: "",
           description: "",
           price: "",
-          category: "Salad",
+          category: categories.length > 0 ? categories[0].name : "", // Reset to first category
           restaurant: "restaurant1",
         });
-        setImage(false);
+        setImage(null);
         toast.success(response.data.message);
       } else {
         toast.error(response.data.message);
@@ -134,14 +156,9 @@ const Add = ({ url }) => {
               value={data.category} // Control the selected value
               required
             >
-              <option value="Salad">Salad</option>
-              <option value="Rolls">Rolls</option>
-              <option value="Deserts">Deserts</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pure Veg</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Noodles">Noodles</option>
+              {categories.map((category, index) => (
+                <option key={index} value={category.name}>{category.name}</option>
+              ))}
             </select>
           </div>
 
@@ -170,4 +187,4 @@ const Add = ({ url }) => {
   );
 };
 
-export default Add;
+export default AddFood;

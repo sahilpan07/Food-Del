@@ -89,9 +89,13 @@ const Footer = () => {
           <div className=" flex flex-col gap-5 ">
             <p className="cursor-pointer font-semibold text-base ">GET HELP</p>
             <ul className="flex flex-col gap-2">
-              <li className="cursor-pointer  hover:text-white">
+              <Link
+                onClick={handleScrollToTop}
+                className="cursor-pointer text-base hover:text-white"
+                to="/orderStep"
+              >
                 <p className="text-base">How to Order?</p>
-              </li>
+              </Link>
               <Link
                 onClick={handleScrollToTop}
                 className="cursor-pointer text-base hover:text-white"
@@ -99,9 +103,13 @@ const Footer = () => {
               >
                 <p className="text-base">FAQs</p>
               </Link>
-              <li className="cursor-pointer hover:text-white">
+              <Link
+                onClick={handleScrollToTop}
+                className="cursor-pointer text-base hover:text-white"
+                to="/contact"
+              >
                 <p className="text-base">Contact Us</p>
-              </li>
+              </Link>
             </ul>
           </div>
           <div className=" flex flex-col gap-5 ">

@@ -13,7 +13,7 @@ const Restaurant = () => {
           <h1 className="text-2xl font-bold">{restaurant.restaurant_name}</h1>
           <img src={restaurant.restaurant_image} alt={restaurant.restaurant_name} className="w-48" />
           <p className="mt-2 text-lg">{restaurant.location}</p>
-          <p>{restaurant.description}</p>
+          <p>{restaurant.restaurant_description}</p>
           <FoodDisplay restaurant={restaurant.restaurant_name} />
         </div>
       )}

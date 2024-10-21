@@ -16,6 +16,7 @@ import OrderStep from "./components/aboutUsComponents/OrderStep";
 import AboutPage from "./pages/Aboutus/AboutPage";
 import AboutUs from "./components/aboutUsComponents/AboutUs";
 import { ToastContainer } from "react-toastify";
+import FoodDetail from "./pages/FoodDetail/FoodDetail";
 
 const App = () => {
   window.onload = function () {
@@ -39,12 +40,13 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/restaurant" element={<Restaurant />} />
+          <Route path="/foodDetail" element={<FoodDetail/>}/>
           <Route path="/explore-res" element={<ExploreRestaurant/>}/>
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/aboutpage" element={<AboutPage />} />
           <Route path="/faq" element={<FAQ/>} />
           <Route path="aboutUs" element={<AboutUs/>}/>
-          <Route path="/order-step" element={<OrderStep/>}/>
+          <Route path="/orderStep" element={<OrderStep/>}/>
           <Route path="/Help" element={<HelpSupport/>}/>
           <Route path="/order" element={<PlaceOrder />} />
         </Routes>

@@ -2,7 +2,8 @@ import React from 'react';
 import { restaurant_list } from '../../assets/assets';
 import { Link } from "react-router-dom";
 
-const ExploreRestaurant = ({ setRestaurant }) => {
+const ExploreRestaurant = ({ }) => {
+
     return (
         <div className="flex flex-col gap-5 mx-12 md:mx-20" id="restaurant-menu">
             <h1 className="text-gray-800 text-lg font-semibold">Our Restaurants</h1>
@@ -17,8 +18,8 @@ const ExploreRestaurant = ({ setRestaurant }) => {
                         state={item}
                     >
                         <div 
-                            className="flex flex-col border border-gray-300 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105"
-                            onClick={() => setRestaurant(item.restaurant_name)}
+                            className="flex flex-col border text-white bg-[#040A27] border-gray-300 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105"
+                            
                         >
                             <img 
                                 className="w-full h-full object-cover" 
@@ -26,8 +27,9 @@ const ExploreRestaurant = ({ setRestaurant }) => {
                                 alt={item.restaurant_name} 
                             />
                             <div className="p-3">
-                                <p className="text-gray-800 text-lg font-medium">{item.restaurant_name}</p>
-                                <p className="mt-1 text-gray-500 text-sm">{item.location}</p>
+                                <p className=" text-lg font-medium">{item.restaurant_name}</p>
+                                <p className="mt-1 text-xs">{item.location}</p>
+                                <p className="mt-1 text-xs">{item.restaurant_description}</p>
                             </div>
                         </div>
                     </Link>
