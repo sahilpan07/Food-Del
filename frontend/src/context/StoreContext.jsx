@@ -14,6 +14,8 @@ const StoreContextProvider = (props) => {
 
   const [categories, setCategories] = useState([]);
 
+  const [restaurants, setRestaurants] = useState([]);
+
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
@@ -86,12 +88,25 @@ const StoreContextProvider = (props) => {
         console.error("Error fetching categories:", error);
       }
     };
+    const fetchRestaurants = async () => {
+      try {
+        const response = await axios.get(url + "/api/restaurants");
+        if (response.data.success) {
+          setRestaurants(response.data.data); // Assuming response.data.data contains the category array
+        } else {
+          console.error("Failed to fetch categories:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
 
   //protect from logout when reload page
 useEffect(() => {
   async function loadData() {
     await fetchFoodList();
-    await fetchCategories(); 
+    await fetchCategories();
+    await fetchRestaurants(); 
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
       await loadCartData(localStorage.getItem("token"));
@@ -105,6 +120,7 @@ useEffect(() => {
     food_list,
     cartItems,
     categories,
+    restaurants,
     setCartItems,
     addToCart,
     removeFromCart,

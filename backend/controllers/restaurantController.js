@@ -20,8 +20,8 @@ export const addRestaurant = async (req, res) => {
       location: {
         lat: parseFloat(lat),
         lng: parseFloat(lng),
-        address,
       },
+      address,
       image: image_filename,
     });
 
