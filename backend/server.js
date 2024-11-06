@@ -7,6 +7,7 @@ import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js"
 import contactRouter from "./routes/contactRoute.js"
 import categoryRouter from "./routes/categoryRoute.js"
+import restaurantRouter from "./routes/restaurantRoute.js"
 
 //app config
 const app = express()
@@ -24,6 +25,7 @@ connectDb();
 app.use("/api/food",foodRouter)
 app.use("/images",express.static('uploads'))
 app.use("/images", express.static("uploads/categories"));
+app.use("/images", express.static("uploads/restaurants"));
 app.use("/api/user",userRouter)
 app.use("/api/cart",cartRouter)
 
@@ -31,6 +33,7 @@ app.use("/api/cart",cartRouter)
 app.use('/api/contact',contactRouter);
 
 app.use("/api/categories", categoryRouter);
+app.use("/api/restaurants", restaurantRouter); 
 app.get('/',(req, res)=>{
     res.send("Hello Wold")
 })

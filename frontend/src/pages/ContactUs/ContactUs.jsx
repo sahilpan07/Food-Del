@@ -12,7 +12,7 @@ const ContactUs = () => {
   const initialValues = {
     first_name: "",
     last_name: "",
-    email: "",
+    contact_email: "",
     phone: "",
     address: "",
     subject: "",
@@ -22,7 +22,7 @@ const ContactUs = () => {
   const validationSchema = Yup.object({
     first_name: Yup.string().required("Required"),
     last_name: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email address").required("Required"),
+    contact_email: Yup.string().email("Invalid email address").required("Required"),
     phone: Yup.string().required("Required"),
     address: Yup.string().required("Required"),
     subject: Yup.string().required("Required"),
@@ -161,16 +161,16 @@ const ContactUs = () => {
                   </div>
 
                   <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700">
+                    <label htmlFor="contact_email" className="block text-gray-700">
                       Email
                     </label>
                     <Field
                       type="email"
-                      name="email"
+                      name="contact_email"
                       className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <ErrorMessage
-                      name="email"
+                      name="contact_email"
                       component="div"
                       className="mt-1 text-red-600"
                     />
