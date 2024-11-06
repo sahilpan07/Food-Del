@@ -10,7 +10,7 @@ const AddFood = ({ url }) => {
     description: "",
     price: "",
     category: "",
-    restaurant: "restaurant1",
+    restaurant: "",
   });
   const [categories, setCategories] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
@@ -26,10 +26,10 @@ const AddFood = ({ url }) => {
             setData((prevData) => ({ ...prevData, category: response.data.data[0].name })); // Set default category
           }
         } else {
-          toast.error("Failed to load categories.");
+          toast.error("Failed to load Categories.");
         }
       } catch (error) {
-        toast.error("Error fetching categories.");
+        toast.error("Error fetching Categories.");
       }
     };
     const fetchRestaurants = async () => {
@@ -41,10 +41,10 @@ const AddFood = ({ url }) => {
             setData((prevData) => ({ ...prevData, restaurant: response.data.data[0].name })); // Set default category
           }
         } else {
-          toast.error("Failed to load categories.");
+          toast.error("Failed to load Restaurant.");
         }
       } catch (error) {
-        toast.error("Error fetching categories.");
+        toast.error("Error fetching Restaurants.");
       }
     };
 

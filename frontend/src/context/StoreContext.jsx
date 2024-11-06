@@ -94,10 +94,10 @@ const StoreContextProvider = (props) => {
         if (response.data.success) {
           setRestaurants(response.data.data); // Assuming response.data.data contains the category array
         } else {
-          console.error("Failed to fetch categories:", response.data.message);
+          console.error("Failed to fetch Restaurants:", response.data.message);
         }
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Error fetching Restaurants:", error);
       }
     };
 
