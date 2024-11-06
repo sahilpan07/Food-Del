@@ -39,7 +39,6 @@ export const removeCategory = async (req, res) => {
   try {
     const { id } = req.params; // Get the ID from the request parameters
     const category = await categoryModel.findByIdAndDelete(id); // Find and delete the category
-
     if (!category) {
       return res.status(404).json({ success: false, message: 'Category not found' });
     }
