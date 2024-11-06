@@ -29,7 +29,7 @@ const App = () => {
     
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-        <div className="sticky z-50 top-0 bg-white shadow">
+        <div className="sticky top-0 bg-white shadow">
           <ToastContainer/>
           <Navbar setShowLogin={setShowLogin} />
           

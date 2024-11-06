@@ -4,16 +4,15 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const AddFood = ({ url }) => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null); // Changed to null for proper state management
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
-    category: "",
-    restaurant: "",
+    category: "", // Initialize as an empty string
+    restaurant: "restaurant1",
   });
-  const [categories, setCategories] = useState([]);
-  const [restaurants, setRestaurants] = useState([]);
+  const [categories, setCategories] = useState([]); // State for categories
 
   // Fetch categories on component mount
   useEffect(() => {
@@ -26,30 +25,14 @@ const AddFood = ({ url }) => {
             setData((prevData) => ({ ...prevData, category: response.data.data[0].name })); // Set default category
           }
         } else {
-          toast.error("Failed to load Categories.");
+          toast.error("Failed to load categories.");
         }
       } catch (error) {
-        toast.error("Error fetching Categories.");
-      }
-    };
-    const fetchRestaurants = async () => {
-      try {
-        const response = await axios.get(`${url}/api/restaurants`); // Adjust this endpoint based on your API
-        if (response.data.success) {
-          setRestaurants(response.data.data); // Assuming the data structure contains a 'data' field with categories
-          if (response.data.data.length > 0) {
-            setData((prevData) => ({ ...prevData, restaurant: response.data.data[0].name })); // Set default category
-          }
-        } else {
-          toast.error("Failed to load Restaurant.");
-        }
-      } catch (error) {
-        toast.error("Error fetching Restaurants.");
+        toast.error("Error fetching categories.");
       }
     };
 
     fetchCategories();
-    fetchRestaurants();
   }, [url]);
 
   // Handle data updates
@@ -79,7 +62,7 @@ const AddFood = ({ url }) => {
           description: "",
           price: "",
           category: categories.length > 0 ? categories[0].name : "", // Reset to first category
-          restaurant: restaurants.length > 0 ? restaurants[0].name : "",
+          restaurant: "restaurant1",
         });
         setImage(null);
         toast.success(response.data.message);
@@ -152,9 +135,14 @@ const AddFood = ({ url }) => {
             value={data.restaurant} // Control the selected value
             required
           >
-              {restaurants.map((restaurant, index) => (
-                <option key={index} value={restaurant.name}>{restaurant.name}</option>
-              ))}
+            <option value="restaurant1">restaurant1</option>
+            <option value="restaurant2">restaurant2</option>
+            <option value="restaurant3">restaurant3</option>
+            <option value="restaurant4">restaurant4</option>
+            <option value="restaurant5">restaurant5</option>
+            <option value="restaurant6">restaurant6</option>
+            <option value="restaurant7">restaurant7</option>
+            <option value="restaurant8">restaurant8</option>
           </select>
         </div>
 

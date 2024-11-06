@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { restaurant_list } from '../../assets/assets';
 import { Link } from "react-router-dom";
-import { StoreContext } from '../../context/StoreContext';
 
 const ExploreRestaurant = ({ }) => {
-
-    const { restaurants ,url } = useContext(StoreContext);
-
 
     return (
         <div className="flex flex-col gap-5 mx-12 md:mx-20" id="restaurant-menu">
@@ -15,7 +11,7 @@ const ExploreRestaurant = ({ }) => {
                 Welcome to Delicious Bites Online Ordering! Explore our mouthwatering menu featuring a variety of appetizers, main courses, desserts, and beverages delivered right to your door.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 items-center text-center cursor-pointer">
-                {restaurants.map((item, index) => (
+                {restaurant_list.map((item, index) => (
                     <Link
                         key={index}
                         to="/restaurant"
@@ -27,13 +23,13 @@ const ExploreRestaurant = ({ }) => {
                         >
                             <img 
                                 className="w-full h-full object-cover" 
-                                src={`${url}/images/${item.image}`} 
-                                alt={item.name} 
+                                src={item.restaurant_image} 
+                                alt={item.restaurant_name} 
                             />
                             <div className="p-3">
-                                <p className=" text-lg font-medium">{item.name}</p>
-                                <p className="mt-1 text-xs">{item.address}</p>
-                                <p className="mt-1 text-xs">{item.description}</p>
+                                <p className=" text-lg font-medium">{item.restaurant_name}</p>
+                                <p className="mt-1 text-xs">{item.location}</p>
+                                <p className="mt-1 text-xs">{item.restaurant_description}</p>
                             </div>
                         </div>
                     </Link>
