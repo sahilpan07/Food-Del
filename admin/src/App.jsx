@@ -13,6 +13,7 @@ import AddRestaurant from "./components/Restaurant/AddRestaurant";
 import RestaurantPage from "./pages/RestaurantPage/RestaurantPage";
 import ListRestaurant from "./components/Restaurant/ListRestaurant";
 import RestaurantDetail from "./components/Restaurant/RestaurantDetail";
+import EditRestaurant from "./components/Restaurant/EditRestaurant";
 
 const App = () => {
   const url = "http://localhost:4000";
@@ -33,6 +34,8 @@ const App = () => {
           <Route path="/addrestaurant" element={<AddRestaurant url={url} />} />
           <Route path="/listRestaurant" element={<ListRestaurant url={url} />} />
           <Route path="/restaurant/:id" element={<RestaurantDetail url={url} />} />
+          <Route path="/editrestaurant/:id" element={<EditRestaurant url={url} />} />
+
 
         </Routes>
       </div>

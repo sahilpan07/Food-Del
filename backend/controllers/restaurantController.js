@@ -1,20 +1,20 @@
-// controllers/restaurantController.js
 import restaurantModel from "../models/restaurantModel.js";
-import Restaurant from "../models/restaurantModel.js";
-import fs from "fs"; // Import fs for file system operations
-
+import fs from "fs";
+import path from "path"; // Ensure path module is imported for file operations
 
 export const addRestaurant = async (req, res) => {
   try {
     const { name, description, lat, lng, address } = req.body;
 
     if (!name || !description || !lat || !lng || !address) {
-      return res.status(400).json({ success: false, message: "All fields are required" });
+      return res
+        .status(400)
+        .json({ success: false, message: "All fields are required" });
     }
 
     const image_filename = req.file.filename;
 
-    const newRestaurant = new Restaurant({
+    const newRestaurant = new restaurantModel({
       name,
       description,
       location: {
@@ -27,52 +27,107 @@ export const addRestaurant = async (req, res) => {
 
     await newRestaurant.save();
 
-    res.status(201).json({ success: true, message: "Restaurant added successfully", restaurant: newRestaurant });
+    res
+      .status(201)
+      .json({
+        success: true,
+        message: "Restaurant added successfully",
+        restaurant: newRestaurant,
+      });
   } catch (error) {
-    console.error(error);
+    console.error("Error in addRestaurant:", error);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
-// Get all categories
-export const getRestaurant = async (req,res) =>{
-    try{
-        const restaurants = await restaurantModel.find({});
-        res.json({success:true,data:restaurants})
-    }
-    catch(error){
-        console.log(error);
-        res.json({success:false,message:"Error"})
-    }
+export const getRestaurant = async (req, res) => {
+  try {
+    const restaurants = await restaurantModel.find({});
+    res.json({ success: true, data: restaurants });
+  } catch (error) {
+    console.error("Error in getRestaurant:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching restaurants" });
   }
+};
 
-  export const removeRestaurant = async (req, res) => {
-    try {
-      const { id } = req.params; // Get the ID from the request parameters
-      const restaurant = await restaurantModel.findByIdAndDelete(id);
-      fs.unlink(`uploads/restaurants/${restaurant.image}`,()=>{})
-  
-      await restaurantModel.findByIdAndDelete(req.body.id);
-  
-      res.status(200).json({ success: true, message: 'Restaurant removed successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: 'Server Error' });
-    }
-  };
+export const getRestaurantById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const restaurant = await restaurantModel.findById(id);
 
-  export const getRestaurantById = async (req, res) => {
-    try {
-      const { id } = req.params;
-      const restaurant = await restaurantModel.findById(id);
-  
-      if (!restaurant) {
-        return res.status(404).json({ success: false, message: "Restaurant not found" });
-      }
-  
-      res.json({ success: true, data: restaurant });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Server Error" });
+    if (!restaurant) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Restaurant not found" });
     }
-  };
+
+    res.json({ success: true, data: restaurant });
+  } catch (error) {
+    console.error("Error in getRestaurantById:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const updateRestaurant = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, address, lat, lng } = req.body;
+
+    const restaurant = await restaurantModel.findById(id);
+    if (!restaurant)
+      return res
+        .status(404)
+        .json({ success: false, message: "Restaurant not found" });
+
+    // Log before updating restaurant
+    console.log("Updating restaurant:", restaurant);
+
+    if (req.file) {
+      // If a new image is uploaded, delete the old one
+      const oldImagePath = path.join("uploads/restaurants", restaurant.image);
+      console.log("Deleting old image:", oldImagePath); // Log old image path for debugging
+      if (fs.existsSync(oldImagePath)) fs.unlinkSync(oldImagePath);
+
+      // Update restaurant with the new image
+      restaurant.image = req.file.filename;
+    }
+
+    restaurant.name = name;
+    restaurant.description = description;
+    restaurant.address = address;
+    restaurant.location.lat = lat;
+    restaurant.location.lng = lng;
+
+    await restaurant.save();
+
+    console.log("Restaurant updated:", restaurant);
+    res.status(200).json({ success: true, data: restaurant });
+  } catch (error) {
+    console.error("Error in updateRestaurant:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const removeRestaurant = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const restaurant = await restaurantModel.findByIdAndDelete(id);
+
+    if (restaurant && restaurant.image) {
+      // If image exists, delete it
+      const imagePath = path.join("uploads/restaurants", restaurant.image);
+      fs.existsSync(imagePath) && fs.unlinkSync(imagePath);
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Restaurant deleted successfully" });
+  } catch (error) {
+    console.error("Error in removeRestaurant:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error deleting restaurant" });
+  }
+};
