@@ -17,6 +17,8 @@ import AboutPage from "./pages/Aboutus/AboutPage";
 import AboutUs from "./components/aboutUsComponents/AboutUs";
 import { ToastContainer } from "react-toastify";
 import FoodDetail from "./pages/FoodDetail/FoodDetail";
+import RestaurantRegistration from "./pages/Registration/RestaurantRegistration";
+import RidersRegistration from "./pages/Registration/RidersRegistration";
 
 const App = () => {
   window.onload = function () {
@@ -49,6 +51,8 @@ const App = () => {
           <Route path="/orderStep" element={<OrderStep/>}/>
           <Route path="/Help" element={<HelpSupport/>}/>
           <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/RestaurantRegistration" element={<RestaurantRegistration/>} />
+          <Route path="/RidersRegistration" element={<RidersRegistration/>} />
         </Routes>
       </div>
       <Footer />

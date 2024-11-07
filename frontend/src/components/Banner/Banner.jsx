@@ -1,17 +1,20 @@
 import React from "react";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router-dom";
 
 const bannerData = [
   {
     image: assets.body_5,
     title: "Earn more with us",
     signup: "Partner with us",
+    link: "/RestaurantRegistration",
     subtitle: "Signup as a business",
   },
   {
     image: assets.body_6,
     title: "Avail exclusive perks",
     signup: "Ride with us",
+    link: "/RidersRegistration",
     subtitle: "Signup as a rider",
   },
 ];
@@ -35,9 +38,14 @@ const Banner = () => {
             <div className="flex flex-col gap-2  text-left ">
               <p className="text-orange-400 font-semibold">{banner.subtitle}</p>
               <p className="text-xl sm:text-lg font-bold">{banner.title}</p>
-              <button className="w-36 md:w-48 lg:w-64 sm:h-12 bg-violet-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl">
-                Get Started
-              </button>
+              <Link to={banner.link}>
+                <button
+                  to={banner.link}
+                  className="w-36 md:w-48 lg:w-64 sm:h-12 bg-violet-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
+                >
+                  Get Started
+                </button>
+              </Link>
             </div>
           </div>
         </div>
