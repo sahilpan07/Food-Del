@@ -64,6 +64,12 @@ const ListRestaurant = ({ url }) => {
             </div>
             <div className="space-x-4">
               <Link
+                to={`/restaurant/${restaurant._id}`}
+                className="text-blue-500 hover:underline"
+              >
+                View Details
+              </Link>
+              <Link
                 to={`/editrestaurant/${restaurant._id}`}
                 className="text-blue-500 hover:underline"
               >
