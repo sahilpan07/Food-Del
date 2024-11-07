@@ -87,7 +87,6 @@ export const updateRestaurant = async (req, res) => {
     if (req.file) {
       // If a new image is uploaded, delete the old one
       const oldImagePath = path.join("uploads/restaurants", restaurant.image);
-      console.log("Deleting old image:", oldImagePath); // Log old image path for debugging
       if (fs.existsSync(oldImagePath)) fs.unlinkSync(oldImagePath);
 
       // Update restaurant with the new image
@@ -102,7 +101,6 @@ export const updateRestaurant = async (req, res) => {
 
     await restaurant.save();
 
-    console.log("Restaurant updated:", restaurant);
     res.status(200).json({ success: true, data: restaurant });
   } catch (error) {
     console.error("Error in updateRestaurant:", error);
