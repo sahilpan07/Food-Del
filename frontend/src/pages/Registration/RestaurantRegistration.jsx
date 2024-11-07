@@ -167,6 +167,7 @@ const RestaurantRegistration = () => {
                   />
                 </div>
               </div>
+              
               <div>
                 <label htmlFor="description" className="block text-gray-700">
                   Description
@@ -183,6 +184,7 @@ const RestaurantRegistration = () => {
                   className="text-red-600"
                 />
               </div>
+
               <div className="flex flex-col md:flex-row md:justify-between md:gap-4">
                 <div className="mb-4 w-full">
                   <label
