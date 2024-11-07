@@ -52,7 +52,6 @@ const RestaurantRegistration = () => {
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
-
     if (!selectedLocation) {
       toast.error("Please select a location on the map.");
       return;
@@ -71,9 +70,7 @@ const RestaurantRegistration = () => {
     } finally {
       setSubmitting(false);
     }
-};
-
-  
+  };
 
   const LocationMarker = () => {
     useMapEvents({
@@ -81,10 +78,9 @@ const RestaurantRegistration = () => {
         setSelectedLocation({ lat: e.latlng.lat, lng: e.latlng.lng });
       },
     });
-  
+
     return selectedLocation ? <Marker position={selectedLocation} /> : null;
   };
-  
 
   return (
     <div className="flex items-center justify-center min-h-screen mx-12 md:mx-20">
@@ -338,13 +334,12 @@ const RestaurantRegistration = () => {
               </div>
 
               <button
-  type="submit"
-  disabled={isSubmitting || isSent || !selectedLocation} // Disable if no location is selected
-  className="w-56 p-2 py-2 bg-[#040A27] text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
->
-  {isSubmitting ? "Sending..." : isSent ? "Sent" : "Send Message"}
-</button>
-
+                type="submit"
+                disabled={isSubmitting || isSent || !selectedLocation} // Disable if no location is selected
+                className="w-56 p-2 py-2 bg-[#040A27] text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {isSubmitting ? "Sending..." : isSent ? "Sent" : "Send Message"}
+              </button>
             </Form>
           )}
         </Formik>
