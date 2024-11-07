@@ -302,7 +302,6 @@ const RestaurantRegistration = () => {
                 <MapContainer
                   center={[27.7172, 85.324]} // Kathmandu, Nepal
                   zoom={13}
-                  scrollWheelZoom={false}
                   style={{ height: "500px", width: "100%" }}
                   className="rounded shadow"
                 >
