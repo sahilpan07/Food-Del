@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { addRestaurant, getRestaurant, removeRestaurant } from '../controllers/restaurantController.js';
+import { addRestaurant, getRestaurant, getRestaurantById, removeRestaurant } from '../controllers/restaurantController.js';
 
 const restaurantRoute = express.Router();
 
@@ -19,6 +19,8 @@ restaurantRoute.post('/add', upload.single('image'), addRestaurant);
 
 // Route to get all restaurant
 restaurantRoute.get('/', getRestaurant);
+
+restaurantRoute.get("/:id", getRestaurantById);
 
 restaurantRoute.delete('/remove/:id', removeRestaurant);
 

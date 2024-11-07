@@ -8,7 +8,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddFood from "./pages/AddFood/AddFood";
 import AddCategory from "./pages/AddCategory/AddCategory";
-import AddRestaurant from "./pages/AddRestaurant/AddRestaurant";
+//import AddRestaurant from "./pages/AddRestaurant/AddRestaurant";
+import AddRestaurant from "./components/Restaurant/AddRestaurant";
+import RestaurantPage from "./pages/RestaurantPage/RestaurantPage";
+import ListRestaurant from "./components/Restaurant/ListRestaurant";
+import RestaurantDetail from "./components/Restaurant/RestaurantDetail";
 
 const App = () => {
   const url = "http://localhost:4000";
@@ -25,8 +29,10 @@ const App = () => {
           <Route path="/list" element={<List url={url} />} />
           <Route path="/orders" element={<Orders url={url} />} />
           <Route path="/addcategory" element={<AddCategory url={url} />} />
+          <Route path="/restaurant" element={<RestaurantPage url={url} />} />
           <Route path="/addrestaurant" element={<AddRestaurant url={url} />} />
-
+          <Route path="/listRestaurant" element={<ListRestaurant url={url} />} />
+          <Route path="/restaurant/:id" element={<RestaurantDetail url={url} />} />
 
         </Routes>
       </div>

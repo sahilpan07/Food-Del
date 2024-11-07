@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
@@ -14,7 +14,7 @@ const AddRestaurant = ({ url }) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Fetch existing restaurants from backend
+
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
@@ -32,7 +32,6 @@ const AddRestaurant = ({ url }) => {
     fetchRestaurants();
   }, []);
 
-  // Handle adding a new restaurant
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -60,7 +59,6 @@ const AddRestaurant = ({ url }) => {
         setRestaurants([...restaurants, response.data.restaurant]);
         toast.success("Restaurant added successfully!");
         setErrorMessage("");
-        // Clear form fields
         setName("");
         setDescription("");
         setAddress("");
@@ -75,7 +73,7 @@ const AddRestaurant = ({ url }) => {
     }
   };
 
-  // Remove restaurant
+
   const removeRestaurant = async (restaurantId) => {
     try {
       const response = await axios.delete(
@@ -154,8 +152,6 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-
-        {/* Image Upload Section */}
         <div className="flex flex-col">
           <label htmlFor="image" className="text-lg font-medium text-gray-700 mb-2">Upload Image</label>
           <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 rounded-xl cursor-pointer hover:bg-gray-200 transition">
@@ -190,7 +186,6 @@ const AddRestaurant = ({ url }) => {
         </button>
       </form>
 
-      {/* List of Existing Restaurants */}
       <h3 className="text-2xl font-semibold mt-12 text-gray-800">Existing Restaurants</h3>
       <ul className="space-y-6 mt-6">
         {restaurants.map((restaurant, idx) => (
@@ -217,3 +212,4 @@ const AddRestaurant = ({ url }) => {
 };
 
 export default AddRestaurant;
+ */
