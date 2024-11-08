@@ -6,6 +6,34 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  ownerName: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  liscense: {
+    type: String,
+    required: true,
+  },
+  tax: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,

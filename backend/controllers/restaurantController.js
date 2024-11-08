@@ -4,9 +4,9 @@ import path from "path"; // Ensure path module is imported for file operations
 
 export const addRestaurant = async (req, res) => {
   try {
-    const { name, description, lat, lng, address } = req.body;
+    const {name, ownerName, email, phone, liscense, tax, type, time, description, lat, lng, address} = req.body;
 
-    if (!name || !description || !lat || !lng || !address) {
+    if (!name || !ownerName || !email || !phone || !liscense || !tax || !type || !time || !description || !address || !lat || !lng ) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
@@ -16,6 +16,12 @@ export const addRestaurant = async (req, res) => {
 
     const newRestaurant = new restaurantModel({
       name,
+      ownerName,
+      email, phone,
+      liscense,
+      tax,
+      type,
+      time,
       description,
       location: {
         lat: parseFloat(lat),
