@@ -33,10 +33,6 @@ const EditCategory = ({ url }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    if (!category.name || !newImage) {
-      setErrorMessage("Please fill in all fields.");
-      return;
-    }
 
     const formData = new FormData();
     formData.append("name", category.name);
@@ -56,7 +52,7 @@ const EditCategory = ({ url }) => {
 
       if (response.data.success) {
         toast.success("Category updated successfully!");
-        navigate(`/category/${id}`);
+        navigate(`/category/listcategory`);
       } else {
         toast.error(response.data.message);
       }

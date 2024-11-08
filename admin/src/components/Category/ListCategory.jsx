@@ -41,34 +41,47 @@ const ListCategory = ({ url }) => {
   return (
     <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg max-w-4xl">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">List of Categories</h2>
-      <ul className="space-y-4">
-        {categories.map((category) => (
-          <li key={category._id} className="flex items-center justify-between border-b border-gray-200 pb-4">
-            <div className="flex items-center gap-4">
-              <img
-                src={`${url}/images/${category.image}`}
-                className="w-16 h-16 object-cover rounded-full"
-                alt={category.name}
-              />
-              <span className="text-xl text-gray-700">{category.name}</span>
-            </div>
-            <div className="flex gap-4">
-              <Link
-                to={`/editcategory/${category._id}`}
-                className="text-blue-600 hover:underline"
-              >
-                Edit
-              </Link>
-              <button
-                onClick={() => removeCategory(category._id)}
-                className="text-red-600 hover:underline"
-              >
-                Remove
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <table className="min-w-full table-auto border-collapse">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Category Name</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {categories.map((category, index) => (
+            <tr key={category._id} className="border-b">
+              <td className="py-3 px-4">{index + 1}</td>
+              <td className="py-3 px-4">
+                <img
+                  src={`${url}/images/${category.image}`}
+                  className="w-16 h-16 object-cover rounded-full"
+                  alt={category.name}
+                />
+              </td>
+              <td className="py-3 px-4 text-gray-700">{category.name}</td>
+              <td className="py-3 px-4">
+                <div className="flex gap-4">
+                  <Link
+                    to={`/category/editCategory/${category._id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => removeCategory(category._id)}
+                    className="text-red-600 hover:underline"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

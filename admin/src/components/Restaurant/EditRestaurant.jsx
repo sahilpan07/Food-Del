@@ -32,9 +32,6 @@ const EditRestaurant = ({ url }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // Log form data to see what is being sent
-    console.log("Updating restaurant with the following data:", restaurant);
-
     const formData = new FormData();
     formData.append("name", restaurant.name);
     formData.append("description", restaurant.description);

@@ -31,15 +31,18 @@ const App = () => {
           <Route path="/add" element={<AddFood url={url} />} />
           <Route path="/list" element={<List url={url} />} />
           <Route path="/orders" element={<Orders url={url} />} />
-          <Route path="/addcategory" element={<AddCategory url={url} />} />
           <Route path="/restaurant" element={<RestaurantPage url={url} />} />
-          <Route path="/category" element={<CategoryPage url={url} />} />
           <Route path="/addrestaurant" element={<AddRestaurant url={url} />} />
           <Route path="/listRestaurant" element={<ListRestaurant url={url} />} />
           <Route path="/restaurant/:id" element={<RestaurantDetail url={url} />} />
           <Route path="/editrestaurant/:id" element={<EditRestaurant url={url} />} />
-          <Route path="/listCategory" element={<ListCategory url={url} />} />
-          <Route path="/editCategory/:id" element={<EditCategory url={url} />} />
+          
+          {/* Nested Category Routes */}
+          <Route path="/category" element={<CategoryPage url={url} />}>
+            <Route path="addCategory" element={<AddCategory url={url} />} />
+            <Route path="listCategory" element={<ListCategory url={url} />} />
+            <Route path="editCategory/:id" element={<EditCategory url={url} />} />
+          </Route>
         </Routes>
       </div>
     </div>
