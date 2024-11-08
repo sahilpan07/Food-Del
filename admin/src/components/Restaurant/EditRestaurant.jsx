@@ -54,7 +54,7 @@ const EditRestaurant = ({ url }) => {
 
       if (response.data.success) {
         toast.success("Restaurant updated successfully!");
-        navigate(`/restaurant/${id}`);
+        navigate(`/restaurant/restaurant/${id}`);
       } else {
         toast.error(response.data.message);
       }
@@ -68,7 +68,7 @@ const EditRestaurant = ({ url }) => {
   if (!restaurant) return <p>Restaurant not found.</p>;
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 max-w-4xl">
       <h3 className="text-3xl font-semibold text-center mb-6">
         Edit Restaurant
       </h3>
@@ -145,35 +145,25 @@ const EditRestaurant = ({ url }) => {
           )}
         </div>
 
-        {/* Image Upload Area */}
-        <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 rounded-xl cursor-pointer hover:bg-gray-200 transition">
+        {/* New Image Upload */}
+        <div className="mt-4">
+          <label className="block font-semibold">Change Image:</label>
           <input
-            onChange={(e) => setNewImage(e.target.files[0])}
             type="file"
-            id="image"
-            className="hidden"
+            onChange={(e) => setNewImage(e.target.files[0])}
             accept="image/*"
+            className="border p-2 rounded-md"
           />
-          <label htmlFor="image" className="flex flex-col items-center">
-            <img
-              className="w-28"
-              src={
-                newImage ? URL.createObjectURL(newImage) : assets?.upload_area
-              }
-              alt="Upload Area"
-            />
-            <span className="text-gray-500 mt-2">
-              {newImage ? newImage.name : "Click to upload an image"}
-            </span>
-          </label>
         </div>
 
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded-md"
-        >
-          Update Restaurant
-        </button>
+        <div className="flex justify-center space-x-4 mt-6">
+          <button
+            type="submit"
+            className="w-full sm:w-auto bg-blue-500 text-white p-3 rounded-lg shadow-md hover:bg-blue-600"
+          >
+            Update Restaurant
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -53,13 +53,13 @@ const AddRestaurant = ({ url }) => {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 max-w-4xl">
       <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800">
         Add a Restaurant
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 max-w-lg mx-auto bg-white shadow-lg p-8 rounded-lg border"
+        className="space-y-6 bg-white shadow-lg p-8 rounded-lg border"
       >
         <input
           type="text"
