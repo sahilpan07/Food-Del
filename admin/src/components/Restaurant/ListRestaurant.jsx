@@ -28,7 +28,7 @@ const ListRestaurant = ({ url }) => {
   const removeRestaurant = async (restaurantId) => {
     try {
       const response = await axios.delete(
-        `${url}/api/restaurants/remove/${restaurantId}`
+        `${url}/api/restaurants/${restaurantId}`
       );
       if (response.data.success) {
         setRestaurants(

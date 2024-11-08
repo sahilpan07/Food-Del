@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
@@ -8,7 +8,6 @@ const AdminCategoryPanel = ({ url }) => {
   const [image, setImage] = useState(null);
   const [categories, setCategories] = useState([]);
 
-  // Fetch existing categories from backend
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -26,7 +25,6 @@ const AdminCategoryPanel = ({ url }) => {
     fetchCategories();
   }, [url]);
 
-  // Handle adding a new category
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (categoryName.trim() === "") {
@@ -59,7 +57,6 @@ const AdminCategoryPanel = ({ url }) => {
     }
   };
 
-  // Remove category
   const removeCategory = async (categoryId) => {
     try {
       const response = await axios.delete(
@@ -106,7 +103,6 @@ const AdminCategoryPanel = ({ url }) => {
           </label>
         </div>
       </div>
-      {/* Form to add category */}
       <form onSubmit={handleSubmit} className="mb-6">
         <input
           type="text"
@@ -123,7 +119,6 @@ const AdminCategoryPanel = ({ url }) => {
         </button>
       </form>
 
-      {/* List of existing categories */}
       <h3 className="text-lg font-semibold mb-4">Existing Categories</h3>
       <ul className="list-disc list-inside">
         {categories.map((category, idx) => (
@@ -150,4 +145,4 @@ const AdminCategoryPanel = ({ url }) => {
   );
 };
 
-export default AdminCategoryPanel;
+export default AdminCategoryPanel; */
