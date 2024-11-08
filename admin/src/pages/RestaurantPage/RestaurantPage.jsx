@@ -9,10 +9,10 @@ const RestaurantPage = () => {
     <div className="min-h-screen w-full">
       <div className="container p-4 bg-white shadow-xl rounded-lg">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">
-          Category Management
+          Restaurant Management
         </h1>
         <p className="text-center text-lg text-gray-600 mb-6">
-          Manage your restaurant categories with ease. Add, view, and organize your categories here.
+          Manage your restaurant detail with ease. Add, view, and organize your Restaurants here.
         </p>
 
       <div className="flex justify-center gap-6 mb-8">
