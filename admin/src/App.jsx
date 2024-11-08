@@ -35,20 +35,11 @@ const App = () => {
           <Route path="/restaurant" element={<RestaurantPage url={url} />} />
           <Route path="/category" element={<CategoryPage url={url} />} />
           <Route path="/addrestaurant" element={<AddRestaurant url={url} />} />
-          <Route
-            path="/listRestaurant"
-            element={<ListRestaurant url={url} />}
-          />
-          <Route
-            path="/restaurant/:id"
-            element={<RestaurantDetail url={url} />}
-          />
-          <Route
-            path="/editrestaurant/:id"
-            element={<EditRestaurant url={url} />}
-          />
-          <Route path="listCategory" element={<ListCategory url={url} />} />
-          <Route path="editCategory/:id" element={<EditCategory url={url} />} />
+          <Route path="/listRestaurant" element={<ListRestaurant url={url} />} />
+          <Route path="/restaurant/:id" element={<RestaurantDetail url={url} />} />
+          <Route path="/editrestaurant/:id" element={<EditRestaurant url={url} />} />
+          <Route path="/listCategory" element={<ListCategory url={url} />} />
+          <Route path="/editCategory/:id" element={<EditCategory url={url} />} />
         </Routes>
       </div>
     </div>
