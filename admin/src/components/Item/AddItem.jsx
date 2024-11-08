@@ -1,9 +1,9 @@
-/* import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const AddFood = ({ url }) => {
+const AddItem = ({ url }) => {
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     name: "",
@@ -199,4 +199,4 @@ const AddFood = ({ url }) => {
   );
 };
 
-export default AddFood; */
+export default AddItem;

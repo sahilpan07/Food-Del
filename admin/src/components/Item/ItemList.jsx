@@ -1,8 +1,8 @@
-/* import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const List = ({url}) => {
+const ItemList = ({url}) => {
   const [list, setList] = useState([]);
 
   
@@ -74,5 +74,4 @@ const List = ({url}) => {
   );
 };
 
-export default List;
- */
+export default ItemList;
