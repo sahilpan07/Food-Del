@@ -70,7 +70,7 @@ const ItemList = ({ url }) => {
                     View Details
                   </Link>
                   <Link
-                    to={`/item/list/${item._id}`}
+                    to={`/item/editFood/${item._id}`}
                     className="text-blue-600 hover:underline"
                   >
                     Edit

@@ -19,6 +19,7 @@ import ItemList from "./components/Item/ItemList";
 import ItemPage from "./pages/ItemPage/ItemPage";
 import ItemDetail from "./components/Item/ItemDetail";
 import CategoryDetail from "./components/Category/CategoryDetail";
+import EditfoodItem from "./components/Item/EditItem";
 
 const App = () => {
   const url = "http://localhost:4000";
@@ -49,6 +50,7 @@ const App = () => {
             <Route path="addItem" element={<AddItem url={url} />} />
             <Route path="itemList" element={<ItemList url={url} />} />
             <Route path="list/:id" element={<ItemDetail url={url} />} />
+            <Route path="editFood/:id" element={<EditfoodItem url={url} />} />
 
           </Route>
         </Routes>
