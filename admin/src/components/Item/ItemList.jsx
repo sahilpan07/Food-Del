@@ -1,75 +1,84 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
-const ItemList = ({url}) => {
+const ItemList = ({ url }) => {
   const [list, setList] = useState([]);
 
-  
-  const fetchList = async () => {
-    try {
-      const response = await axios.get(`${url}/api/food/list`);
-      if (response.data.success) {
-        setList(response.data.data);
-      } else {
-        toast.error("Error fetching data");
-      }
-    } catch (error) {
-      toast.error("An error occurred");
+  // Remove from list
+  const removeFood = async (foodId) => {
+    const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
+    await fetchList();
+    if (response.data.success) {
+      toast.success(response.data.message);
+    } else {
+      toast.error("Error");
     }
-  }
-
-  //remove from list
-  const removeFood = async(foodId) =>{
-    //api call
-    const response = await axios.post(`${url}/api/food/remove`,{id:foodId})   
-    await fetchList(); 
-    if(response.data.success){
-      toast.success(response.data.message)
-    }
-    else{
-      toast.error("Error")
-    }
-  }
+  };
 
   useEffect(() => {
+    const fetchList = async () => {
+      try {
+        const response = await axios.get(`${url}/api/food/list`);
+        if (response.data.success) {
+          setList(response.data.data);
+        } else {
+          toast.error("Error fetching data");
+        }
+      } catch (error) {
+        toast.error("An error occurred");
+      }
+    };
     fetchList();
   }, []);
 
   return (
-    <div className="list add flex-col w-4/5 mx-auto mt-5 p-5 rounded-lg shadow-lg bg-white">
-      <h2 className="text-2xl font-semibold mb-4">All Food List</h2>
-      <div className="list-table mb-5">
-        <div className="hidden  md:grid md:grid-cols-5 items-center gap-3 p-4 border-b border-gray-300 text-lg bg-gray-100 rounded-lg shadow-sm ">
-          <p className="font-bold">Image</p>
-          <p className="font-bold">Name</p>
-          <p className="font-bold">Category</p>
-          <p className="font-bold">Price</p>
-          <p className="font-bold">Action</p>
-        </div>
-        {list.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className=" grid grid-cols-3 sm:grid sm:grid-cols-5 items-center gap-3 p-4 border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
-            >
-              <img
-                src={`${url}/images/${item.image}`}
-                alt={item.name}
-                className="w-16 h-16 object-cover rounded-md shadow-sm"
-              />
-              <p className="text-gray-800 ">{item.name}</p>
-              <p className="text-gray-600">{item.category}</p>
-              <p className="text-gray-600">${item.price}</p>
-              <div className="">
-                <p onClick={()=>removeFood(item._id)} className="cursor-pointer text-red-500 hover:text-red-700 focus:outline-none">
-                  Delete
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg max-w-4xl">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6">All Food List</h2>
+      <table className="min-w-full table-auto border-collapse">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700 w-48">Food Name</th> {/* Increased width */}
+            <th className="py-3 px-4 border-b text-left text-gray-700">Restaurant</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((item, index) => (
+            <tr key={item._id} className="border-b">
+              <td className="py-3 px-4">{index + 1}</td>
+              <td className="py-3 px-4">
+                <img
+                  src={`${url}/images/${item.image}`}
+                  alt={item.name}
+                  className="w-16 h-16 object-cover rounded-md shadow-sm"
+                />
+              </td>
+              <td className="py-3 px-4 text-gray-700">{item.name}</td>
+              <td className="py-3 px-4 text-gray-600">{item.restaurant}</td>
+              <td className="py-3 px-4">
+                <div className="flex gap-4">
+                  <Link
+                    to={`/item/list/${item._id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    View Details
+                  </Link>
+                  <button
+                    onClick={() => removeFood(item._id)}
+                    className="text-red-600 hover:underline"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -3,14 +3,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom"; // Import useParams
 
-const ItemDetail = ({ url }) => {
+const CategoryDetail = ({ url }) => {
   const { id } = useParams(); // Extract the food item ID from the URL
   const [item, setItem] = useState(null); // Store the fetched food item
 
   useEffect(() => {
     const fetchItemDetail = async () => {
       try {
-        const response = await axios.get(`${url}/api/food/list/${id}`); // Fetch the specific food item by id
+        const response = await axios.get(`${url}/api/categories/${id}`); // Fetch the specific food item by id
         if (response.data.success) {
           setItem(response.data.data); // Set the fetched item data
         } else {
@@ -44,24 +44,9 @@ const ItemDetail = ({ url }) => {
         <div className="text-center text-2xl font-bold text-gray-800 mb-4">
           {item.name}
         </div>
-
-        <div className="text-lg font-semibold text-gray-600">
-          <strong>Category:</strong> {item.category}
-        </div>
-
-        <div className="text-lg font-semibold text-gray-600">
-          <strong>Price:</strong> ${item.price}
-        </div>
-
-        <div className="text-lg font-semibold text-gray-600">
-          <strong>Description:</strong> {item.description}
-        </div>
-        <div className="text-lg font-semibold text-gray-600">
-          <strong>Restaurant:</strong> {item.restaurant}
-        </div>
       </div>
     </div>
   );
 };
 
-export default ItemDetail;
+export default CategoryDetail;

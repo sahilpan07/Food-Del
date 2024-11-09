@@ -17,6 +17,8 @@ import EditCategory from "./components/Category/EditCategory";
 import AddItem from "./components/Item/AddItem";
 import ItemList from "./components/Item/ItemList";
 import ItemPage from "./pages/ItemPage/ItemPage";
+import ItemDetail from "./components/Item/ItemDetail";
+import CategoryDetail from "./components/Category/CategoryDetail";
 
 const App = () => {
   const url = "http://localhost:4000";
@@ -40,11 +42,14 @@ const App = () => {
           <Route path="/category" element={<CategoryPage url={url} />}>
             <Route path="addCategory" element={<AddCategory url={url} />} />
             <Route path="listCategory" element={<ListCategory url={url} />} />
+            <Route path="categoryDetail/:id" element={<CategoryDetail url={url} />} />
             <Route path="editCategory/:id" element={<EditCategory url={url} />} />
           </Route>
           <Route path="/item" element={<ItemPage url={url} />}>
             <Route path="addItem" element={<AddItem url={url} />} />
             <Route path="itemList" element={<ItemList url={url} />} />
+            <Route path="list/:id" element={<ItemDetail url={url} />} />
+
           </Route>
         </Routes>
       </div>

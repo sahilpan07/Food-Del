@@ -65,6 +65,12 @@ const ListCategory = ({ url }) => {
               <td className="py-3 px-4">
                 <div className="flex gap-4">
                   <Link
+                    to={`/category/categoryDetail/${category._id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    View Deatil
+                  </Link>
+                  <Link
                     to={`/category/editCategory/${category._id}`}
                     className="text-blue-600 hover:underline"
                   >
