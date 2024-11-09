@@ -15,15 +15,15 @@ const AddItem = ({ url }) => {
   const [categories, setCategories] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
 
-  // Fetch categories on component mount
+  // Fetch categories and restaurants on component mount
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(`${url}/api/categories`); // Adjust this endpoint based on your API
+        const response = await axios.get(`${url}/api/categories`);
         if (response.data.success) {
-          setCategories(response.data.data); // Assuming the data structure contains a 'data' field with categories
+          setCategories(response.data.data);
           if (response.data.data.length > 0) {
-            setData((prevData) => ({ ...prevData, category: response.data.data[0].name })); // Set default category
+            setData((prevData) => ({ ...prevData, category: response.data.data[0].name }));
           }
         } else {
           toast.error("Failed to load Categories.");
@@ -32,16 +32,17 @@ const AddItem = ({ url }) => {
         toast.error("Error fetching Categories.");
       }
     };
+    
     const fetchRestaurants = async () => {
       try {
-        const response = await axios.get(`${url}/api/restaurants`); // Adjust this endpoint based on your API
+        const response = await axios.get(`${url}/api/restaurants`);
         if (response.data.success) {
-          setRestaurants(response.data.data); // Assuming the data structure contains a 'data' field with categories
+          setRestaurants(response.data.data);
           if (response.data.data.length > 0) {
-            setData((prevData) => ({ ...prevData, restaurant: response.data.data[0].name })); // Set default category
+            setData((prevData) => ({ ...prevData, restaurant: response.data.data[0].name }));
           }
         } else {
-          toast.error("Failed to load Restaurant.");
+          toast.error("Failed to load Restaurants.");
         }
       } catch (error) {
         toast.error("Error fetching Restaurants.");
@@ -52,14 +53,14 @@ const AddItem = ({ url }) => {
     fetchRestaurants();
   }, [url]);
 
-  // Handle data updates
+  // Handle form data updates
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // API call
+  // Submit form data
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -70,7 +71,6 @@ const AddItem = ({ url }) => {
     formData.append("restaurant", data.restaurant);
     formData.append("image", image);
 
-    // API call
     try {
       const response = await axios.post(`${url}/api/food/add`, formData);
       if (response.data.success) {
@@ -78,7 +78,7 @@ const AddItem = ({ url }) => {
           name: "",
           description: "",
           price: "",
-          category: categories.length > 0 ? categories[0].name : "", // Reset to first category
+          category: categories.length > 0 ? categories[0].name : "",
           restaurant: restaurants.length > 0 ? restaurants[0].name : "",
         });
         setImage(null);
@@ -92,11 +92,11 @@ const AddItem = ({ url }) => {
   };
 
   return (
-    <div className="max-w-4xl mb-20 mx-auto mt-12 p-8 bg-gradient-to-r from-blue-50 to-white shadow-xl rounded-2xl">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Add New Product</h2>
-      <form className="space-y-6" onSubmit={onSubmitHandler}>
+    <div className="container mx-auto p-6 max-w-4xl">
+      <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800">Add New Product</h2>
+      <form onSubmit={onSubmitHandler} className="space-y-6 bg-white shadow-lg p-8 rounded-lg border">
         <div className="flex flex-col">
-          <label htmlFor="image" className="mb-2 font-semibold text-gray-700">Upload Image</label>
+          <label htmlFor="image" className="text-lg font-semibold text-gray-700 mb-2">Upload Image</label>
           <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 rounded-xl cursor-pointer hover:bg-gray-200 transition">
             <input
               onChange={(e) => setImage(e.target.files[0])}
@@ -118,9 +118,9 @@ const AddItem = ({ url }) => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="name" className="mb-2 font-semibold text-gray-700">Product Name</label>
+          <label htmlFor="name" className="text-lg font-semibold text-gray-700 mb-2">Product Name</label>
           <input
-            className="p-4 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+            className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
             value={data.name}
             type="text"
@@ -131,9 +131,9 @@ const AddItem = ({ url }) => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="description" className="mb-2 font-semibold text-gray-700">Product Description</label>
+          <label htmlFor="description" className="text-lg font-semibold text-gray-700 mb-2">Product Description</label>
           <textarea
-            className="p-4 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+            className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
             value={data.description}
             name="description"
@@ -143,29 +143,29 @@ const AddItem = ({ url }) => {
           ></textarea>
         </div>
 
-        <div className="flex flex-col w-1/2">
-          <label htmlFor="restaurant" className="mb-2 font-semibold text-gray-700">Product Restaurant</label>
-          <select
-            onChange={onChangeHandler}
-            className="p-4 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
-            name="restaurant" 
-            value={data.restaurant} // Control the selected value
-            required
-          >
+        <div className="flex gap-4">
+          <div className="w-full">
+            <label htmlFor="restaurant" className="text-lg font-semibold text-gray-700 mb-2">Product Restaurant</label>
+            <select
+              onChange={onChangeHandler}
+              className="w-full p-3 border rounded-md"
+              name="restaurant"
+              value={data.restaurant}
+              required
+            >
               {restaurants.map((restaurant, index) => (
                 <option key={index} value={restaurant.name}>{restaurant.name}</option>
               ))}
-          </select>
-        </div>
+            </select>
+          </div>
 
-        <div className="flex gap-8">
-          <div className="flex flex-col w-1/2">
-            <label htmlFor="category" className="mb-2 font-semibold text-gray-700">Product Category</label>
+          <div className="w-full">
+            <label htmlFor="category" className="text-lg font-semibold text-gray-700 mb-2">Product Category</label>
             <select
               onChange={onChangeHandler}
-              className="p-4 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
-              name="category" 
-              value={data.category} // Control the selected value
+              className="w-full p-3 border rounded-md"
+              name="category"
+              value={data.category}
               required
             >
               {categories.map((category, index) => (
@@ -173,26 +173,26 @@ const AddItem = ({ url }) => {
               ))}
             </select>
           </div>
+        </div>
 
-          <div className="flex flex-col w-1/2">
-            <label htmlFor="price" className="mb-2 font-semibold text-gray-700">Product Price</label>
-            <input
-              className="p-4 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
-              onChange={onChangeHandler}
-              value={data.price}
-              type="number"
-              name="price"
-              placeholder="Rs.100"
-              required
-            />
-          </div>
+        <div className="flex flex-col w-56">
+          <label htmlFor="price" className="text-lg font-semibold text-gray-700 mb-2">Product Price</label>
+          <input
+            className="w-full p-3 border rounded-md"
+            onChange={onChangeHandler}
+            value={data.price}
+            type="number"
+            name="price"
+            placeholder="Rs.100"
+            required
+          />
         </div>
 
         <button
           type="submit"
-          className="w-full p-4 bg-orange-600 text-white font-bold rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
+          className="w-full p-4 bg-blue-500 text-white font-bold rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
         >
-          ADD
+          ADD PRODUCT
         </button>
       </form>
     </div>

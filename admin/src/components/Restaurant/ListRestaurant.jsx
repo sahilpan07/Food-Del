@@ -1,12 +1,10 @@
-// ListRestaurant.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ListRestaurant = ({ url }) => {
   const [restaurants, setRestaurants] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -44,47 +42,57 @@ const ListRestaurant = ({ url }) => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h3 className="text-3xl font-semibold text-center mb-6">
-        Existing Restaurants
-      </h3>
-      <ul className="space-y-4">
-        {restaurants.map((restaurant) => (
-          <li
-            key={restaurant._id}
-            className="flex justify-between items-center p-4 bg-white border rounded-md shadow-sm"
-          >
-            <div className="flex items-center space-x-4">
-              <img
-                src={`${url}/images/${restaurant.image}`}
-                className="w-16 h-16 object-cover rounded-lg"
-                alt={restaurant.name}
-              />
-              <span className="text-lg font-medium">{restaurant.name}</span>
-            </div>
-            <div className="space-x-4">
-              <Link
-                to={`/restaurant/restaurant/${restaurant._id}`}
-                className="text-blue-500 hover:underline"
-              >
-                View Details
-              </Link>
-              <Link
-                to={`/restaurant/editrestaurant/${restaurant._id}`}
-                className="text-blue-500 hover:underline"
-              >
-                Edit
-              </Link>
-              <button
-                onClick={() => removeRestaurant(restaurant._id)}
-                className="text-red-600 hover:text-red-800 font-semibold"
-              >
-                Remove
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg ">
+      <h3 className="text-3xl font-semibold text-gray-800 mb-6">Existing Restaurants</h3>
+      <table className="w-full table-auto border-collapse">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700 w-5/12">Restaurant Name</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Address</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {restaurants.map((restaurant, index) => (
+            <tr key={restaurant._id} className="border-b">
+              <td className="py-3 px-4">{index + 1}</td>
+              <td className="py-3 px-4">
+                <img
+                  src={`${url}/images/${restaurant.image}`}
+                  alt={restaurant.name}
+                  className="w-16 h-16 object-cover rounded-md shadow-sm"
+                />
+              </td>
+              <td className="py-3 px-4 text-gray-700">{restaurant.name}</td>
+              <td className="py-3 px-4 text-gray-700">{restaurant.address}</td>
+              <td className="py-3 px-4">
+                <div className="flex gap-4">
+                  <Link
+                    to={`/restaurant/restaurant/${restaurant._id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    View Details
+                  </Link>
+                  <Link
+                    to={`/restaurant/editrestaurant/${restaurant._id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => removeRestaurant(restaurant._id)}
+                    className="text-red-600 hover:underline"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

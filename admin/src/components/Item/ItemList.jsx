@@ -6,42 +6,44 @@ import { Link } from "react-router-dom";
 const ItemList = ({ url }) => {
   const [list, setList] = useState([]);
 
+  // Function to fetch the food list
+  const fetchList = async () => {
+    try {
+      const response = await axios.get(`${url}/api/food/list`);
+      if (response.data.success) {
+        setList(response.data.data);
+      } else {
+        toast.error("Error fetching data");
+      }
+    } catch (error) {
+      toast.error("An error occurred");
+    }
+  };
+
   // Remove from list
   const removeFood = async (foodId) => {
     const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
-    await fetchList();
     if (response.data.success) {
       toast.success(response.data.message);
+      await fetchList();
     } else {
       toast.error("Error");
     }
   };
 
   useEffect(() => {
-    const fetchList = async () => {
-      try {
-        const response = await axios.get(`${url}/api/food/list`);
-        if (response.data.success) {
-          setList(response.data.data);
-        } else {
-          toast.error("Error fetching data");
-        }
-      } catch (error) {
-        toast.error("An error occurred");
-      }
-    };
     fetchList();
   }, []);
 
   return (
-    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg max-w-4xl">
+    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">All Food List</h2>
-      <table className="min-w-full table-auto border-collapse">
+      <table className="w-full table-auto border-collapse">
         <thead>
           <tr className="bg-gray-100">
             <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
             <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
-            <th className="py-3 px-4 border-b text-left text-gray-700 w-48">Food Name</th> {/* Increased width */}
+            <th className="py-3 px-4 border-b text-left text-gray-700 w-5/12">Food Name</th>
             <th className="py-3 px-4 border-b text-left text-gray-700">Restaurant</th>
             <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
           </tr>
@@ -66,6 +68,12 @@ const ItemList = ({ url }) => {
                     className="text-blue-600 hover:underline"
                   >
                     View Details
+                  </Link>
+                  <Link
+                    to={`/item/list/${item._id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    Edit
                   </Link>
                   <button
                     onClick={() => removeFood(item._id)}

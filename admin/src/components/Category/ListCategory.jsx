@@ -39,14 +39,14 @@ const ListCategory = ({ url }) => {
   };
 
   return (
-    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg max-w-4xl">
+    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">List of Categories</h2>
-      <table className="min-w-full table-auto border-collapse">
+      <table className="w-full table-auto border-collapse">
         <thead>
           <tr className="bg-gray-100">
             <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
             <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
-            <th className="py-3 px-4 border-b text-left text-gray-700">Category Name</th>
+            <th className="py-3 px-4 border-b text-left text-gray-700 w-1/2">Category Name</th>
             <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
           </tr>
         </thead>
@@ -68,7 +68,7 @@ const ListCategory = ({ url }) => {
                     to={`/category/categoryDetail/${category._id}`}
                     className="text-blue-600 hover:underline"
                   >
-                    View Deatil
+                    View Details
                   </Link>
                   <Link
                     to={`/category/editCategory/${category._id}`}
