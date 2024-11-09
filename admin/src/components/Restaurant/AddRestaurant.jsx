@@ -12,7 +12,6 @@ const AddRestaurant = ({ url }) => {
   const [tax, setTax] = useState("");
   const [type, setType] = useState("");
   const [time, setTime] = useState("");
-
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [lat, setLat] = useState("");

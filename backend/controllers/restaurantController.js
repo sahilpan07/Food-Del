@@ -79,7 +79,7 @@ export const getRestaurantById = async (req, res) => {
 export const updateRestaurant = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, address, lat, lng } = req.body;
+    const { name, ownerName, email, phone, liscense, tax, type, time, description, address, lat, lng } = req.body;
 
     const restaurant = await restaurantModel.findById(id);
     if (!restaurant)
@@ -88,8 +88,6 @@ export const updateRestaurant = async (req, res) => {
         .json({ success: false, message: "Restaurant not found" });
 
     // Log before updating restaurant
-    console.log("Updating restaurant:", restaurant);
-
     if (req.file) {
       // If a new image is uploaded, delete the old one
       const oldImagePath = path.join("uploads/restaurants", restaurant.image);
@@ -100,6 +98,13 @@ export const updateRestaurant = async (req, res) => {
     }
 
     restaurant.name = name;
+    restaurant.ownerName = ownerName;
+    restaurant.email = email;
+    restaurant.phone = phone;
+    restaurant.liscense = liscense;
+    restaurant.tax = tax;
+    restaurant.type = type;
+    restaurant.time = time;
     restaurant.description = description;
     restaurant.address = address;
     restaurant.location.lat = lat;
