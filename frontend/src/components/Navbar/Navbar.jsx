@@ -11,6 +11,7 @@ const Navbar = ({ setShowLogin }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const [category, setCategory] = useState(null);
 
   const navigate = useNavigate();
 
@@ -97,8 +98,8 @@ const Navbar = ({ setShowLogin }) => {
             >
               <Icon icon="mdi:close" className="text-2xl" />
             </button>
-            <SearchBar setSearchOpen={setSearchOpen} /> {/* Your search component */}
-          </div>
+            <SearchBar setSearchOpen={setSearchOpen} setCategory={setCategory} />
+            </div>
         </div>
 
         <div className="relative">

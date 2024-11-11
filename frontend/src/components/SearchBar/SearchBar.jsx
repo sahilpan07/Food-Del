@@ -3,7 +3,7 @@ import { StoreContext } from "../../context/StoreContext";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const SearchBar = ({ setSearchOpen }) => {
+const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to props
     const [query, setQuery] = useState(""); // The search query
     const [results, setResults] = useState([]); // Search results
     const [restaurants, setRestaurants] = useState([]); // Define state for restaurants
@@ -59,6 +59,16 @@ const SearchBar = ({ setSearchOpen }) => {
       setShowResults(false); // Hide search results
       setSearchOpen(false); // Close search dropdown when restaurant is clicked
     };
+
+    const handleCategoryClick = (categoryName) => {
+        setCategory(categoryName);  // Update the category in state
+        setShowResults(false);  // Hide search results
+        setSearchOpen(false);   // Close search dropdown
+        
+        // Navigate to the menu page (assuming you want to navigate to a category-specific menu)
+        navigate(`/menu`);  // Redirect to the menuFood page with categoryName as part of the URL
+      };
+      
   
     return (
       <div className="relative mx-4 sm:mx-6 lg:mx-20">
@@ -112,6 +122,8 @@ const SearchBar = ({ setSearchOpen }) => {
                 <div
                   key={category._id}
                   className="flex items-center p-4 hover:bg-gray-100 cursor-pointer transition-all duration-200"
+                  onClick={() => handleCategoryClick(category.name)} // Call handleCategoryClick on category click
+
                 >
                   <img
                     className="w-16 h-16 object-cover rounded-full mr-4"

@@ -11,9 +11,6 @@ export const getSearchResults = async (req, res) => {
       const foodItems = await getFoodSearchResults(query);
       const categories = await getCategorySearchResults(query);
   
-      console.log("Found Restaurants:", restaurants.length);
-      console.log("Found Food Items:", foodItems.length);
-      console.log("Found Categories:", categories.length);
       
       // Return combined results
       res.json({
