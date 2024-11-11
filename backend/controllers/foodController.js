@@ -106,3 +106,14 @@ export const updateFood = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+
+export const getFoodSearchResults = async (query) => {
+  const regex = new RegExp(query, 'i');
+  const results = await foodModel.find({
+    $or: [
+      { name: { $regex: regex } },
+    ]
+  });
+  return results;
+};

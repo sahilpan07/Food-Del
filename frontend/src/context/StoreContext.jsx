@@ -115,6 +115,16 @@ const StoreContextProvider = (props) => {
       }
     };
 
+    const fetchSearchResults = async (query) => {
+      try {
+        const response = await axios.get(`${url}/api/restaurants/search?query=${query}`);
+        return response.data.data;
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+        return [];
+      }
+    };
+
   //protect from logout when reload page
 useEffect(() => {
   async function loadData() {
@@ -144,6 +154,7 @@ useEffect(() => {
     setToken,
     sendEmail,
     registerRestaurant,
+    fetchSearchResults,
   };
 
   return (

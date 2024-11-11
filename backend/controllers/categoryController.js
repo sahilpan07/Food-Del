@@ -100,3 +100,15 @@ export const updateCategory = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+
+
+export const getCategorySearchResults = async (query) => {
+  const regex = new RegExp(query, 'i');
+  const results = await categoryModel.find({
+    $or: [
+      { name: { $regex: regex } },
+    ]
+  });
+  return results;
+};

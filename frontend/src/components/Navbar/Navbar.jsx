@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import SearchBar from "../SearchBar/SearchBar";
 import { Icon } from "@iconify/react";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -28,11 +30,7 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div className="navbar flex py-3 px-12 md:px-20 justify-between items-center">
       <Link to="/" onClick={() => setMenu("home")}>
-        <img
-          className="hidden sm:block w-36"
-          src={assets.logo}
-          alt="Logo"
-        />
+        <img className="hidden sm:block w-36" src={assets.logo} alt="Logo" />
         <img
           className="block sm:hidden w-12"
           src={assets.logo_mobile}
@@ -79,7 +77,30 @@ const Navbar = ({ setShowLogin }) => {
       )}
 
       <div className="flex gap-2 sm:gap-3 md:gap-2 lg:gap-5 items-center">
-        <Icon className="text-2xl" icon="mingcute:search-line" />
+        {/* Search Icon */}
+        <Icon
+          className="text-2xl cursor-pointer"
+          icon="mingcute:search-line"
+          onClick={() => setSearchOpen(!searchOpen)} // Toggle search dropdown
+        />
+
+        {/* Search Dropdown */}
+        <div
+          className={`${
+            searchOpen ? "h-screen opacity-100" : " opacity-0"
+          } overflow-hidden transition-all duration-300 ease-in-out absolute top-full left-0 right-0 bg-white z-20 shadow-lg`}
+        >
+          <div className="relative p-4 mx-20">
+            <button
+              onClick={() => setSearchOpen(false)} // Close search dropdown
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+            >
+              <Icon icon="mdi:close" className="text-2xl" />
+            </button>
+            <SearchBar setSearchOpen={setSearchOpen} /> {/* Your search component */}
+          </div>
+        </div>
+
         <div className="relative">
           <Link to="/cart">
             <Icon className="text-2xl" icon="solar:cart-5-bold" />

@@ -140,3 +140,16 @@ export const removeRestaurant = async (req, res) => {
       .json({ success: false, message: "Error deleting restaurant" });
   }
 };
+
+export const getRestaurantSearchResults = async (query) => {
+  const regex = new RegExp(query, 'i');
+  const results = await restaurantModel.find({
+    $or: [
+      { name: { $regex: regex } },
+      { description: { $regex: regex } },
+      { location: { $regex: regex } },
+      { address: { $regex: regex } }
+    ]
+  });
+  return results;
+};
