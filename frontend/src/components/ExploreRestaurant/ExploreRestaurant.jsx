@@ -1,47 +1,98 @@
-import React, { useContext } from 'react';
-import { restaurant_list } from '../../assets/assets';
+import React, { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 import { StoreContext } from '../../context/StoreContext';
+import { Icon } from "@iconify/react";
 
-const ExploreRestaurant = ({ }) => {
+const ExploreRestaurant = () => {
 
-    const { restaurants ,url } = useContext(StoreContext);
+  const { restaurants, url } = useContext(StoreContext);
+  const [showMore, setShowMore] = useState(false);
 
+  // Determine the number of restaurants to show
+  const displayedRestaurants = showMore ? restaurants : restaurants.slice(0, 3);
 
-    return (
-        <div className="flex flex-col gap-5 mx-12 md:mx-20" id="restaurant-menu">
-            <h1 className="text-gray-800 text-lg font-semibold">Our Restaurants</h1>
-            <p className="max-w-[80%] text-gray-600">
-                Welcome to Delicious Bites Online Ordering! Explore our mouthwatering menu featuring a variety of appetizers, main courses, desserts, and beverages delivered right to your door.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 items-center text-center cursor-pointer">
-                {restaurants.map((item, index) => (
-                    <Link
-                        key={index}
-                        to="/restaurant"
-                        state={item}
-                    >
-                        <div 
-                            className="flex flex-col border text-white bg-[#040A27] border-gray-300 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-105"
-                            
-                        >
-                            <img 
-                                className="w-full h-full object-cover" 
-                                src={`${url}/images/${item.image}`} 
-                                alt={item.name} 
-                            />
-                            <div className="p-3">
-                                <p className=" text-lg font-medium">{item.name}</p>
-                                <p className="mt-1 text-xs">{item.address}</p>
-                                <p className="mt-1 text-xs">{item.description}</p>
-                            </div>
-                        </div>
-                    </Link>
-                ))}
+  const handleExploreMore = () => {
+    setShowMore(true);
+  };
+
+  return (
+    <div className="flex flex-col gap-10 mx-6 sm:mx-12 md:mx-20 mt-10" id="restaurant-menu">
+      
+      {/* Section Header */}
+      <div className="text-center">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#040A27] mb-4">
+          Explore Our Restaurants
+        </h1>
+        <p className="max-w-2xl mx-auto text-gray-600 text-lg">
+          Welcome to Delicious Bites Online Ordering! Explore our mouthwatering menu featuring a variety of appetizers, main courses, desserts, and beverages delivered right to your door.
+        </p>
+      </div>
+
+      {/* Restaurants Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 mt-8">
+        {displayedRestaurants.map((item, index) => (
+          <Link
+            key={index}
+            to="/restaurant"
+            state={item}
+          >
+            <div className="restaurant-card flex flex-col border-2 text-white bg-[#040A27] border-gray-300 rounded-lg shadow-xl overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl cursor-pointer">
+              
+              {/* Restaurant Image */}
+              <div className="relative w-full h-40 sm:h-48 md:h-56">
+                <img
+                  className="w-full h-full object-cover rounded-t-lg"
+                  src={`${url}/images/${item.image}`}
+                  alt={item.name}
+                />
+                {/* Overlay Text */}
+                <div className="absolute bottom-2 left-2 text-white font-semibold bg-black bg-opacity-50 px-3 py-1 rounded-md">
+                  {item.name}
+                </div>
+              </div>
+
+              {/* Restaurant Info */}
+              <div className="p-4">
+                <div className="flex items-center gap-2">
+                  <Icon icon="ph:location-pin-fill" className="text-lg text-yellow-400" />
+                  <p className="text-sm text-gray-400">{item.address}</p>
+                </div>
+                
+                <div className="flex items-center gap-2 mt-2">
+                  <Icon icon="fa-solid:star" className="text-yellow-500 text-lg" />
+                  <span className="text-sm font-medium text-white">4.5/5</span>
+                </div>
+                
+                <p className="mt-2 text-xs text-gray-300">{item.description}</p>
+              </div>
+
+              {/* Hover Effect - Button */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button className="bg-[#040A27] text-white px-6 py-2 rounded-full border-2 border-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#040A27] hover:border-[#040A27]">
+                  Explore Menu
+                </button>
+              </div>
             </div>
-            <hr className="my-4 h-[2px] bg-gray-300 border-0" />
+          </Link>
+        ))}
+      </div>
+
+      {/* Explore More Button */}
+      {restaurants.length > 3 && !showMore && (
+        <div className="text-center mt-6">
+          <button
+            onClick={handleExploreMore}
+            className="bg-[#040A27] text-white py-2 px-6 rounded-lg shadow-lg text-lg hover:bg-violet-800 transition-all"
+          >
+            Explore More
+          </button>
         </div>
-    );
+      )}
+
+      {/* Section Divider */}
+      <hr className="my-8 h-[2px] bg-gray-300 border-0" />
+    </div>
+  );
 };
 
 export default ExploreRestaurant;
