@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { StoreContext } from "../../context/StoreContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import RestaurantValSchema from "../../validationSchema/restaurantRegister"
 
 // Custom marker icon to fix default icon issue in Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -36,20 +36,6 @@ const RestaurantRegistration = () => {
     operational_hours: "",
     website: "",
   };
-
-  const validationSchema = Yup.object({
-    restaurant_name: Yup.string().required("Required"),
-    owner_name: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email address").required("Required"),
-    phone: Yup.string().required("Required"),
-    address: Yup.string().required("Required"),
-    description: Yup.string().required("Required"),
-    license_number: Yup.string().required("Required"),
-    tax_id: Yup.string().required("Required"),
-    restaurant_type: Yup.string().required("Required"),
-    operational_hours: Yup.string().required("Required"),
-    website: Yup.string().url("Invalid URL"),
-  });
 
   const handleSubmit = async (values, { setSubmitting }) => {
     if (!selectedLocation) {
@@ -92,7 +78,7 @@ const RestaurantRegistration = () => {
 
         <Formik
           initialValues={initialValues}
-          validationSchema={validationSchema}
+          validationSchema={RestaurantValSchema}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
@@ -302,7 +288,7 @@ const RestaurantRegistration = () => {
                 <MapContainer
                   center={[27.7172, 85.324]} // Kathmandu, Nepal
                   zoom={13}
-                  style={{ height: "500px", width: "100%" }}
+                  style={{ height: "350px", width: "100%" }}
                   className="rounded shadow"
                 >
                   <TileLayer

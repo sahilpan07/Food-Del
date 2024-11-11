@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { StoreContext } from "../../context/StoreContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ContactValSchema from "../../validationSchema/ContactValidation";
 
 const ContactUs = () => {
   const { sendEmail } = useContext(StoreContext);
@@ -116,7 +117,7 @@ const ContactUs = () => {
           <div className="w-full">
             <Formik
               initialValues={initialValues}
-              validationSchema={validationSchema}
+              validationSchema={ContactValSchema}
               onSubmit={handleSubmit}
             >
               {({ isSubmitting }) => (
@@ -237,6 +238,15 @@ const ContactUs = () => {
                           className="mr-2"
                         />
                         Feedback
+                      </label>
+                      <label className="flex items-center text-sm">
+                        <Field
+                          type="radio"
+                          name="subject"
+                          value="other"
+                          className="mr-2"
+                        />
+                        Other
                       </label>
                     </div>
                     <ErrorMessage
