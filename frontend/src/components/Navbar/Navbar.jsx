@@ -98,7 +98,7 @@ const Navbar = ({ setShowLogin }) => {
             >
               <Icon icon="mdi:close" className="text-2xl" />
             </button>
-            <SearchBar setSearchOpen={setSearchOpen} setCategory={setCategory} />
+            <SearchBar setSearchOpen={setSearchOpen} setCategory={setCategory}/>
             </div>
         </div>
 

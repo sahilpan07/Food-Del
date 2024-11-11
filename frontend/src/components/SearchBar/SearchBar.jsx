@@ -47,6 +47,7 @@ const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to pr
   
     // Handle click on a restaurant to navigate to the restaurant detail page
     const handleRestaurantClick = (restaurant) => {
+        console.log(restaurant)
       navigate("/restaurant", {
         state: {
           id: restaurant._id,
@@ -56,6 +57,24 @@ const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to pr
           address: restaurant.address,
         },
       });
+      setShowResults(false); // Hide search results
+      setSearchOpen(false); // Close search dropdown when restaurant is clicked
+    };
+    const handleFoodClick = (item) => {
+        console.log(item)
+      navigate("/foodDetail", {
+        state: {
+          id: item._id,
+          name: item.name,
+          description: item.description,
+          image: item.image,
+          price: item.price,
+          restaurant: item.restaurant,
+        },
+
+      });
+      console.log(item)
+
       setShowResults(false); // Hide search results
       setSearchOpen(false); // Close search dropdown when restaurant is clicked
     };
@@ -122,7 +141,7 @@ const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to pr
                 <div
                   key={category._id}
                   className="flex items-center p-4 hover:bg-gray-100 cursor-pointer transition-all duration-200"
-                  onClick={() => handleCategoryClick(category.name)} // Call handleCategoryClick on category click
+                  onClick={() => handleCategoryClick(category)}
 
                 >
                   <img
@@ -143,6 +162,8 @@ const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to pr
                 <div
                   key={item._id}
                   className="flex items-center p-4 hover:bg-gray-100 cursor-pointer transition-all duration-200"
+                  onClick={() => handleFoodClick(item)}
+
                 >
                   <img
                     className="w-16 h-16 object-cover rounded-full mr-4"
