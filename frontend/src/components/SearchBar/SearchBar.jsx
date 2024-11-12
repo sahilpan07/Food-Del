@@ -1,18 +1,18 @@
 import React, { useState, useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import { Icon } from "@iconify/react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
-const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to props
-    const [query, setQuery] = useState(""); // The search query
-    const [results, setResults] = useState([]); // Search results
-    const [restaurants, setRestaurants] = useState([]); // Define state for restaurants
-    const [foodItems, setFoodItems] = useState([]); // Define state for food items
-    const [categories, setCategories] = useState([]); // Define state for categories
-    const [showResults, setShowResults] = useState(false); // Track visibility of search results
+const SearchBar = ({ setSearchOpen, setCategory }) => {
+    const [query, setQuery] = useState("");
+    const [results, setResults] = useState([]);
+    const [restaurants, setRestaurants] = useState([]);
+    const [foodItems, setFoodItems] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [showResults, setShowResults] = useState(false);
   
     const { url } = useContext(StoreContext);
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
   
     const handleSearch = async () => {
       if (query.trim()) {
@@ -45,9 +45,7 @@ const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to pr
       handleSearch();
     };
   
-    // Handle click on a restaurant to navigate to the restaurant detail page
     const handleRestaurantClick = (restaurant) => {
-        console.log(restaurant)
       navigate("/restaurant", {
         state: {
           id: restaurant._id,
@@ -55,10 +53,12 @@ const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to pr
           description: restaurant.description,
           image: restaurant.image,
           address: restaurant.address,
+          type: restaurant.type,
+          time: restaurant.time,
         },
       });
-      setShowResults(false); // Hide search results
-      setSearchOpen(false); // Close search dropdown when restaurant is clicked
+      setShowResults(false);
+      setSearchOpen(false);
     };
     const handleFoodClick = (item) => {
         console.log(item)
@@ -73,19 +73,17 @@ const SearchBar = ({ setSearchOpen, setCategory }) => { // Add setCategory to pr
         },
 
       });
-      console.log(item)
 
-      setShowResults(false); // Hide search results
-      setSearchOpen(false); // Close search dropdown when restaurant is clicked
+      setShowResults(false);
+      setSearchOpen(false);
     };
 
     const handleCategoryClick = (categoryName) => {
-        setCategory(categoryName);  // Update the category in state
-        setShowResults(false);  // Hide search results
-        setSearchOpen(false);   // Close search dropdown
+        setCategory(categoryName);
+        setShowResults(false);
+        setSearchOpen(false);
         
-        // Navigate to the menu page (assuming you want to navigate to a category-specific menu)
-        navigate(`/menu`);  // Redirect to the menuFood page with categoryName as part of the URL
+        navigate(`/menu`);
       };
       
   

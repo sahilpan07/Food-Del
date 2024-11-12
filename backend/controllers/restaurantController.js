@@ -148,7 +148,9 @@ export const getRestaurantSearchResults = async (query) => {
       { name: { $regex: regex } },
       { description: { $regex: regex } },
       { location: { $regex: regex } },
-      { address: { $regex: regex } }
+      { address: { $regex: regex } },
+      { type: { $regex: regex } },
+      { time: { $regex: regex } },
     ]
   });
   return results;
