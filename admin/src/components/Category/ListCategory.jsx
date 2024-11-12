@@ -5,7 +5,9 @@ import { toast } from "react-toastify";
 
 const ListCategory = ({ url }) => {
   const [categories, setCategories] = useState([]);
-
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -25,10 +27,14 @@ const ListCategory = ({ url }) => {
 
   const removeCategory = async (categoryId) => {
     try {
-      const response = await axios.delete(`${url}/api/categories/${categoryId}`);
+      const response = await axios.delete(
+        `${url}/api/categories/${categoryId}`
+      );
 
       if (response.data.success) {
-        setCategories(categories.filter((category) => category._id !== categoryId));
+        setCategories(
+          categories.filter((category) => category._id !== categoryId)
+        );
         toast.success("Category removed successfully!");
       } else {
         toast.error(response.data.message);
@@ -40,17 +46,25 @@ const ListCategory = ({ url }) => {
 
   return (
     <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6">List of Categories</h2>
-  
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+        List of Categories
+      </h2>
+
       {/* Table view for larger screens */}
       <div className="overflow-x-auto">
         <table className="w-full table-auto border-collapse hidden sm:block">
           <thead>
             <tr className="bg-gray-100">
               <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700 w-1/2">Category Name</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Image
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700 w-1/2">
+                Category Name
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -68,12 +82,14 @@ const ListCategory = ({ url }) => {
                 <td className="py-3 px-4">
                   <div className="flex gap-4">
                     <Link
+                      onClick={handleScrollToTop}
                       to={`/category/categoryDetail/${category._id}`}
                       className="text-blue-600 hover:underline"
                     >
                       View
                     </Link>
                     <Link
+                      onClick={handleScrollToTop}
                       to={`/category/editCategory/${category._id}`}
                       className="text-blue-600 hover:underline"
                     >
@@ -91,11 +107,14 @@ const ListCategory = ({ url }) => {
             ))}
           </tbody>
         </table>
-  
+
         {/* Mobile view */}
         <div className="sm:hidden">
           {categories.map((category, index) => (
-            <div key={category._id} className="bg-white shadow-md rounded-lg p-6 mb-4">
+            <div
+              key={category._id}
+              className="bg-white shadow-md rounded-lg p-6 mb-4"
+            >
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <img
                   src={`${url}/images/${category.image}`}
@@ -103,7 +122,9 @@ const ListCategory = ({ url }) => {
                   alt={category.name}
                 />
                 <div className="flex-1">
-                  <p className="text-xl font-semibold text-gray-700">{category.name}</p>
+                  <p className="text-xl font-semibold text-gray-700">
+                    {category.name}
+                  </p>
                 </div>
               </div>
               <div className="flex gap-4 mt-4 justify-center">
@@ -132,7 +153,6 @@ const ListCategory = ({ url }) => {
       </div>
     </div>
   );
-  
 };
 
 export default ListCategory;

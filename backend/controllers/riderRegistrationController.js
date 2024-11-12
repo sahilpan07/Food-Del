@@ -1,19 +1,15 @@
 import nodemailer from "nodemailer";
 
-const restaurantRegistrationController = async (req, res) => {
+const riderRegistrationController = async (req, res) => {
   const {
-    restaurant_name,
-    owner_name,
+    rider_name,
     email,
     phone,
     address,
-    location,
+    vehicle_type,
+    vehicle_number,
     description,
-    license_number,
-    tax_id,
-    restaurant_type,
-    operational_hours,
-    website,
+    location
   } = req.body;
 
   // Check if location exists and split it into latitude and longitude
@@ -44,20 +40,16 @@ const restaurantRegistrationController = async (req, res) => {
   const mailOptions = {
     from: userEmail,
     to: "test423559@gmail.com",
-    subject: `Restaurant registration request`,
+    subject: `Riders registration request`,
     text: `
-            Restaurant Name: ${restaurant_name}
-            Owner's Name: ${owner_name}
+            Rider Name: ${rider_name}
             Email: ${email}
             Phone: ${phone}
             Address: ${address}
             ${locationText}
             Description: ${description}
-            License Number: ${license_number}
-            Tax ID: ${tax_id}
-            Restaurant Type: ${restaurant_type}
-            Operational Hours: ${operational_hours}
-            Website: ${website}
+            Vehicles Type: ${vehicle_type}
+            Vehicle Number: ${vehicle_number}
           `,
   };
 
@@ -76,4 +68,4 @@ const restaurantRegistrationController = async (req, res) => {
   }
 };
 
-export default restaurantRegistrationController;
+export default riderRegistrationController;

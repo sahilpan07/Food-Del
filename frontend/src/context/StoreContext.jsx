@@ -89,6 +89,19 @@ const StoreContextProvider = (props) => {
       }
       return response.data; 
     };
+    const registerRider = async (formData) => {
+      if (!token) {
+        throw new Error("No token found. User is not authorized.");
+      }
+      const response = await axios.post(url + "/api/registration/riders-registration", formData, {
+        headers: {token },
+      });
+  
+      if (!response.data.success) {
+        throw new Error(response.data.message || "Error sending email");
+      }
+      return response.data; 
+    };
 
     const fetchCategories = async () => {
       try {
@@ -154,6 +167,7 @@ useEffect(() => {
     setToken,
     sendEmail,
     registerRestaurant,
+    registerRider,
     fetchSearchResults,
   };
 

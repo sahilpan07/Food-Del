@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
 const HomePage = ({ url }) => {
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   const [restaurantCount, setRestaurantCount] = useState(0);
   const [foodCount, setFoodCount] = useState(0);
   const [categoryCount, setCategorycount] = useState(0);
@@ -131,6 +134,7 @@ const HomePage = ({ url }) => {
       {/* Quick Links Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <Link
+          onClick={handleScrollToTop}
           to="/restaurant/addrestaurant"
           className="bg-[#040A27] text-white rounded-lg shadow-md p-6 flex flex-col items-center hover:bg-violet-800 transition-all"
         >
@@ -138,6 +142,7 @@ const HomePage = ({ url }) => {
           <p className="text-lg font-semibold">Add New Restaurant</p>
         </Link>
         <Link
+          onClick={handleScrollToTop}
           to="/category/addCategory"
           className="bg-[#040A27] text-white rounded-lg shadow-md p-6 flex flex-col items-center hover:bg-violet-800 transition-all"
         >
@@ -145,6 +150,7 @@ const HomePage = ({ url }) => {
           <p className="text-lg font-semibold">Add New Category</p>
         </Link>
         <Link
+          onClick={handleScrollToTop}
           to="/item/addItem"
           className="bg-[#040A27] text-white rounded-lg shadow-md p-6 flex flex-col items-center hover:bg-violet-800 transition-all"
         >

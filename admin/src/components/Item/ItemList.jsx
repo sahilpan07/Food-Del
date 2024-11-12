@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 
 const ItemList = ({ url }) => {
   const [list, setList] = useState([]);
-
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   // Function to fetch the food list
   const fetchList = async () => {
     try {
@@ -37,18 +39,28 @@ const ItemList = ({ url }) => {
 
   return (
     <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6">All Food List</h2>
-  
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+        All Food List
+      </h2>
+
       {/* Desktop Table View */}
       <div className="overflow-x-auto hidden sm:block">
         <table className="w-full table-auto border-collapse">
           <thead>
             <tr className="bg-gray-100">
               <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700 w-5/12">Food Name</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Restaurant</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Image
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700 w-5/12">
+                Food Name
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Restaurant
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -67,12 +79,14 @@ const ItemList = ({ url }) => {
                 <td className="py-3 px-4">
                   <div className="flex gap-4">
                     <Link
+                      onClick={handleScrollToTop}
                       to={`/item/list/${item._id}`}
                       className="text-blue-600 hover:underline"
                     >
                       View
                     </Link>
                     <Link
+                      onClick={handleScrollToTop}
                       to={`/item/editFood/${item._id}`}
                       className="text-blue-600 hover:underline"
                     >
@@ -91,7 +105,7 @@ const ItemList = ({ url }) => {
           </tbody>
         </table>
       </div>
-  
+
       {/* Mobile View */}
       <div className="sm:hidden">
         {list.map((item, index) => (
@@ -103,7 +117,9 @@ const ItemList = ({ url }) => {
                 className="w-24 h-24 object-cover rounded-md shadow-sm mb-4 sm:mb-0"
               />
               <div className="flex-1">
-                <p className="text-xl font-semibold text-gray-700">{item.name}</p>
+                <p className="text-xl font-semibold text-gray-700">
+                  {item.name}
+                </p>
                 <p className="text-gray-600">{item.restaurant}</p>
               </div>
             </div>
@@ -132,7 +148,6 @@ const ItemList = ({ url }) => {
       </div>
     </div>
   );
-  
 };
 
 export default ItemList;

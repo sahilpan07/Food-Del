@@ -5,7 +5,9 @@ import { toast } from "react-toastify";
 
 const ListRestaurant = ({ url }) => {
   const [restaurants, setRestaurants] = useState([]);
-
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
@@ -43,16 +45,26 @@ const ListRestaurant = ({ url }) => {
 
   return (
     <div className="container mx-auto p-6 sm:p-8 bg-white shadow-lg rounded-lg">
-      <h3 className="text-3xl font-semibold text-gray-800 mb-6">Existing Restaurants</h3>
+      <h3 className="text-3xl font-semibold text-gray-800 mb-6">
+        Existing Restaurants
+      </h3>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto border-collapse hidden sm:block">
           <thead>
             <tr className="bg-gray-100">
               <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700 w-5/12">Restaurant Name</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Address</th>
-              <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Image
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700 w-5/12">
+                Restaurant Name
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Address
+              </th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +79,9 @@ const ListRestaurant = ({ url }) => {
                   />
                 </td>
                 <td className="py-3 px-4 text-gray-700">{restaurant.name}</td>
-                <td className="py-3 px-4 text-gray-700">{restaurant.address}</td>
+                <td className="py-3 px-4 text-gray-700">
+                  {restaurant.address}
+                </td>
                 <td className="py-3 px-4">
                   <div className="flex gap-4">
                     <Link
@@ -94,7 +108,7 @@ const ListRestaurant = ({ url }) => {
             ))}
           </tbody>
         </table>
-  
+
         {/* Mobile view */}
         <div className="sm:hidden">
           {restaurants.map((restaurant, index) => (
@@ -106,18 +120,22 @@ const ListRestaurant = ({ url }) => {
                   className="w-24 h-24 object-cover rounded-md shadow-sm mb-4 sm:mb-0"
                 />
                 <div className="flex-1">
-                  <p className="text-xl font-semibold text-gray-700">{restaurant.name}</p>
+                  <p className="text-xl font-semibold text-gray-700">
+                    {restaurant.name}
+                  </p>
                   <p className="text-gray-600">{restaurant.address}</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-4 mt-4 justify-center">
                 <Link
+                  onClick={handleScrollToTop}
                   to={`/restaurant/restaurant/${restaurant._id}`}
                   className="text-blue-600 hover:underline"
                 >
                   View Details
                 </Link>
                 <Link
+                  onClick={handleScrollToTop}
                   to={`/restaurant/editrestaurant/${restaurant._id}`}
                   className="text-blue-600 hover:underline"
                 >
@@ -136,7 +154,6 @@ const ListRestaurant = ({ url }) => {
       </div>
     </div>
   );
-  
 };
 
 export default ListRestaurant;

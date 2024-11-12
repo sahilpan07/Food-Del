@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import RestaurantValSchema from "../../validationSchema/restaurantRegister"
+import RestaurantValSchema from "../../validationSchema/restaurantRegister";
 
 // Custom marker icon to fix default icon issue in Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -92,6 +92,7 @@ const RestaurantRegistration = () => {
                     Restaurant Name
                   </label>
                   <Field
+                    id="restaurant_name"
                     type="text"
                     name="restaurant_name"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -108,6 +109,7 @@ const RestaurantRegistration = () => {
                     Owner's Name
                   </label>
                   <Field
+                    id="owner_name"
                     type="text"
                     name="owner_name"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -126,6 +128,7 @@ const RestaurantRegistration = () => {
                     Email
                   </label>
                   <Field
+                    id="email"
                     type="email"
                     name="email"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -142,6 +145,7 @@ const RestaurantRegistration = () => {
                     Phone Number
                   </label>
                   <Field
+                    id="phone"
                     type="tel"
                     name="phone"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -153,12 +157,13 @@ const RestaurantRegistration = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="description" className="block text-gray-700">
                   Description
                 </label>
                 <Field
+                  id="description"
                   as="textarea"
                   name="description"
                   rows="4"
@@ -180,6 +185,7 @@ const RestaurantRegistration = () => {
                     License Number
                   </label>
                   <Field
+                    id="license_number"
                     type="text"
                     name="license_number"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -195,6 +201,7 @@ const RestaurantRegistration = () => {
                     Tax ID
                   </label>
                   <Field
+                    id="tax_id"
                     type="text"
                     name="tax_id"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -216,6 +223,7 @@ const RestaurantRegistration = () => {
                     Restaurant Type
                   </label>
                   <Field
+                    id="restaurant_type"
                     type="text"
                     name="restaurant_type"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -235,6 +243,7 @@ const RestaurantRegistration = () => {
                     Operational Hours
                   </label>
                   <Field
+                    id="operational_hours"
                     type="text"
                     name="operational_hours"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -253,6 +262,7 @@ const RestaurantRegistration = () => {
                     Website/Social Media Link
                   </label>
                   <Field
+                    id="website"
                     type="url"
                     name="website"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -269,6 +279,7 @@ const RestaurantRegistration = () => {
                     Address
                   </label>
                   <Field
+                    id="address"
                     type="text"
                     name="address"
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -305,6 +316,7 @@ const RestaurantRegistration = () => {
                   </p>
                 )}
                 <Field
+                  id="location"
                   type="hidden"
                   name="location"
                   value={
@@ -325,7 +337,11 @@ const RestaurantRegistration = () => {
                 disabled={isSubmitting || isSent || !selectedLocation} // Disable if no location is selected
                 className="w-56 p-2 py-2 bg-[#040A27] text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                {isSubmitting ? "Sending..." : isSent ? "Sent" : "Send Registration Form"}
+                {isSubmitting
+                  ? "Sending..."
+                  : isSent
+                  ? "Sent"
+                  : "Send Registration Form"}
               </button>
             </Form>
           )}

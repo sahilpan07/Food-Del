@@ -20,6 +20,9 @@ const bannerData = [
 ];
 
 const Banner = () => {
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <div className="flex flex-col sm:flex-row gap-8 mx-12 md:mx-20">
       {bannerData.map((banner, index) => (
@@ -38,7 +41,7 @@ const Banner = () => {
             <div className="flex flex-col gap-2  text-left ">
               <p className="text-orange-400 font-semibold">{banner.subtitle}</p>
               <p className="text-xl sm:text-lg font-bold">{banner.title}</p>
-              <Link to={banner.link}>
+              <Link to={banner.link} onClick={handleScrollToTop}>
                 <button
                   to={banner.link}
                   className="w-36 md:w-48 lg:w-64 sm:h-12 bg-violet-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
