@@ -9,6 +9,7 @@ import contactRouter from "./routes/contactRoute.js"
 import categoryRouter from "./routes/categoryRoute.js"
 import restaurantRouter from "./routes/restaurantRoute.js"
 import restaurantRegistrationRoute from "./routes/restaurantRegistrationRoute.js"
+import searchRoute from "./routes/serachRoute.js"
 
 //app config
 const app = express()
@@ -29,6 +30,7 @@ app.use("/images", express.static("uploads/categories"));
 app.use("/images", express.static("uploads/restaurants"));
 app.use("/api/user",userRouter)
 app.use("/api/cart",cartRouter)
+app.use('/api', searchRoute);
 
 // Route to send email
 app.use('/api/contact',contactRouter);
