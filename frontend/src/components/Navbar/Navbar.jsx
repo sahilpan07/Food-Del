@@ -17,7 +17,7 @@ const Navbar = ({ setShowLogin }) => {
 
   const logout = () => {
     console.log(token);
-    
+
     localStorage.removeItem("token");
     setToken("");
     navigate("/");
@@ -88,21 +88,26 @@ const Navbar = ({ setShowLogin }) => {
         />
 
         {/* Search Dropdown */}
-        <div
-          className={`${
-            searchOpen ? "h-screen opacity-100" : " opacity-0"
-          } overflow-hidden transition-all duration-300 ease-in-out absolute top-full left-0 right-0 bg-white z-20 shadow-lg`}
-        >
-          <div className="relative p-4 mx-20">
-            <button
-              onClick={() => setSearchOpen(false)} // Close search dropdown
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
-            >
-              <Icon icon="mdi:close" className="text-2xl" />
-            </button>
-            <SearchBar setSearchOpen={setSearchOpen} setCategory={setCategory}/>
+        {searchOpen && (
+          <div
+            className={`${
+              searchOpen ? "h-screen opacity-100" : " opacity-0"
+            } overflow-hidden transition-all duration-300 ease-in-out absolute top-full left-0 right-0 bg-white shadow-lg`}
+          >
+            <div className="relative p-4 mx-20">
+              <button
+                onClick={() => setSearchOpen(false)}
+                className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              >
+                <Icon icon="mdi:close" className="text-2xl" />
+              </button>
+              <SearchBar
+                setSearchOpen={setSearchOpen}
+                setCategory={setCategory}
+              />
             </div>
-        </div>
+          </div>
+        )}
 
         <div className="relative">
           <Link to="/cart">
@@ -121,35 +126,61 @@ const Navbar = ({ setShowLogin }) => {
             <span className="text-xs md:text-sm lg:text-base">Sign in</span>
           </button>
         ) : (
-          <div className="relative group">
+          <div className="relative group z-50">
             <Icon
               onClick={() => setDropdownOpen((prev) => !prev)}
-              className="cursor-pointer text-4xl sm:text-5xl border border-cyan-700 rounded-full text-cyan-700"
+              className="cursor-pointer text-4xl sm:text-5xl border border-cyan-700 rounded-full text-cyan-700 hover:bg-cyan-100 transition-all duration-200 ease-in-out"
               icon="mdi:user"
             />
             {isDropdownOpen && (
-              <ul className="absolute right-0 w-28 flex flex-col gap-2 bg-white rounded-lg border border-orange-600 shadow-lg z-10">
-                <li className="flex items-center p-2 gap-2 hover:bg-gray-100 cursor-pointer rounded-lg">
+              <ul className="absolute right-0 mt-2 w-52 bg-white rounded-xl border border-gray-300 shadow-lg z-10 transition-transform transform scale-95 origin-top-right duration-200 ease-in-out">
+                {/* Profile */}
+                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer rounded-t-xl transition-all duration-200 ease-in-out">
+                  <Icon className="text-cyan-700 text-2xl" icon="mdi:account" />
+                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
+                    Profile
+                  </span>
+                </li>
+                {/* Orders */}
+                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
                   <Icon
-                    className="text-orange-600 text-2xl"
+                    className="text-cyan-700 text-2xl"
                     icon="ph:bag-duotone"
                   />
-                  <p className="text-md hover:text-orange-500 cursor-pointer">
+                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
                     Orders
-                  </p>
+                  </span>
                 </li>
-                <hr />
+                {/* Settings */}
+                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
+                  <Icon className="text-cyan-700 text-2xl" icon="mdi:cog" />
+                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
+                    Settings
+                  </span>
+                </li>
+                {/* Help */}
+                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
+                  <Icon
+                    className="text-cyan-700 text-2xl"
+                    icon="mdi:help-circle"
+                  />
+                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
+                    Help
+                  </span>
+                </li>
+                <hr className="border-t border-gray-200 mx-3" />
+                {/* Logout */}
                 <li
                   onClick={logout}
-                  className="flex items-center p-2 gap-2 hover:bg-gray-100 cursor-pointer rounded-lg"
+                  className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer rounded-b-xl transition-all duration-200 ease-in-out"
                 >
                   <Icon
-                    className="text-orange-600 text-2xl"
+                    className="text-cyan-700 text-2xl"
                     icon="carbon:logout"
                   />
-                  <p className="text-md cursor-pointer hover:text-orange-500">
+                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
                     Logout
-                  </p>
+                  </span>
                 </li>
               </ul>
             )}

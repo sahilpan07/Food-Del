@@ -28,13 +28,11 @@ const App = () => {
 
   return (
     <>
-    
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-        <div className="sticky z-50 top-0 bg-white shadow">
-          <ToastContainer/>
+        <div className="sticky z-40 top-0 bg-white shadow">
+          <ToastContainer />
           <Navbar setShowLogin={setShowLogin} />
-          
         </div>
 
         <Routes>
@@ -42,17 +40,20 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/restaurant" element={<Restaurant />} />
-          <Route path="/foodDetail" element={<FoodDetail/>}/>
-          <Route path="/explore-res" element={<ExploreRestaurant/>}/>
+          <Route path="/foodDetail" element={<FoodDetail />} />
+          <Route path="/explore-res" element={<ExploreRestaurant />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/aboutpage" element={<AboutPage />} />
-          <Route path="/faq" element={<FAQ/>} />
-          <Route path="aboutUs" element={<AboutUs/>}/>
-          <Route path="/orderStep" element={<OrderStep/>}/>
-          <Route path="/Help" element={<HelpSupport/>}/>
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="aboutUs" element={<AboutUs />} />
+          <Route path="/orderStep" element={<OrderStep />} />
+          <Route path="/Help" element={<HelpSupport />} />
           <Route path="/order" element={<PlaceOrder />} />
-          <Route path="/RestaurantRegistration" element={<RestaurantRegistration/>} />
-          <Route path="/RidersRegistration" element={<RidersRegistration/>} />
+          <Route
+            path="/RestaurantRegistration"
+            element={<RestaurantRegistration />}
+          />
+          <Route path="/RidersRegistration" element={<RidersRegistration />} />
         </Routes>
       </div>
       <Footer />
