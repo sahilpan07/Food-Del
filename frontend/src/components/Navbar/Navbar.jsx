@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
@@ -14,10 +14,9 @@ const Navbar = ({ setShowLogin }) => {
   const [category, setCategory] = useState(null);
 
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
 
   const logout = () => {
-    console.log(token);
-
     localStorage.removeItem("token");
     setToken("");
     navigate("/");
@@ -29,6 +28,25 @@ const Navbar = ({ setShowLogin }) => {
     { path: "/explore-res", label: "Restaurant" },
     { path: "/contact", label: "Contact Us" },
   ];
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   return (
     <div className="navbar flex py-3 px-12 md:px-20 justify-between items-center">
@@ -126,7 +144,7 @@ const Navbar = ({ setShowLogin }) => {
             <span className="text-xs md:text-sm lg:text-base">Sign in</span>
           </button>
         ) : (
-          <div className="relative group z-50">
+          <div className="relative group z-50" ref={dropdownRef}>
             <Icon
               onClick={() => setDropdownOpen((prev) => !prev)}
               className="cursor-pointer text-4xl sm:text-5xl border border-cyan-700 rounded-full text-cyan-700 hover:bg-cyan-100 transition-all duration-200 ease-in-out"
@@ -135,29 +153,41 @@ const Navbar = ({ setShowLogin }) => {
             {isDropdownOpen && (
               <ul className="absolute right-0 mt-2 w-52 bg-white rounded-xl border border-gray-300 shadow-lg z-10 transition-transform transform scale-95 origin-top-right duration-200 ease-in-out">
                 {/* Profile */}
-                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer rounded-t-xl transition-all duration-200 ease-in-out">
-                  <Icon className="text-cyan-700 text-2xl" icon="mdi:account" />
-                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
-                    Profile
-                  </span>
-                </li>
+                <Link to="/profile">
+                  <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer rounded-t-xl transition-all duration-200 ease-in-out">
+                    <Icon
+                      className="text-cyan-700 text-2xl"
+                      icon="mdi:account"
+                    />
+                    <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
+                      Profile
+                    </span>
+                  </li>
+                </Link>
+
                 {/* Orders */}
-                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
-                  <Icon
-                    className="text-cyan-700 text-2xl"
-                    icon="ph:bag-duotone"
-                  />
-                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
-                    Orders
-                  </span>
-                </li>
+                <Link to="/orderHistory">
+                  <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
+                    <Icon
+                      className="text-cyan-700 text-2xl"
+                      icon="ph:bag-duotone"
+                    />
+                    <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
+                      Orders
+                    </span>
+                  </li>
+                </Link>
+
                 {/* Settings */}
-                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
-                  <Icon className="text-cyan-700 text-2xl" icon="mdi:cog" />
-                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
-                    Settings
-                  </span>
-                </li>
+                <Link to="/settings">
+                  <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
+                    <Icon className="text-cyan-700 text-2xl" icon="mdi:cog" />
+                    <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
+                      Settings
+                    </span>
+                  </li>
+                </Link>
+
                 {/* Help */}
                 <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
                   <Icon
@@ -186,15 +216,15 @@ const Navbar = ({ setShowLogin }) => {
             )}
           </div>
         )}
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden">
-          <Icon
-            icon="ic:outline-menu"
-            className="text-2xl cursor-pointer"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-          />
-        </div>
       </div>
+
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+        className="md:hidden text-2xl text-[#49557e]"
+      >
+        <Icon icon="bx:bx-menu" />
+      </button>
     </div>
   );
 };

@@ -19,6 +19,9 @@ import { ToastContainer } from "react-toastify";
 import FoodDetail from "./pages/FoodDetail/FoodDetail";
 import RestaurantRegistration from "./pages/Registration/RestaurantRegistration";
 import RidersRegistration from "./pages/Registration/RidersRegistration";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
+import OrderHistory from "./components/OrderHistory/OrderHistory";
+import Settings from "./components/Settings/Settings";
 
 const App = () => {
   window.onload = function () {
@@ -39,6 +42,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/orderHistory" element={<OrderHistory />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/restaurant" element={<Restaurant />} />
           <Route path="/foodDetail" element={<FoodDetail />} />
           <Route path="/explore-res" element={<ExploreRestaurant />} />

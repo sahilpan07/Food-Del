@@ -32,7 +32,7 @@ const createToken = (id) => {
 
 //register user
 const registerUser = async (req, res) => {
-  const { name, password, email } = req.body;
+  const { name, password, email, phoneNumber, address } = req.body;
   try {
     //checking user already exists
     const exists = await userModel.findOne({ email });
@@ -65,6 +65,8 @@ const registerUser = async (req, res) => {
       name: name,
       email: email,
       password: hashedPassword,
+      phoneNumber:phoneNumber,
+      address: address,
     });
 
     //save user in database
@@ -79,4 +81,55 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser };
+const getUserDetails = async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1]; // Extract token from Authorization header
+    if (!token) {
+      return res.status(401).json({ success: false, message: 'Authorization token is missing' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await userModel.findById(decoded.id).select('-password'); // Don't send password in response
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.json({ success: true, user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: 'Error fetching user details' });
+  }
+};
+
+const updateUserProfile = async (req, res) => {
+  const { fullName, email, phoneNumber, address, password } = req.body;
+  const { userId } = req.user; // assuming userId is decoded from JWT
+
+  try {
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Update user information
+    user.name = fullName || user.name;
+    user.email = email || user.email;
+    user.phoneNumber = phoneNumber || user.phoneNumber;
+    user.address = address || user.address;
+
+    // If password is provided, hash and update it
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+    }
+
+    await user.save();
+    res.json({ success: true, message: "Profile updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error updating profile" });
+  }
+};
+export { loginUser, registerUser, getUserDetails, updateUserProfile };
