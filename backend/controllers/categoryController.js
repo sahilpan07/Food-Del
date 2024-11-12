@@ -22,7 +22,8 @@ export const addCategory = async (req, res) => {
 export const getCategories = async (req, res) => {
   try {
     const categories = await categoryModel.find({});
-    res.json({ success: true, data: categories });
+    const count = await categoryModel.countDocuments();
+    res.json({ success: true, data: categories, count });  
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: "Error" });

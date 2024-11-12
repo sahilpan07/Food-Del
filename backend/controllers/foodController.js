@@ -29,7 +29,8 @@ export const addFood = async (req, res) => {
 export const listFood = async (req,res) =>{
     try{
         const foods = await foodModel.find({});
-        res.json({success:true,data:foods})
+        const count = await foodModel.countDocuments(); 
+        res.json({ success: true, data: foods, count });  
     }
     catch(error){
         console.log(error);

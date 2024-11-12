@@ -90,14 +90,14 @@ const AddItem = ({ url }) => {
       toast.error("An error occurred while adding the product.");
     }
   };
-
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
-      <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800">Add New Product</h2>
+    <div className="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
+      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 text-gray-800">Add New Product</h2>
       <form onSubmit={onSubmitHandler} className="space-y-6 bg-white shadow-lg p-8 rounded-lg border">
+        {/* Image Upload */}
         <div className="flex flex-col">
-          <label htmlFor="image" className="text-lg font-semibold text-gray-700 mb-2">Upload Image</label>
-          <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 rounded-xl cursor-pointer hover:bg-gray-200 transition">
+          <label htmlFor="image" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Upload Image</label>
+          <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 sm:p-8 rounded-xl cursor-pointer hover:bg-gray-200 transition">
             <input
               onChange={(e) => setImage(e.target.files[0])}
               type="file"
@@ -108,7 +108,7 @@ const AddItem = ({ url }) => {
             />
             <label htmlFor="image" className="flex flex-col items-center">
               <img
-                className="w-28"
+                className="w-24 sm:w-28"
                 src={image ? URL.createObjectURL(image) : assets.upload_area}
                 alt="Upload Area"
               />
@@ -116,9 +116,10 @@ const AddItem = ({ url }) => {
             </label>
           </div>
         </div>
-
+  
+        {/* Product Name */}
         <div className="flex flex-col">
-          <label htmlFor="name" className="text-lg font-semibold text-gray-700 mb-2">Product Name</label>
+          <label htmlFor="name" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Name</label>
           <input
             className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
@@ -129,9 +130,10 @@ const AddItem = ({ url }) => {
             required
           />
         </div>
-
+  
+        {/* Product Description */}
         <div className="flex flex-col">
-          <label htmlFor="description" className="text-lg font-semibold text-gray-700 mb-2">Product Description</label>
+          <label htmlFor="description" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Description</label>
           <textarea
             className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
@@ -142,10 +144,12 @@ const AddItem = ({ url }) => {
             required
           ></textarea>
         </div>
-
-        <div className="flex gap-4">
-          <div className="w-full">
-            <label htmlFor="restaurant" className="text-lg font-semibold text-gray-700 mb-2">Product Restaurant</label>
+  
+        {/* Product Restaurant and Category */}
+        <div className="flex flex-col sm:flex-row sm:gap-6">
+          {/* Restaurant */}
+          <div className="w-full sm:w-1/2">
+            <label htmlFor="restaurant" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Restaurant</label>
             <select
               onChange={onChangeHandler}
               className="w-full p-3 border rounded-md"
@@ -158,9 +162,10 @@ const AddItem = ({ url }) => {
               ))}
             </select>
           </div>
-
-          <div className="w-full">
-            <label htmlFor="category" className="text-lg font-semibold text-gray-700 mb-2">Product Category</label>
+  
+          {/* Category */}
+          <div className="w-full sm:w-1/2">
+            <label htmlFor="category" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Category</label>
             <select
               onChange={onChangeHandler}
               className="w-full p-3 border rounded-md"
@@ -174,9 +179,10 @@ const AddItem = ({ url }) => {
             </select>
           </div>
         </div>
-
-        <div className="flex flex-col w-56">
-          <label htmlFor="price" className="text-lg font-semibold text-gray-700 mb-2">Product Price</label>
+  
+        {/* Product Price */}
+        <div className="flex flex-col w-full sm:w-1/2">
+          <label htmlFor="price" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Price</label>
           <input
             className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
@@ -187,7 +193,8 @@ const AddItem = ({ url }) => {
             required
           />
         </div>
-
+  
+        {/* Submit Button */}
         <button
           type="submit"
           className="w-full p-4 bg-blue-500 text-white font-bold rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
@@ -197,6 +204,7 @@ const AddItem = ({ url }) => {
       </form>
     </div>
   );
+  
 };
 
 export default AddItem;

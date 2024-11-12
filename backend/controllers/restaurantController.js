@@ -49,7 +49,8 @@ export const addRestaurant = async (req, res) => {
 export const getRestaurant = async (req, res) => {
   try {
     const restaurants = await restaurantModel.find({});
-    res.json({ success: true, data: restaurants });
+    const count = await restaurantModel.countDocuments();
+    res.json({ success: true, data: restaurants, count });  
   } catch (error) {
     console.error("Error in getRestaurant:", error);
     res

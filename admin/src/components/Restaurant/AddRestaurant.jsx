@@ -105,12 +105,12 @@ const AddRestaurant = ({ url }) => {
             type="text"
             value={ownerName}
             onChange={(e) => setOwnerName(e.target.value)}
-            placeholder="Owners's Name"
+            placeholder="Owner's Name"
             className="w-full p-3 border rounded-md"
           />
         </div>
-        <div className="flex gap-4">
-          <div className="w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Email
             </label>
@@ -122,9 +122,9 @@ const AddRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
-              Phone Numeber
+              Phone Number
             </label>
             <input
               type="text"
@@ -135,11 +135,11 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-
-        <div className="flex gap-4">
-          <div className="w-full">
+  
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
-              Liscense/Registration Numeber
+              License/Registration Number
             </label>
             <input
               type="text"
@@ -149,9 +149,9 @@ const AddRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
-              Tax Id
+              Tax ID
             </label>
             <input
               type="text"
@@ -162,8 +162,8 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-        <div className="flex gap-4">
-          <div className="w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Restaurant Type
             </label>
@@ -175,9 +175,9 @@ const AddRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
-              Operational hours
+              Operational Hours
             </label>
             <input
               type="text"
@@ -188,7 +188,7 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-
+  
         <div>
           <label className="block text-lg font-semibold text-gray-700 mb-2">
             Description
@@ -196,7 +196,7 @@ const AddRestaurant = ({ url }) => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="description of the restaurant"
+            placeholder="Description of the restaurant"
             className="w-full p-3 border rounded-md"
           />
         </div>
@@ -212,8 +212,8 @@ const AddRestaurant = ({ url }) => {
             className="w-full p-3 border rounded-md"
           />
         </div>
-        <div className="flex space-x-4">
-          <div className="w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Longitude
             </label>
@@ -225,7 +225,7 @@ const AddRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Latitude
             </label>
@@ -238,35 +238,8 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-
-        <div className="flex gap-4">
-{/*           <div className="flex flex-col w-full">
-            <label
-              htmlFor="docImage"
-              className="text-lg font-medium text-gray-700 mb-2"
-            >
-              Registration Documents
-            </label>
-            <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 rounded-xl cursor-pointer hover:bg-gray-200 transition">
-              <input
-                onChange={(e) => setDocImage(e.target.files[0])}
-                type="file"
-                id="docImage"
-                className="hidden"
-                accept="docImage/*"
-              />
-              <label htmlFor="docImage" className="flex flex-col items-center">
-                <img
-                  className="w-28"
-                  src={docImage ? URL.createObjectURL(docImage) : assets.upload_area}
-                  alt="Upload Area"
-                />
-                <span className="text-gray-500 mt-2">
-                  {docImage ? docImage.name : "Click to upload an Document image"}
-                </span>
-              </label>
-            </div>
-          </div> */}
+  
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col w-full">
             <label
               htmlFor="image"
@@ -295,7 +268,7 @@ const AddRestaurant = ({ url }) => {
             </div>
           </div>
         </div>
-
+  
         {errorMessage && <p className="text-red-600">{errorMessage}</p>}
         <button
           type="submit"
@@ -306,6 +279,7 @@ const AddRestaurant = ({ url }) => {
       </form>
     </div>
   );
+  
 };
 
 export default AddRestaurant;

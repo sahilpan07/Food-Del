@@ -66,8 +66,8 @@ const EditCategory = ({ url }) => {
   if (!category) return <p>Category not found.</p>;
 
   return (
-    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg max-w-2xl">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+    <div className="container mx-auto p-6 sm:p-8 bg-white shadow-lg rounded-lg max-w-3xl">
+      <h2 className="text-3xl sm:text-4xl font-semibold text-gray-800 mb-6 text-center">
         Edit Category
       </h2>
       <form onSubmit={handleUpdate} className="space-y-6">
@@ -83,20 +83,20 @@ const EditCategory = ({ url }) => {
             className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
-
-        <div className="grid grid-cols-2 gap-6">
+  
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Current Image Display */}
           <div className="flex flex-col items-center shadow-lg border border-gray-300 rounded-lg p-4">
             <label className="block font-semibold text-gray-700 mb-2">Current Image:</label>
             {category.image && (
               <img
-                src={`${url}/images/categories/${category.image}`}
+                src={`${url}/images/${category.image}`}
                 alt="Category"
-                className="w-full h-full object-cover rounded-lg shadow-md"
+                className="w-full h-48 object-cover rounded-lg shadow-md"
               />
             )}
           </div>
-
+  
           {/* Image Upload Area */}
           <div className="flex flex-col items-center shadow-lg border border-gray-300 rounded-lg p-4">
             <label className="block font-semibold text-gray-700 mb-2">New Image:</label>
@@ -123,11 +123,11 @@ const EditCategory = ({ url }) => {
             </div>
           </div>
         </div>
-
+  
         {errorMessage && (
           <span className="text-red-500 text-sm">{errorMessage}</span>
         )}
-
+  
         <div className="flex justify-between items-center mt-6">
           <button
             type="submit"
@@ -139,6 +139,7 @@ const EditCategory = ({ url }) => {
       </form>
     </div>
   );
+  
 };
 
 export default EditCategory;

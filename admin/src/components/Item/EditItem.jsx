@@ -64,114 +64,125 @@ const EditfoodItem = ({ url }) => {
   if (!foodItem) return <p>foodItem not found.</p>;
 
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
-      <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800">
-        Edit foodItem
+    <div className="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
+      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 text-gray-800">
+        Edit FoodItem
       </h2>
-      <form
-        onSubmit={handleUpdate}
-        className="space-y-6 bg-white shadow-lg p-8 rounded-lg border"
-      >
-        <div>
-          <label className="block text-lg font-semibold text-gray-700 mb-2">
-            foodItem Name
+  
+      <form onSubmit={handleUpdate} className="space-y-6 bg-white shadow-lg p-8 rounded-lg border">
+        
+        {/* Image Upload */}
+        <div className="flex flex-col">
+          <label htmlFor="image" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+            Current Image
+          </label>
+          {foodItem.image && (
+            <img
+              src={`${url}/images/${foodItem.image}`}
+              alt="Food Item"
+              className="w-48 h-48 object-cover mb-4 rounded-lg border"
+            />
+          )}
+        </div>
+  
+        {/* Change Image */}
+        <div className="flex flex-col">
+          <label htmlFor="newImage" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+            Change Image
+          </label>
+          <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 sm:p-8 rounded-xl cursor-pointer hover:bg-gray-200 transition">
+            <input
+              type="file"
+              onChange={(e) => setNewImage(e.target.files[0])}
+              id="newImage"
+              className="hidden"
+              accept="image/*"
+            />
+            <label htmlFor="newImage" className="flex flex-col items-center">
+              <img
+                className="w-24 sm:w-28"
+                src={newImage ? URL.createObjectURL(newImage) : assets.upload_area}
+                alt="Upload Area"
+              />
+              <span className="text-gray-500 mt-2">
+                {newImage ? newImage.name : "Click to upload an image"}
+              </span>
+            </label>
+          </div>
+        </div>
+  
+        {/* Food Item Name */}
+        <div className="flex flex-col">
+          <label htmlFor="name" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+            Food Item Name
           </label>
           <input
-            type="text"
-            value={foodItem.name}
-            onChange={(e) => setfoodItem({ ...foodItem, name: e.target.value })}
             className="w-full p-3 border rounded-md"
+            onChange={(e) => setfoodItem({ ...foodItem, name: e.target.value })}
+            value={foodItem.name}
+            type="text"
+            name="name"
+            placeholder="Type Here"
+            required
           />
         </div>
-        <div className="text-lg  text-gray-600">
+  
+        {/* Food Item Restaurant */}
+        <div className="text-lg text-gray-600">
           <strong>Restaurant:</strong> {foodItem.restaurant}
         </div>
-        <div className="flex gap-4">
-          <div className="w-full text-lg  text-gray-600">
-            <strong>Category:</strong> {foodItem.category}
+  
+        {/* Category and Price */}
+        <div className="flex gap-6">
+          <div className="w-full">
+            <label htmlFor="category" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+              Category
+            </label>
+            <div className="text-lg text-gray-600">{foodItem.category}</div>
           </div>
           <div className="w-full">
-            <label className="block text-lg font-semibold text-gray-700 mb-2">
+            <label htmlFor="price" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
               Price
             </label>
             <input
-              type="text"
-              value={foodItem.price}
-              onChange={(e) =>
-                setfoodItem({ ...foodItem, price: e.target.value })
-              }
               className="w-full p-3 border rounded-md"
+              onChange={(e) => setfoodItem({ ...foodItem, price: e.target.value })}
+              value={foodItem.price}
+              type="text"
+              name="price"
+              placeholder="$100"
+              required
             />
           </div>
         </div>
-
-        <div>
-          <label className="block text-lg font-semibold text-gray-700 mb-2">
+  
+        {/* Description */}
+        <div className="flex flex-col">
+          <label htmlFor="description" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
             Description
           </label>
           <textarea
-            value={foodItem.description}
-            onChange={(e) =>
-              setfoodItem({ ...foodItem, description: e.target.value })
-            }
             className="w-full p-3 border rounded-md"
-          />
+            onChange={(e) => setfoodItem({ ...foodItem, description: e.target.value })}
+            value={foodItem.description}
+            name="description"
+            rows="6"
+            placeholder="Write description here"
+            required
+          ></textarea>
         </div>
-        <div className="flex">
-          <div className="w-full">
-            <label className="block text-lg font-semibold text-gray-700 mb-2">
-              Current Image
-            </label>
-            {foodItem.image && (
-              <img
-                src={`${url}/images/${foodItem.image}`}
-                alt="foodItem"
-                className="w-48 h-48 object-cover mb-4 rounded-lg border"
-              />
-            )}
-          </div>
-          <div className="flex flex-col w-full">
-            <label
-              htmlFor="image"
-              className="text-lg font-medium text-gray-700 mb-2"
-            >
-              Change Image
-            </label>
-            <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 rounded-xl cursor-pointer hover:bg-gray-200 transition">
-              <input
-                type="file"
-                onChange={(e) => setNewImage(e.target.files[0])}
-                id="newImage"
-                className="hidden"
-                accept="image/*"
-              />
-              <label htmlFor="newImage" className="flex flex-col items-center">
-                <img
-                  className="w-28"
-                  src={
-                    newImage
-                      ? URL.createObjectURL(newImage)
-                      : assets.upload_area
-                  }
-                  alt="Upload Area"
-                />
-                <span className="text-gray-500 mt-2">
-                  {newImage ? newImage.name : "Click to upload an image"}
-                </span>
-              </label>
-            </div>
-          </div>
-        </div>
-
+  
+        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
+          className="w-full p-4 bg-blue-500 text-white font-bold rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
         >
-          Update foodItem
+          Update FoodItem
         </button>
       </form>
     </div>
   );
+  
 };
 
 export default EditfoodItem;

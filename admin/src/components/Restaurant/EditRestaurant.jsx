@@ -109,8 +109,8 @@ const EditRestaurant = ({ url }) => {
             className="w-full p-3 border rounded-md"
           />
         </div>
-        <div className="flex gap-4">
-          <div className="w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Email
             </label>
@@ -123,7 +123,7 @@ const EditRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Phone Number
             </label>
@@ -137,8 +137,9 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
-        <div className="flex gap-4">
-          <div className="w-full">
+  
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               License/Registration Number
             </label>
@@ -151,7 +152,7 @@ const EditRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Tax ID
             </label>
@@ -165,8 +166,9 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
-        <div className="flex gap-4">
-          <div className="w-full">
+  
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Restaurant Type
             </label>
@@ -179,7 +181,7 @@ const EditRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Operational Hours
             </label>
@@ -193,6 +195,7 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
+  
         <div>
           <label className="block text-lg font-semibold text-gray-700 mb-2">
             Description
@@ -205,6 +208,7 @@ const EditRestaurant = ({ url }) => {
             className="w-full p-3 border rounded-md"
           />
         </div>
+  
         <div>
           <label className="block text-lg font-semibold text-gray-700 mb-2">
             Address
@@ -217,8 +221,9 @@ const EditRestaurant = ({ url }) => {
             className="w-full p-3 border rounded-md"
           />
         </div>
-        <div className="flex gap-4">
-          <div className="w-full">
+  
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Longitude
             </label>
@@ -234,7 +239,7 @@ const EditRestaurant = ({ url }) => {
               className="w-full p-3 border rounded-md"
             />
           </div>
-          <div className="w-full">
+          <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Latitude
             </label>
@@ -251,20 +256,21 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
-        <div className="flex">
+  
+        <div className="flex gap-4">
           <div className="w-full">
             <label className="block text-lg font-semibold text-gray-700 mb-2">
               Current Image
             </label>
             {restaurant.image && (
               <img
-                src={`${url}/images/restaurants/${restaurant.image}`}
+                src={`${url}/images/${restaurant.image}`}
                 alt="Restaurant"
                 className="w-48 h-48 object-cover mb-4 rounded-lg border"
               />
             )}
           </div>
-          <div className="flex flex-col w-full">
+          <div className="w-full">
             <label
               htmlFor="image"
               className="text-lg font-medium text-gray-700 mb-2"
@@ -296,7 +302,7 @@ const EditRestaurant = ({ url }) => {
             </div>
           </div>
         </div>
-
+  
         <button
           type="submit"
           className="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
@@ -306,6 +312,7 @@ const EditRestaurant = ({ url }) => {
       </form>
     </div>
   );
+  
 };
 
 export default EditRestaurant;

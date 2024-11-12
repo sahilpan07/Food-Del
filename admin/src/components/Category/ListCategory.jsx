@@ -41,55 +41,98 @@ const ListCategory = ({ url }) => {
   return (
     <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">List of Categories</h2>
-      <table className="w-full table-auto border-collapse">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
-            <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
-            <th className="py-3 px-4 border-b text-left text-gray-700 w-1/2">Category Name</th>
-            <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
+  
+      {/* Table view for larger screens */}
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto border-collapse hidden sm:block">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="py-3 px-4 border-b text-left text-gray-700">SN</th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">Image</th>
+              <th className="py-3 px-4 border-b text-left text-gray-700 w-1/2">Category Name</th>
+              <th className="py-3 px-4 border-b text-left text-gray-700">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categories.map((category, index) => (
+              <tr key={category._id} className="border-b">
+                <td className="py-3 px-4">{index + 1}</td>
+                <td className="py-3 px-4">
+                  <img
+                    src={`${url}/images/${category.image}`}
+                    className="w-16 h-16 object-cover rounded-full"
+                    alt={category.name}
+                  />
+                </td>
+                <td className="py-3 px-4 text-gray-700">{category.name}</td>
+                <td className="py-3 px-4">
+                  <div className="flex gap-4">
+                    <Link
+                      to={`/category/categoryDetail/${category._id}`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      View
+                    </Link>
+                    <Link
+                      to={`/category/editCategory/${category._id}`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={() => removeCategory(category._id)}
+                      className="text-red-600 hover:underline"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+  
+        {/* Mobile view */}
+        <div className="sm:hidden">
           {categories.map((category, index) => (
-            <tr key={category._id} className="border-b">
-              <td className="py-3 px-4">{index + 1}</td>
-              <td className="py-3 px-4">
+            <div key={category._id} className="bg-white shadow-md rounded-lg p-6 mb-4">
+              <div className="flex flex-col sm:flex-row items-center gap-4">
                 <img
                   src={`${url}/images/${category.image}`}
-                  className="w-16 h-16 object-cover rounded-full"
+                  className="w-24 h-24 object-cover rounded-full mb-4 sm:mb-0"
                   alt={category.name}
                 />
-              </td>
-              <td className="py-3 px-4 text-gray-700">{category.name}</td>
-              <td className="py-3 px-4">
-                <div className="flex gap-4">
-                  <Link
-                    to={`/category/categoryDetail/${category._id}`}
-                    className="text-blue-600 hover:underline"
-                  >
-                    View Details
-                  </Link>
-                  <Link
-                    to={`/category/editCategory/${category._id}`}
-                    className="text-blue-600 hover:underline"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => removeCategory(category._id)}
-                    className="text-red-600 hover:underline"
-                  >
-                    Remove
-                  </button>
+                <div className="flex-1">
+                  <p className="text-xl font-semibold text-gray-700">{category.name}</p>
                 </div>
-              </td>
-            </tr>
+              </div>
+              <div className="flex gap-4 mt-4 justify-center">
+                <Link
+                  to={`/category/categoryDetail/${category._id}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  View Details
+                </Link>
+                <Link
+                  to={`/category/editCategory/${category._id}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  Edit
+                </Link>
+                <button
+                  onClick={() => removeCategory(category._id)}
+                  className="text-red-600 hover:underline"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
+  
 };
 
 export default ListCategory;

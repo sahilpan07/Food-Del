@@ -20,6 +20,7 @@ import ItemPage from "./pages/ItemPage/ItemPage";
 import ItemDetail from "./components/Item/ItemDetail";
 import CategoryDetail from "./components/Category/CategoryDetail";
 import EditfoodItem from "./components/Item/EditItem";
+import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
   const url = "http://localhost:4000";
@@ -32,6 +33,7 @@ const App = () => {
       <div className="flex">
         <Sidebar />
         <Routes>
+          <Route path="/" element={<HomePage url={url}/>}/>
           <Route path="/orders" element={<Orders url={url} />} />
           {/* Nested Category Routes */}
           <Route path="/restaurant" element={<RestaurantPage url={url} />} >
