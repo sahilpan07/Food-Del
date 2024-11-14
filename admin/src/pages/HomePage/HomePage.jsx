@@ -10,6 +10,7 @@ const HomePage = ({ url }) => {
   const [restaurantCount, setRestaurantCount] = useState(0);
   const [foodCount, setFoodCount] = useState(0);
   const [categoryCount, setCategorycount] = useState(0);
+  const [orderCount, setOrdercount] = useState(0);
 
   useEffect(() => {
     const fetchRestaurantCount = async () => {
@@ -42,10 +43,21 @@ const HomePage = ({ url }) => {
         console.error("Error fetching restaurant count:", error);
       }
     };
+    const fetchOrderCount = async () => {
+      try {
+        const response = await axios.get(`${url}/api/order/list`);
+        if (response.data.success) {
+          setOrdercount(response.data.count);
+        }
+      } catch (error) {
+        console.error("Error fetching Order count:", error);
+      }
+    };
 
     fetchCategoryCount();
     fetchFoodCount();
     fetchRestaurantCount();
+    fetchOrderCount();
   }, [url]);
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -98,7 +110,7 @@ const HomePage = ({ url }) => {
             className="text-4xl text-[#040A27]"
           />
           <div className="ml-4">
-            <p className="text-2xl font-bold">8</p>
+            <p className="text-2xl font-bold">{orderCount}</p>
             <p className="text-gray-600">Orders</p>
           </div>
         </div>

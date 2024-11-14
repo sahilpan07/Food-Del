@@ -82,4 +82,29 @@ const userOrders = async (req, res) => {
   }
 }
 
-export { placeOrder, verifyOrder, userOrders };
+//find all orders of all user for admin
+const listOrders = async (req,res) =>{
+  try {
+    const orders = await orderModel.find({});
+    const count = await orderModel.countDocuments(); 
+
+    res.json({success:true,data:orders,count})
+  } catch (error) {
+    console.log(error);
+    res.json({success:false,message:"Error"})
+  }
+}
+
+//api for updating status
+const updateStatus = async(req,res)=>{
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status});
+    res.json({success:true,message:"Status Updates"})
+  } catch (error) {
+    console.log(error);
+    res.json({success:false,message:"Error in updating status"})
+    
+  }
+}
+
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
