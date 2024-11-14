@@ -104,6 +104,7 @@ const Orders = ({ url }) => {
                     Order Status:
                   </p>
                   <select onChange={(event)=>statusHandler(event,order._id)} value={order.status} className="w-full px-4 py-2 rounded-lg border bg-white text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105 hover:border-blue-400 shadow-lg appearance-none">
+                    <option value="On Process">On Process</option>
                     <option value="Food Processing">Food Processing</option>
                     <option value="Out for delivery">Out for delivery</option>
                     <option value="Delivered">Delivered</option>

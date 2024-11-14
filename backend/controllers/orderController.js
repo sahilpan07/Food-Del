@@ -1,3 +1,4 @@
+import completeOrderModel from "../models/completeOrderModel.js";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
@@ -23,7 +24,7 @@ const placeOrder = async (req, res) => {
         product_data: {
           name: item.name,
         },
-        unit_amount: item.price * 100 * 80,
+        unit_amount: item.price * 100,
       },
       quantity: item.quantity,
     }));
@@ -34,7 +35,7 @@ const placeOrder = async (req, res) => {
         product_data: {
           name: "Delivery Charges",
         },
-        unit_amount: 150 * 100 * 80,
+        unit_amount: 150 * 100,
       },
       quantity: 1,
     });
@@ -96,15 +97,45 @@ const listOrders = async (req,res) =>{
 }
 
 //api for updating status
-const updateStatus = async(req,res)=>{
+const updateStatus = async (req, res) => {
   try {
-    await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status});
-    res.json({success:true,message:"Status Updates"})
+    const order = await orderModel.findById(req.body.orderId);
+
+    if (!order) {
+      return res.json({ success: false, message: "Order not found" });
+    }
+
+    if (req.body.status === "Delivered") {
+      // Update status to "Delivered" in the original order
+      order.status = "Delivered";
+      await order.save();
+
+      res.json({ success: true, message: "Status updated to Delivered. Will remove order after 2 minutes." });
+
+      // Wait for 2 minutes (120,000 milliseconds) before transferring to completeOrderModel
+      setTimeout(async () => {
+        try {
+          // Copy the order data to the completed order model, including updated "Delivered" status
+          const completedOrder = new completeOrderModel(order.toObject());
+          await completedOrder.save();
+
+          // Delete the order from orderModel
+          await orderModel.findByIdAndDelete(req.body.orderId);
+          console.log("Order moved to completeOrderModel and removed from orderModel");
+        } catch (error) {
+          console.error("Error transferring order to completeOrderModel:", error);
+        }
+      }, 120000); // 2-minute delay
+    } else {
+      // Just update the status if it's not "Delivered"
+      await orderModel.findByIdAndUpdate(req.body.orderId, { status: req.body.status });
+      res.json({ success: true, message: "Status Updated" });
+    }
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error in updating status"})
-    
+    res.json({ success: false, message: "Error in updating status" });
   }
-}
+};
+
 
 export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
