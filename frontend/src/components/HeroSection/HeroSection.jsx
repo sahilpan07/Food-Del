@@ -13,7 +13,6 @@ const HeroSection = () => {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Automatically change the current image
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
@@ -26,7 +25,6 @@ const HeroSection = () => {
 
   return (
     <div className="relative bg-gray-50 min-h-screen">
-      {/* Hero Section with Background Image */}
       <div className="absolute inset-0 z-0">
         <div className="relative w-full h-screen overflow-hidden">
           {images.map((image, index) => (
@@ -72,26 +70,6 @@ const HeroSection = () => {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Scroll Down Arrow */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#features">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-8 h-8 text-orange-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </a>
       </div>
     </div>
   );
