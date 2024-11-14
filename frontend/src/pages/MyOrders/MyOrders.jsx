@@ -26,7 +26,7 @@ const MyOrders = () => {
                 <h2 className="text-3xl font-bold text-gray-800 mb-6">My Orders</h2>
                 <div className="space-y-8">
                     {data.map((order, index) => (
-                        <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+                        <div key={index} className=" bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
                             <div className="flex items-center space-x-6">
                                 <img src={assets.parcel_icon} alt="Parcel Icon" className="w-16 h-16 object-cover rounded-full border-2 border-blue-500" />
                                 <div className="flex flex-col space-y-2">

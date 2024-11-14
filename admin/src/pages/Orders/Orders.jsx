@@ -84,7 +84,7 @@ const Orders = ({ url }) => {
                   <p className="text-gray-600">{order.address.street}</p>
                   <p className="text-gray-600">
                     {order.address.city}, {order.address.state},{" "}
-                    {order.address.country} - {order.address.zipcode}
+                    {order.address.country}
                   </p>
                   <p className="text-gray-600">Phone: {order.address.phone}</p>
                 </div>
