@@ -20,11 +20,12 @@ import FoodDetail from "./pages/FoodDetail/FoodDetail";
 import RestaurantRegistration from "./pages/Registration/RestaurantRegistration";
 import RidersRegistration from "./pages/Registration/RidersRegistration";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
-import OrderHistory from "./components/OrderHistory/OrderHistory";
 import Settings from "./components/Settings/Settings";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import RecentFood from "./components/RecentFood/RecentFood";
+import Chatbot from "./components/ChatBot/ChatBot";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const App = () => {
   window.onload = function () {
@@ -36,6 +37,7 @@ const App = () => {
     <>
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
+        <Chatbot/>
         <div className="sticky z-40 top-0 bg-white shadow">
           <ToastContainer />
           <Navbar setShowLogin={setShowLogin} />
@@ -46,7 +48,6 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/restaurant" element={<Restaurant />} />
           <Route path="/foodDetail" element={<FoodDetail />} />
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/recentFood" element={<RecentFood />} />
+          <Route path="/chatbot" element={<Chatbot />} />
           
           <Route
             path="/RestaurantRegistration"

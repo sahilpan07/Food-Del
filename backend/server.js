@@ -12,6 +12,7 @@ import restaurantRegistrationRoute from "./routes/restaurantRegistrationRoute.js
 import searchRoute from "./routes/serachRoute.js"
 import riderRegistrationRoute from "./routes/riderRegistrationRoute.js"
 import orderRouter from "./routes/orderRoute.js"
+import chatbotRoute from "./routes/chatbotRoute.js"
 
 //app config
 const app = express()
@@ -34,6 +35,8 @@ app.use("/api/user",userRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
 app.use('/api', searchRoute);
+app.use(chatbotRoute);
+
 
 // Route to send email
 app.use('/api/contact',contactRouter);

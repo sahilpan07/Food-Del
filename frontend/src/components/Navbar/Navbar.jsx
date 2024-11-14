@@ -189,15 +189,18 @@ const Navbar = ({ setShowLogin }) => {
                 </Link>
 
                 {/* Help */}
-                <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
-                  <Icon
-                    className="text-cyan-700 text-2xl"
-                    icon="mdi:help-circle"
-                  />
-                  <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
-                    Help
-                  </span>
-                </li>
+                <Link to="/chatbot">
+                  <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
+                    <Icon
+                      className="text-cyan-700 text-2xl"
+                      icon="mdi:help-circle"
+                    />
+                    <span className="text-md text-gray-700 hover:text-cyan-600 font-semibold">
+                      Help
+                    </span>
+                  </li>
+                </Link>
+
                 <hr className="border-t border-gray-200 mx-3" />
                 {/* Logout */}
                 <li
