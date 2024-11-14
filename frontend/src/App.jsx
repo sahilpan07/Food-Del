@@ -22,6 +22,8 @@ import RidersRegistration from "./pages/Registration/RidersRegistration";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 import OrderHistory from "./components/OrderHistory/OrderHistory";
 import Settings from "./components/Settings/Settings";
+import Verify from "./pages/Verify/Verify";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 const App = () => {
   window.onload = function () {
@@ -55,6 +57,8 @@ const App = () => {
           <Route path="/orderStep" element={<OrderStep />} />
           <Route path="/Help" element={<HelpSupport />} />
           <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/verify" element={<Verify />} />
+          <Route path="/myorders" element={<MyOrders />} />
           <Route
             path="/RestaurantRegistration"
             element={<RestaurantRegistration />}

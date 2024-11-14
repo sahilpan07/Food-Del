@@ -1,10 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState  } from 'react'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const PlaceOrder = () => {
   
-  const {getTotalCartAmount,token,food_list,cartItems,url} = useContext(StoreContext)
+  const {getTotalCartAmount,token,food_list,cartItems,url} = useContext(StoreContext);
+  const navigate = useNavigate();
 
   const [data,setData] = useState({
     firstName:"",
@@ -24,8 +27,45 @@ const PlaceOrder = () => {
     setData(data=>({...data,[name]:value}))
   }
 
+  const placeOrder = async (event) => {
+    event.preventDefault();
+    let orderItems = [];
+    food_list.map((item)=>{
+      if(cartItems[item._id]>0) {
+        let itemInfo = item;
+        itemInfo["quantity"] = cartItems[item._id];
+        orderItems.push(itemInfo);
+      }
+    })
+    let orderData = {
+      address:data,
+      items:orderItems,
+      amount:getTotalCartAmount()+150,
+    }
+    let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
+    if(response.data.success) {
+      const {session_url} = response.data;
+      window.location.replace(session_url);
+    }
+    else{
+      alert("Failed to place order");
+    }
+  }
+
+  useEffect(()=>{
+    if (!token) {
+      navigate('/cart')
+      toast.error("Please Login First");
+    }
+    else if(getTotalCartAmount()===0)
+    {
+      navigate('/cart')
+      toast.error('Your cart is Empty')
+    }
+  },[token])
+
   return (
-    <form  className='flex flex-col md:flex-row align-start justify-between gap-24 mt-12 mx-12 md:mx-20'>
+    <form onSubmit={placeOrder} className='flex flex-col md:flex-row align-start justify-between gap-24 mt-12 mx-12 md:mx-20'>
       <div className='w-full '>
         <p className='text-xl font-semibold mb-4'>Delivery Information</p>
         <div className='flex gap-3'>
@@ -63,7 +103,7 @@ const PlaceOrder = () => {
               <p>Rs.{getTotalCartAmount()===0?0:getTotalCartAmount()+150}</p>
             </div>
           </div>
-          <button type='submit' className="text-white h-12 py-3 mt-6 w-full md:w-64 rounded-lg bg-violet-900">PROCEED TO Payment</button>
+          <button type='submit'  className="text-white h-12 py-3 mt-6 w-full md:w-64 rounded-lg bg-violet-900">PROCEED TO Payment</button>
         </div>
       </div>
 
