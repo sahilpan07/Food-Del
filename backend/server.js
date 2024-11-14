@@ -7,6 +7,7 @@ import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js"
 import contactRouter from "./routes/contactRoute.js"
 import categoryRouter from "./routes/categoryRoute.js"
+import orderRouter from "./routes/orderRoute.js"
 
 //app config
 const app = express()
@@ -26,6 +27,7 @@ app.use("/images",express.static('uploads'))
 app.use("/images", express.static("uploads/categories"));
 app.use("/api/user",userRouter)
 app.use("/api/cart",cartRouter)
+app.use("/api/order",orderRouter)
 
 // Route to send email
 app.use('/api/contact',contactRouter);

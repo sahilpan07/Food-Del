@@ -1,60 +1,56 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
-import crypto from 'crypto'; 
+import Stripe from "stripe";
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+//placing user order form frontend
 const placeOrder = async (req, res) => {
-    const frontend_url = "http://localhost:5173";
-    //const esewa_url = "https://uat.esewa.com.np/epay/main"; 
-    const esewa_url = "https://rc-epay.esewa.com.np/api/epay/main/v2/form"; 
-    const serviceCode = "EPAYTEST";
+  const frontend_url = "http://localhost:5173";
+  try {
+    const newOrder = new orderModel({
+      userId: req.body.userId,
+      items: req.body.items,
+      amount: req.body.amount,
+      address: req.body.address,
+    });
+    await newOrder.save();
+    await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
-    try {
-        const totalAmount = req.body.amount; 
-        const transactionAmount = req.body.amount; 
+    const line_items = req.body.items.map((item) => ({
+      price_data: {
+        currency: "Rs",
+        product_data: {
+          name: item.name,
+        },
+        unit_amount: item.price * 1 * 1,
+      },
+      quantity: item.quantity,
+    }));
 
-        const newOrder = new orderModel({
-            userId: req.body.userId,
-            items: req.body.items,
-            amount: totalAmount,
-            address: req.body.address
-        });
+    line_items.push({
+      price_data: {
+        currency: "Rs",
+        product_data: {
+          name: "Delivery Charges",
+        },
+        unit_amount: 150 * 1 * 1,
+      },
+      quantity: 1,
+    });
 
-        await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
+    const session = await stripe.checkout.sessions.create({
+      line_items: line_items,
+      mode: "payment",
+      success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
+      cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
+    });
 
-        const signature = createSignature(
-            `total_amount=${totalAmount},transaction_uuid=${newOrder._id},product_code=${serviceCode}`
-        );
-
-        // Prepare the eSewa parameters
-        const esewaParams = {
-            amount: transactionAmount,
-            failure_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
-            product_delivery_charge: '1',
-            product_service_charge: '0',
-            product_code: "EPAYTEST",
-            signature: signature,
-            signed_field_name: "total_amount,transaction_uuid,product_code",
-            success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-            tax_amount: '0',
-            total_amount: totalAmount,
-            txId: newOrder._id,
-        };
-
-        res.json({ success: true, esewaParams, esewa_url });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: "Error placing order" });
-    }
-};
-
-// Function to create the signature for eSewa
-const createSignature = (message) => {
-    const secretKey = process.env.ESEWA_SECRET;
-    const hmac = crypto.createHmac("sha256", secretKey);
-    hmac.update(message);
-    return hmac.digest("base64");
+    res.json({ success: true, session_url: session.url });
+  } catch (error) {
+    console.log(error);
+    res.json({success:false,message:"Error"});
+  }
 };
 
 export { placeOrder };
