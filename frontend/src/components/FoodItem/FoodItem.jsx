@@ -8,7 +8,7 @@ const FoodItem = ({ id, name, price, description, image, restaurant, location, r
     useContext(StoreContext);
 
   return (
-    <div className="w-full rounded-lg text-white bg-[#040A27] shadow-md transition-transform duration-300 hover:scale-105 sm:max-w-xs md:max-w-sm lg:max-w-md">
+    <div className="w-full rounded-lg text-white bg-[#040A27] shadow-md transition-transform duration-300 sm:max-w-xs md:max-w-sm lg:max-w-md">
       <Link
         to="/foodDetail"
         state={{ id, name, price, description, image, restaurant }}
@@ -47,7 +47,7 @@ const FoodItem = ({ id, name, price, description, image, restaurant, location, r
           <p className="text-tomato text-xl font-medium">Rs{price}</p>
           {!cartItems[id] ? (
             <Icon
-              className="text-green-500 text-3xl"
+              className="text-green-500 text-3xl cursor-pointer"
               onClick={() => addToCart(id)}
               icon="carbon:add-filled"
             />

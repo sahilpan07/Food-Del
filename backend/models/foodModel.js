@@ -8,7 +8,7 @@ const foodSchema = new mongoose.Schema({
     category: {type:String, required:true},
     restaurant: {type:String, required:true},
 
-})
+}, { timestamps: true })
 
 const foodModel = mongoose.models.food || mongoose.model("food",foodSchema)
 

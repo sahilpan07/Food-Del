@@ -21,7 +21,7 @@ const MyOrders = () => {
     }, [token]);
 
     return (
-        <div className="bg-gray-50 min-h-screen p-8">
+        <div className="mx-12 md:mx-20 bg-gray-50 min-h-screen p-8">
             <div className="max-w-screen-xl mx-auto">
                 <h2 className="text-3xl font-bold text-gray-800 mb-6">My Orders</h2>
                 <div className="space-y-8">

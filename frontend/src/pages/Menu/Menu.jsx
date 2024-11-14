@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 
 const Menu = () => {
   return (
-    <div className="mx-6 sm:mx-12 md:mx-20 mt-10">
+    <div className="mx-12 md:mx-20 mt-10">
       {/* Section Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#040A27] mb-4">

@@ -24,6 +24,7 @@ import OrderHistory from "./components/OrderHistory/OrderHistory";
 import Settings from "./components/Settings/Settings";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
+import RecentFood from "./components/RecentFood/RecentFood";
 
 const App = () => {
   window.onload = function () {
@@ -59,6 +60,8 @@ const App = () => {
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
+          <Route path="/recentFood" element={<RecentFood />} />
+          
           <Route
             path="/RestaurantRegistration"
             element={<RestaurantRegistration />}

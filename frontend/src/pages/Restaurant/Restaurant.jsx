@@ -19,7 +19,7 @@ const Restaurant = () => {
   };
 
   return (
-    <div className="mx-6 sm:mx-12 md:mx-20 mt-10">
+    <div className="mx-12 md:mx-20 mt-10">
       {/* Restaurant Banner */}
       <div
         className="relative w-full h-96 bg-cover bg-center rounded-lg"

@@ -118,3 +118,12 @@ export const getFoodSearchResults = async (query) => {
   });
   return results;
 };
+
+export const getRecentFoods = async (req, res) => {
+  try {
+    const recentFoods = await foodModel.find().sort({ createdAt: -1 }).limit(70);
+    res.json({ success: true, data: recentFoods });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error fetching recent food items." });
+  }
+};
