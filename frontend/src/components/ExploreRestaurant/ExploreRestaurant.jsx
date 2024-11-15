@@ -9,7 +9,7 @@ const ExploreRestaurant = () => {
   const [showMore, setShowMore] = useState(false);
 
   // Determine the number of restaurants to show
-  const displayedRestaurants = showMore ? restaurants : restaurants.slice(0, 3);
+  const displayedRestaurants = showMore ? restaurants : restaurants.slice(0, 6);
 
   const handleExploreMore = () => {
     setShowMore(true);
@@ -78,7 +78,7 @@ const ExploreRestaurant = () => {
       </div>
 
       {/* Explore More Button */}
-      {restaurants.length > 3 && !showMore && (
+      {restaurants.length > 6 && !showMore && (
         <div className="text-center mt-6">
           <button
             onClick={handleExploreMore}
