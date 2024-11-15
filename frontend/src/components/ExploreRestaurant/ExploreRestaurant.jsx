@@ -9,14 +9,14 @@ const ExploreRestaurant = () => {
   const [showMore, setShowMore] = useState(false);
 
   // Determine the number of restaurants to show
-  const displayedRestaurants = showMore ? restaurants : restaurants.slice(0, 3);
+  const displayedRestaurants = showMore ? restaurants : restaurants.slice(0, 12);
 
   const handleExploreMore = () => {
     setShowMore(true);
   };
 
   return (
-    <div className="flex flex-col gap-10 mx-6 sm:mx-12 md:mx-20 mt-10" id="restaurant-menu">
+    <div className="flex flex-col gap-10 mx-12 md:mx-20 mt-10" id="restaurant-menu">
       
       {/* Section Header */}
       <div className="text-center">
@@ -46,7 +46,7 @@ const ExploreRestaurant = () => {
                   alt={item.name}
                 />
                 {/* Overlay Text */}
-                <div className="absolute bottom-2 left-2 text-white font-semibold bg-black bg-opacity-50 px-3 py-1 rounded-md">
+                <div className="truncate absolute bottom-2 left-2 text-white font-semibold bg-black bg-opacity-50 px-3 py-1 rounded-md">
                   {item.name}
                 </div>
               </div>
@@ -55,7 +55,7 @@ const ExploreRestaurant = () => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <Icon icon="ph:location-pin-fill" className="text-lg text-yellow-400" />
-                  <p className="text-sm text-gray-400">{item.address}</p>
+                  <p className="text-sm text-gray-400 truncate">{item.address}</p>
                 </div>
                 
                 <div className="flex items-center gap-2 mt-2">
@@ -63,7 +63,7 @@ const ExploreRestaurant = () => {
                   <span className="text-sm font-medium text-white">4.5/5</span>
                 </div>
                 
-                <p className="mt-2 text-xs text-gray-300">{item.description}</p>
+                <p className="mt-2 text-xs text-gray-300 truncate">{item.description}</p>
               </div>
 
               {/* Hover Effect - Button */}
@@ -78,7 +78,7 @@ const ExploreRestaurant = () => {
       </div>
 
       {/* Explore More Button */}
-      {restaurants.length > 3 && !showMore && (
+      {restaurants.length > 6 && !showMore && (
         <div className="text-center mt-6">
           <button
             onClick={handleExploreMore}

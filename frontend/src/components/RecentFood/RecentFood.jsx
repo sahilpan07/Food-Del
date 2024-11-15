@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const RecentFood = () => {
   const [recentFoods, setRecentFoods] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(); // Initially show 5 items
+  const [visibleCount, setVisibleCount] = useState(6); // Initially show 5 items
   const { url, cartItems, addToCart, removeFromCart } =
     useContext(StoreContext);
 
