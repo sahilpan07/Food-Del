@@ -15,9 +15,9 @@ const HeroSection = () => {
   }, [images.length]);
 
   return (
-    <div className='flex flex-col items-center bg-gray-50 min-h-96'>
+    <div className='flex flex-col mx-20 items-center min-h-96 mt-12'>
       {/* Header section */}
-      <div className='container mx-auto flex flex-col md:flex-row items-center justify-between p-6 mt-0 ml-6'>
+      <div className='container mx-auto flex flex-col md:flex-row items-center justify-between'>
         {/* Text section */}
         <div className='md:w-1/2 text-center md:text-left'>
           <h1 className='text-4xl font-bold text-gray-900 font-sans'>

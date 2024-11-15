@@ -83,10 +83,14 @@ export const assets = {
     basket_icon,
     header_img,
     search_icon,
+    home_1,
+    home_2,
+    home_3,
     faq,
     body_1,
     body_2,
     body_3,
+
     body_4,
     body_5,
     body_6,
@@ -145,7 +149,7 @@ export const restaurant_list = [
         restaurant_name: "restaurant1",
         restaurant_image: roadhouse_cafe,
         location: "Thamel",
-        description:"asdjbisabijabauksbdkjsabdks"
+        description: "asdjbisabijabauksbdkjsabdks"
     },
     {
         restaurant_name: "restaurant2",
