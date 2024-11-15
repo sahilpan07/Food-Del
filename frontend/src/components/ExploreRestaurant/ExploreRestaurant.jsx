@@ -63,7 +63,7 @@ const ExploreRestaurant = () => {
                   <span className="text-sm font-medium text-white">4.5/5</span>
                 </div>
                 
-                <p className="mt-2 text-xs text-gray-300">{item.description}</p>
+                <p className="mt-2 text-xs text-gray-300 truncate">{item.description}</p>
               </div>
 
               {/* Hover Effect - Button */}
