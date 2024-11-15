@@ -68,10 +68,10 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="relative z-50 animate-pulse ">
+    <div className="relative z-50  ">
       <button
         onClick={toggleChatWindow}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full p-3 shadow-lg transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl active:scale-100 active:shadow-md"
+        className="animate-pulse fixed bottom-6 right-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full p-3 shadow-lg transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl active:scale-100 active:shadow-md"
       >
         <Icon icon="eva:message-circle-fill" className="text-4xl" />
       </button>
