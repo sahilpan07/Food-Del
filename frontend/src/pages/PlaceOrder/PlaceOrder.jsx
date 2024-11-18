@@ -5,11 +5,24 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Icon } from "@iconify/react"; // Importing Iconify component
 import { AiOutlineLoading3Quarters } from "react-icons/ai"; // Loading spinner
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+// Custom marker icon to fix default icon issue in Leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+  iconRetinaUrl:
+    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+});
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, food_list, cartItems, url } =
     useContext(StoreContext);
   const navigate = useNavigate();
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   const [data, setData] = useState({
     firstName: "",
@@ -20,6 +33,7 @@ const PlaceOrder = () => {
     state: "",
     country: "",
     phone: "",
+    location: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -57,6 +71,16 @@ const PlaceOrder = () => {
     } else {
       toast.error("Failed to place order");
     }
+  };
+
+  const LocationMarker = () => {
+    useMapEvents({
+      click(e) {
+        setSelectedLocation({ lat: e.latlng.lat, lng: e.latlng.lng });
+      },
+    });
+
+    return selectedLocation ? <Marker position={selectedLocation} /> : null;
   };
 
   useEffect(() => {
@@ -206,6 +230,30 @@ const PlaceOrder = () => {
               icon="bi:map"
               className="absolute left-3 top-3 text-gray-500"
             />
+          </div>
+          <div>
+            <label className="block text-gray-700">
+              Select Location on Map
+            </label>
+            <MapContainer
+              center={[27.7172, 85.324]} // Kathmandu, Nepal
+              zoom={13}
+              style={{ height: "350px", width: "100%" }}
+              className="rounded shadow"
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <LocationMarker />
+            </MapContainer>
+            {selectedLocation && (
+              <p className="text-gray-600 mt-2">
+                Selected Location: <br />
+                Latitude {selectedLocation.lat}, Longitude{" "}
+                {selectedLocation.lng}
+              </p>
+            )}
           </div>
         </div>
       </div>
