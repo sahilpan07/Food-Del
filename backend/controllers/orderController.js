@@ -120,7 +120,6 @@ const updateStatus = async (req, res) => {
           await completedOrder.save();
 
           await orderModel.findByIdAndDelete(req.body.orderId);
-          console.log("Order moved to completeOrderModel and removed from orderModel");
         } catch (error) {
           console.error("Error transferring order to completeOrderModel:", error);
         }

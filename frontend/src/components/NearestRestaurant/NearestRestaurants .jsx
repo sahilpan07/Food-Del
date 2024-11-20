@@ -20,7 +20,6 @@ const NearestRestaurants = () => {
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             const { latitude, longitude } = position.coords;
-            console.log("User Location:", latitude, longitude); // Debugging the user's coordinates
 
             try {
               // Make the API request to get the nearest restaurants
