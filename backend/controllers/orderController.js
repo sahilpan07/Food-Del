@@ -84,17 +84,20 @@ const userOrders = async (req, res) => {
 }
 
 //find all orders of all user for admin
-const listOrders = async (req,res) =>{
-  try {
-    const orders = await orderModel.find({});
-    const count = await orderModel.countDocuments(); 
+const listOrders = async (req, res) => {
+  const { status } = req.query;
 
-    res.json({success:true,data:orders,count})
+  try {
+    const query = status ? { status } : {}; // Only filter by status if it's provided
+    const orders = await orderModel.find(query);
+    const count = await orderModel.countDocuments(query);
+
+    res.json({ success: true, data: orders, count });
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"})
+    res.json({ success: false, message: "Error" });
   }
-}
+};
 
 //api for updating status
 const updateStatus = async (req, res) => {
@@ -106,26 +109,22 @@ const updateStatus = async (req, res) => {
     }
 
     if (req.body.status === "Delivered") {
-      // Update status to "Delivered" in the original order
       order.status = "Delivered";
       await order.save();
 
       res.json({ success: true, message: "Status updated to Delivered. Will remove order after 2 minutes." });
 
-      // Wait for 2 minutes (120,000 milliseconds) before transferring to completeOrderModel
       setTimeout(async () => {
         try {
-          // Copy the order data to the completed order model, including updated "Delivered" status
           const completedOrder = new completeOrderModel(order.toObject());
           await completedOrder.save();
 
-          // Delete the order from orderModel
           await orderModel.findByIdAndDelete(req.body.orderId);
           console.log("Order moved to completeOrderModel and removed from orderModel");
         } catch (error) {
           console.error("Error transferring order to completeOrderModel:", error);
         }
-      }, 120000); // 2-minute delay
+      }, 1200); // 2-minute delay
     } else {
       // Just update the status if it's not "Delivered"
       await orderModel.findByIdAndUpdate(req.body.orderId, { status: req.body.status });

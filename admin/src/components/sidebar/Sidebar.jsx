@@ -91,7 +91,7 @@ const Sidebar = () => {
         {/* Orders Link */}
         <NavLink
           onClick={handleScrollToTop}
-          to="/orders"
+          to="/orderPage"
           className={({ isActive }) =>
             `flex items-center gap-4 px-6 py-3 rounded-lg transition-all duration-300 ${
               isActive
