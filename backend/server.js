@@ -13,6 +13,7 @@ import searchRoute from "./routes/serachRoute.js"
 import riderRegistrationRoute from "./routes/riderRegistrationRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 import chatbotRoute from "./routes/chatbotRoute.js"
+import recommendationRoutes from "./routes/recommendationRoute.js"
 
 //app config
 const app = express()
@@ -45,6 +46,8 @@ app.use('/api/registration',riderRegistrationRoute);
 
 app.use("/api/categories", categoryRouter);
 app.use("/api/restaurants", restaurantRouter); 
+app.use("/api/recommendations", recommendationRoutes);
+
 app.get('/',(req, res)=>{
     res.send("Hello Wold")
 })
