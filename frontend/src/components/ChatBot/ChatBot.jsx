@@ -84,7 +84,7 @@ const Chatbot = () => {
           }`}
         >
           {showWelcomeDiv && !isChatStarted && (
-            <div className="flex flex-col items-center justify-center h-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 p-8 rounded-lg shadow-xl space-y-6">
+            <div className="flex flex-col items-center justify-center h-full bg-gradient-to-b from-[#040A27] via-[#040A27] to-white p-8 rounded-lg shadow-xl space-y-6">
               <h2 className="text-3xl font-extrabold text-white text-center mb-4">
                 Welcome to Our Chatbot!
               </h2>

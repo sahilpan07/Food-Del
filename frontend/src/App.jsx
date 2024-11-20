@@ -101,7 +101,7 @@ const App = () => {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className=" fixed bottom-24 right-8 border-2 border-[#040A27] text-[#040A27] bg-gray-300 p-2 rounded-full shadow-lg hover:bg-gray-200 animate-bounce	 transition-transform duration-300 transform hover:scale-110 z-50"
+            className=" fixed bottom-24 right-8 border-2 border-[#040A27] text-white bg-gradient-to-b  from-[#040A27] via-[#040A27] to-white p-2 rounded-full shadow-lg hover:bg-gray-200 animate-bounce	 transition-transform duration-300 transform hover:scale-110 z-50"
           >
             <i className="fas fa-arrow-up"></i>
           </button>
