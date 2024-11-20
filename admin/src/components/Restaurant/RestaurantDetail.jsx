@@ -9,7 +9,7 @@ const RestaurantDetail = ({ url }) => {
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       try {
-        const response = await axios.get(`${url}/api/restaurants/${id}`);
+        const response = await axios.get(`${url}/api/restaurants/restaurant/${id}`);
         if (response.data.success) {
           setRestaurant(response.data.data);
         } else {
