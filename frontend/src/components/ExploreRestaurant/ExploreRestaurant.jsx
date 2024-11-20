@@ -82,7 +82,7 @@ const ExploreRestaurant = () => {
         <div className="text-center mt-6">
           <button
             onClick={handleExploreMore}
-            className="bg-[#040A27] text-white py-2 px-6 rounded-lg shadow-lg text-lg hover:bg-violet-800 transition-all"
+            className="border-2 border-[#040A27] text-[#040A27] py-2 px-6 rounded-lg shadow-lg text-lg hover:bg-gray-200 transition-all"
           >
             Explore More
           </button>

@@ -131,7 +131,7 @@ const RecentFood = () => {
         <div className="text-center mt-6">
           <button
             onClick={loadMore}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300"
+            className="border-2 border-[#040A27] text-[#040A27] text-lg px-4 py-2 rounded-md hover:bg-gray-200 transition-colors duration-300"
           >
             Load More
           </button>

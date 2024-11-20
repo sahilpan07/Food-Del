@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
@@ -33,13 +33,38 @@ const App = () => {
     window.scrollTo(0, 0);
   };
   const [showLogin, setShowLogin] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Handle Scroll Event
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Scroll to Top Function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-        <Chatbot/>
-        <ScrollToTop/>
+        <Chatbot />
+        <ScrollToTop />
         <div className="sticky z-40 top-0 bg-white shadow">
           <ToastContainer />
           <Navbar setShowLogin={setShowLogin} />
@@ -65,13 +90,22 @@ const App = () => {
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/recentFood" element={<RecentFood />} />
           <Route path="/chatbot" element={<Chatbot />} />
-          
           <Route
             path="/RestaurantRegistration"
             element={<RestaurantRegistration />}
           />
           <Route path="/RidersRegistration" element={<RidersRegistration />} />
         </Routes>
+
+        {/* Scroll-to-Top Button */}
+        {showScrollTop && (
+          <button
+            onClick={scrollToTop}
+            className=" fixed bottom-24 right-8 border-2 border-[#040A27] text-[#040A27] bg-gray-300 p-2 rounded-full shadow-lg hover:bg-gray-200 animate-bounce	 transition-transform duration-300 transform hover:scale-110 z-50"
+          >
+            <i className="fas fa-arrow-up"></i>
+          </button>
+        )}
       </div>
       <Footer />
     </>
