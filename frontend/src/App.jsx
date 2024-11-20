@@ -26,6 +26,7 @@ import MyOrders from "./pages/MyOrders/MyOrders";
 import RecentFood from "./components/RecentFood/RecentFood";
 import Chatbot from "./components/ChatBot/ChatBot";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import ScrollToTop from "./components/Atomic/ScrollToTop";
 
 const App = () => {
   window.onload = function () {
@@ -38,6 +39,7 @@ const App = () => {
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
         <Chatbot/>
+        <ScrollToTop/>
         <div className="sticky z-40 top-0 bg-white shadow">
           <ToastContainer />
           <Navbar setShowLogin={setShowLogin} />
