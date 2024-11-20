@@ -5,6 +5,7 @@ import Service from '../../components/Service/Service'
 import Banner from '../../components/Banner/Banner'
 import OrderCount from '../../components/aboutUsComponents/OrderCount'
 import RecentFood from '../../components/RecentFood/RecentFood'
+import NearestRestaurants from '../../components/NearestRestaurant/NearestRestaurants '
 
 const Home = () => {
 
@@ -12,6 +13,7 @@ const Home = () => {
     <div className='flex flex-col gap-14'>
       <HeroSection/>
       <Service/>
+      <NearestRestaurants/>
       <RecentFood/>
       <Banner/>
       <OrderCount/>

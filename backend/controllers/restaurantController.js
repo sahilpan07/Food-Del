@@ -1,6 +1,7 @@
 import restaurantModel from "../models/restaurantModel.js";
 import fs from "fs";
 import path from "path"; // Ensure path module is imported for file operations
+import { haversineDistance } from "../Haversine/haversine.js";
 
 export const addRestaurant = async (req, res) => {
   try {
@@ -155,4 +156,47 @@ export const getRestaurantSearchResults = async (query) => {
     ]
   });
   return results;
+};
+export const getNearestRestaurants = async (req, res) => {
+  try {
+    const { lat, lng } = req.query;
+
+    if (!lat || !lng) {
+      return res.status(400).json({ success: false, message: "Latitude and Longitude are required" });
+    }
+
+    const userLat = parseFloat(lat);
+    const userLng = parseFloat(lng);
+
+    if (isNaN(userLat) || isNaN(userLng)) {
+      return res.status(400).json({ success: false, message: "Invalid latitude or longitude" });
+    }
+
+    const restaurants = await restaurantModel.find({});
+
+    // Calculate the distance to each restaurant and sort by the nearest
+    const distances = restaurants.map((restaurant) => {
+      const distance = haversineDistance(
+        userLat,
+        userLng,
+        restaurant.location.lat,
+        restaurant.location.lng
+      );
+      return { restaurant, distance };
+    });
+
+    // Sort restaurants by the calculated distance
+    distances.sort((a, b) => a.distance - b.distance);
+
+    // Return the nearest restaurants along with their calculated distances
+    const nearestRestaurants = distances.map((item) => ({
+      ...item.restaurant._doc, // Spread restaurant data
+      distance: item.distance // Add calculated distance
+    }));
+
+    res.status(200).json({ success: true, data: nearestRestaurants });
+  } catch (error) {
+    console.error("Error in getNearestRestaurants:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
 };
