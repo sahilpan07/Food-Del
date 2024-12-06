@@ -30,7 +30,6 @@ const Menu = () => {
         <p className="text-gray-600 text-lg">
           Have questions? Feel free to{" "}
           <a
-            href="mailto:support@deliciousbites.com"
             className="text-[#040A27] font-semibold"
           >
             contact us

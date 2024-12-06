@@ -27,6 +27,7 @@ import RecentFood from "./components/RecentFood/RecentFood";
 import Chatbot from "./components/ChatBot/ChatBot";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ScrollToTop from "./components/Atomic/ScrollToTop";
+import PrivacyPolicy from "./components/aboutUsComponents/PrivacyPolicy";
 
 const App = () => {
   window.onload = function () {
@@ -72,6 +73,7 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/profile" element={<ProfilePage />} />

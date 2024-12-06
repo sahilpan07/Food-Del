@@ -78,12 +78,16 @@ const Footer = () => {
               >
                 <p className="text-base">About Us</p>
               </Link>
+
               <li className="cursor-pointer hover:text-white">
                 <p className="text-base">Delivery</p>
               </li>
-              <li className="cursor-pointer hover:text-white">
-                <p className="text-base ">Privacy Policy</p>
-              </li>
+              <Link
+                className="cursor-pointer hover:text-white"
+                to="/privacy"
+              >
+                <p className="text-base">Privacy Policy</p>
+              </Link>
             </ul>
           </div>
           <div className=" flex flex-col gap-5 ">
