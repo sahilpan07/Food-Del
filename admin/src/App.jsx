@@ -38,30 +38,15 @@ const App = () => {
           {/* Nested Category Routes */}
           <Route path="/restaurant" element={<RestaurantPage url={url} />}>
             <Route path="addrestaurant" element={<AddRestaurant url={url} />} />
-            <Route
-              path="listRestaurant"
-              element={<ListRestaurant url={url} />}
-            />
-            <Route
-              path="restaurant/:id"
-              element={<RestaurantDetail url={url} />}
-            />
-            <Route
-              path="editrestaurant/:id"
-              element={<EditRestaurant url={url} />}
-            />
+            <Route path="listRestaurant" element={<ListRestaurant url={url} />} />
+            <Route path="restaurant/:id" element={<RestaurantDetail url={url} />} />
+            <Route path="editrestaurant/:id" element={<EditRestaurant url={url} />} />
           </Route>
           <Route path="/category" element={<CategoryPage url={url} />}>
             <Route path="addCategory" element={<AddCategory url={url} />} />
             <Route path="listCategory" element={<ListCategory url={url} />} />
-            <Route
-              path="categoryDetail/:id"
-              element={<CategoryDetail url={url} />}
-            />
-            <Route
-              path="editCategory/:id"
-              element={<EditCategory url={url} />}
-            />
+            <Route path="categoryDetail/:id" element={<CategoryDetail url={url} />} />
+            <Route path="editCategory/:id" element={<EditCategory url={url} />}/>
           </Route>
           <Route path="/item" element={<ItemPage url={url} />}>
             <Route path="addItem" element={<AddItem url={url} />} />
@@ -70,22 +55,10 @@ const App = () => {
             <Route path="editFood/:id" element={<EditfoodItem url={url} />} />
           </Route>
           <Route path="/orderPage" element={<OrderPage url={url} />}>
-            <Route
-              path="onProcess"
-              element={<OrderList url={url} status="On Process" />}
-            />
-            <Route
-              path="foodProcessing"
-              element={<OrderList url={url} status="Food Processing" />}
-            />
-            <Route
-              path="outForDelivery"
-              element={<OrderList url={url} status="Out for Delivery" />}
-            />
-            <Route
-              path="delivered"
-              element={<OrderList url={url} status="Delivered" />}
-            />
+            <Route path="onProcess" element={<OrderList url={url} status="On Process" />}/>
+            <Route path="foodProcessing" element={<OrderList url={url} status="Food Processing" />}/>
+            <Route path="outForDelivery" element={<OrderList url={url} status="Out for Delivery" />}/>
+            <Route path="delivered" element={<OrderList url={url} status="Delivered" />}/>
           </Route>
         </Routes>
       </div>
