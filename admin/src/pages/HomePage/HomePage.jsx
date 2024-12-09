@@ -61,7 +61,6 @@ const HomePage = ({ url }) => {
   }, [url]);
   return (
     <div className="p-6 bg-gray-100 min-h-screen w-full">
-      {/* Welcome Message */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#040A27]">
           Welcome to the Admin Panel
@@ -71,9 +70,7 @@ const HomePage = ({ url }) => {
         </p>
       </div>
 
-      {/* Quick Stats Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {/* Stat Card Example */}
         <div className="bg-white shadow-md rounded-lg p-6 flex items-center">
           <Icon
             icon="ic:baseline-restaurant"
@@ -116,7 +113,6 @@ const HomePage = ({ url }) => {
         </div>
       </div>
 
-      {/* Recent Activity Section */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-8">
         <h2 className="text-xl font-bold text-[#040A27] mb-4">
           Recent Activity
@@ -143,7 +139,6 @@ const HomePage = ({ url }) => {
         </ul>
       </div>
 
-      {/* Quick Links Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <Link
           onClick={handleScrollToTop}

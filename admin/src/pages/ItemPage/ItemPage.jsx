@@ -17,7 +17,6 @@ const ItemPage = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 mb-8">
-          {/* Add Item Button */}
           <Link
             onClick={handleScrollToTop}
             to="addItem" // Use relative path for nested routes
@@ -27,7 +26,6 @@ const ItemPage = () => {
             <span>Add Item</span>
           </Link>
 
-          {/* Item List Button */}
           <Link
             onClick={handleScrollToTop}
             to="itemList" // Use relative path for nested routes

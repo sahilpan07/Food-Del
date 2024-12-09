@@ -9,7 +9,9 @@ const RestaurantDetail = ({ url }) => {
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       try {
-        const response = await axios.get(`${url}/api/restaurants/restaurant/${id}`);
+        const response = await axios.get(
+          `${url}/api/restaurants/restaurant/${id}`
+        );
         if (response.data.success) {
           setRestaurant(response.data.data);
         } else {
@@ -32,7 +34,7 @@ const RestaurantDetail = ({ url }) => {
       <h3 className="text-3xl sm:text-4xl font-semibold text-center mb-8 text-blue-600">
         Restaurant Details
       </h3>
-  
+
       <div className="bg-white shadow-2xl rounded-lg p-8 space-y-6 border border-gray-200">
         <div className="text-center">
           <img
@@ -41,15 +43,15 @@ const RestaurantDetail = ({ url }) => {
             alt={restaurant.name}
           />
         </div>
-  
+
         <div className="text-center text-2xl font-bold text-gray-800 mb-4">
           {restaurant.name}
         </div>
-  
+
         <div className="text-lg font-semibold text-gray-600">
           <strong>Owner's Name:</strong> {restaurant.ownerName}
         </div>
-  
+
         <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600">
           <div className="w-full sm:w-1/2 mb-4 sm:mb-0">
             <strong>Email:</strong> {restaurant.email}
@@ -58,7 +60,7 @@ const RestaurantDetail = ({ url }) => {
             <strong>Phone Number:</strong> {restaurant.phone}
           </div>
         </div>
-  
+
         <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600">
           <div className="w-full sm:w-1/2 mb-4 sm:mb-0">
             <strong>License/Registration Number:</strong> {restaurant.liscense}
@@ -67,7 +69,7 @@ const RestaurantDetail = ({ url }) => {
             <strong>Tax Id:</strong> {restaurant.tax}
           </div>
         </div>
-  
+
         <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600">
           <div className="w-full sm:w-1/2 mb-4 sm:mb-0">
             <strong>Type:</strong> {restaurant.type}
@@ -76,15 +78,15 @@ const RestaurantDetail = ({ url }) => {
             <strong>Operational Hours:</strong> {restaurant.time}
           </div>
         </div>
-  
+
         <div className="text-gray-600">
           <strong>Description:</strong> {restaurant.description}
         </div>
-  
+
         <div className="text-gray-600">
           <strong>Address:</strong> {restaurant.address}
         </div>
-  
+
         <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600">
           <div className="w-full sm:w-1/2 mb-4 sm:mb-0">
             <strong>Latitude:</strong> {restaurant.location.lat}
@@ -96,7 +98,6 @@ const RestaurantDetail = ({ url }) => {
       </div>
     </div>
   );
-  
 };
 
 export default RestaurantDetail;

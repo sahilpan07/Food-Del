@@ -14,7 +14,9 @@ const EditRestaurant = ({ url }) => {
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       try {
-        const response = await axios.get(`${url}/api/restaurants/restaurant/${id}`);
+        const response = await axios.get(
+          `${url}/api/restaurants/restaurant/${id}`
+        );
         if (response.data.success) {
           setRestaurant(response.data.data);
         } else {
@@ -137,7 +139,7 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
-  
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
@@ -166,7 +168,7 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
-  
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
@@ -195,7 +197,7 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
-  
+
         <div>
           <label className="block text-lg font-semibold text-gray-700 mb-2">
             Description
@@ -208,7 +210,7 @@ const EditRestaurant = ({ url }) => {
             className="w-full p-3 border rounded-md"
           />
         </div>
-  
+
         <div>
           <label className="block text-lg font-semibold text-gray-700 mb-2">
             Address
@@ -221,7 +223,7 @@ const EditRestaurant = ({ url }) => {
             className="w-full p-3 border rounded-md"
           />
         </div>
-  
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
@@ -256,7 +258,7 @@ const EditRestaurant = ({ url }) => {
             />
           </div>
         </div>
-  
+
         <div className="flex gap-4">
           <div className="w-full">
             <label className="block text-lg font-semibold text-gray-700 mb-2">
@@ -302,7 +304,7 @@ const EditRestaurant = ({ url }) => {
             </div>
           </div>
         </div>
-  
+
         <button
           type="submit"
           className="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
@@ -312,7 +314,6 @@ const EditRestaurant = ({ url }) => {
       </form>
     </div>
   );
-  
 };
 
 export default EditRestaurant;

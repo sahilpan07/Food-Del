@@ -68,12 +68,16 @@ const EditfoodItem = ({ url }) => {
       <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 text-gray-800">
         Edit FoodItem
       </h2>
-  
-      <form onSubmit={handleUpdate} className="space-y-6 bg-white shadow-lg p-8 rounded-lg border">
-        
-        {/* Image Upload */}
+
+      <form
+        onSubmit={handleUpdate}
+        className="space-y-6 bg-white shadow-lg p-8 rounded-lg border"
+      >
         <div className="flex flex-col">
-          <label htmlFor="image" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+          <label
+            htmlFor="image"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
             Current Image
           </label>
           {foodItem.image && (
@@ -84,10 +88,12 @@ const EditfoodItem = ({ url }) => {
             />
           )}
         </div>
-  
-        {/* Change Image */}
+
         <div className="flex flex-col">
-          <label htmlFor="newImage" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+          <label
+            htmlFor="newImage"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
             Change Image
           </label>
           <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 sm:p-8 rounded-xl cursor-pointer hover:bg-gray-200 transition">
@@ -101,7 +107,9 @@ const EditfoodItem = ({ url }) => {
             <label htmlFor="newImage" className="flex flex-col items-center">
               <img
                 className="w-24 sm:w-28"
-                src={newImage ? URL.createObjectURL(newImage) : assets.upload_area}
+                src={
+                  newImage ? URL.createObjectURL(newImage) : assets.upload_area
+                }
                 alt="Upload Area"
               />
               <span className="text-gray-500 mt-2">
@@ -110,10 +118,12 @@ const EditfoodItem = ({ url }) => {
             </label>
           </div>
         </div>
-  
-        {/* Food Item Name */}
+
         <div className="flex flex-col">
-          <label htmlFor="name" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+          <label
+            htmlFor="name"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
             Food Item Name
           </label>
           <input
@@ -126,27 +136,33 @@ const EditfoodItem = ({ url }) => {
             required
           />
         </div>
-  
-        {/* Food Item Restaurant */}
+
         <div className="text-lg text-gray-600">
           <strong>Restaurant:</strong> {foodItem.restaurant}
         </div>
-  
-        {/* Category and Price */}
+
         <div className="flex gap-6">
           <div className="w-full">
-            <label htmlFor="category" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+            <label
+              htmlFor="category"
+              className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+            >
               Category
             </label>
             <div className="text-lg text-gray-600">{foodItem.category}</div>
           </div>
           <div className="w-full">
-            <label htmlFor="price" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+            <label
+              htmlFor="price"
+              className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+            >
               Price
             </label>
             <input
               className="w-full p-3 border rounded-md"
-              onChange={(e) => setfoodItem({ ...foodItem, price: e.target.value })}
+              onChange={(e) =>
+                setfoodItem({ ...foodItem, price: e.target.value })
+              }
               value={foodItem.price}
               type="text"
               name="price"
@@ -155,15 +171,19 @@ const EditfoodItem = ({ url }) => {
             />
           </div>
         </div>
-  
-        {/* Description */}
+
         <div className="flex flex-col">
-          <label htmlFor="description" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">
+          <label
+            htmlFor="description"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
             Description
           </label>
           <textarea
             className="w-full p-3 border rounded-md"
-            onChange={(e) => setfoodItem({ ...foodItem, description: e.target.value })}
+            onChange={(e) =>
+              setfoodItem({ ...foodItem, description: e.target.value })
+            }
             value={foodItem.description}
             name="description"
             rows="6"
@@ -171,8 +191,7 @@ const EditfoodItem = ({ url }) => {
             required
           ></textarea>
         </div>
-  
-        {/* Submit Button */}
+
         <button
           type="submit"
           className="w-full p-4 bg-blue-500 text-white font-bold rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
@@ -182,7 +201,6 @@ const EditfoodItem = ({ url }) => {
       </form>
     </div>
   );
-  
 };
 
 export default EditfoodItem;

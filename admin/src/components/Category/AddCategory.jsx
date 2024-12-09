@@ -39,11 +39,14 @@ const AddCategory = ({ url }) => {
 
   return (
     <div className="container mx-auto p-4 sm:p-6 md:p-8 bg-white shadow-lg rounded-lg max-w-2xl">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-6">Add Category</h2>
+      <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-6">
+        Add Category
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Category Name */}
         <div>
-          <label className="block text-base sm:text-lg font-semibold text-gray-700 mb-2">Category Name</label>
+          <label className="block text-base sm:text-lg font-semibold text-gray-700 mb-2">
+            Category Name
+          </label>
           <input
             type="text"
             value={name}
@@ -52,8 +55,7 @@ const AddCategory = ({ url }) => {
             className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
-  
-        {/* Image Upload */}
+
         <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 sm:p-8 rounded-xl cursor-pointer hover:bg-gray-100 transition-all">
           <input
             onChange={(e) => setImage(e.target.files[0])}
@@ -68,11 +70,12 @@ const AddCategory = ({ url }) => {
               src={image ? URL.createObjectURL(image) : assets.upload_area}
               alt="Upload Area"
             />
-            <span className="text-gray-500 mt-2">{image ? image.name : "Click to upload an image"}</span>
+            <span className="text-gray-500 mt-2">
+              {image ? image.name : "Click to upload an image"}
+            </span>
           </label>
         </div>
-  
-        {/* Error Message and Submit Button */}
+
         <div className="flex justify-between items-center">
           {errorMessage && (
             <span className="text-red-500 text-sm">{errorMessage}</span>
@@ -87,7 +90,6 @@ const AddCategory = ({ url }) => {
       </form>
     </div>
   );
-  
 };
 
 export default AddCategory;

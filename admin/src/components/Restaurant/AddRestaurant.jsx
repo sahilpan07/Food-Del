@@ -16,18 +16,32 @@ const AddRestaurant = ({ url }) => {
   const [address, setAddress] = useState("");
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
- //const [docImage, setDocImage] = useState("");
+  //const [docImage, setDocImage] = useState("");
   const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!name || !ownerName || !email || !phone || !liscense || !tax || !type || !time || !description || !address || !lat || !lng || !image) {
+
+    if (
+      !name ||
+      !ownerName ||
+      !email ||
+      !phone ||
+      !liscense ||
+      !tax ||
+      !type ||
+      !time ||
+      !description ||
+      !address ||
+      !lat ||
+      !lng ||
+      !image
+    ) {
       setErrorMessage("Please fill in all fields.");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("ownerName", ownerName);
@@ -42,14 +56,14 @@ const AddRestaurant = ({ url }) => {
     formData.append("lat", lat);
     formData.append("lng", lng);
     formData.append("image", image);
-  
+
     try {
       const response = await axios.post(
         `${url}/api/restaurants/add`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-  
+
       if (response.data.success) {
         toast.success("Restaurant added successfully!");
         setErrorMessage("");
@@ -74,7 +88,6 @@ const AddRestaurant = ({ url }) => {
       toast.error("Error adding restaurant.");
     }
   };
-  
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
@@ -135,7 +148,7 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-  
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-lg font-semibold text-gray-700 mb-2">
@@ -188,7 +201,7 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-  
+
         <div>
           <label className="block text-lg font-semibold text-gray-700 mb-2">
             Description
@@ -238,7 +251,7 @@ const AddRestaurant = ({ url }) => {
             />
           </div>
         </div>
-  
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col w-full">
             <label
@@ -268,7 +281,7 @@ const AddRestaurant = ({ url }) => {
             </div>
           </div>
         </div>
-  
+
         {errorMessage && <p className="text-red-600">{errorMessage}</p>}
         <button
           type="submit"
@@ -279,7 +292,6 @@ const AddRestaurant = ({ url }) => {
       </form>
     </div>
   );
-  
 };
 
 export default AddRestaurant;

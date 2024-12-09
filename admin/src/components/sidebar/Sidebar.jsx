@@ -14,14 +14,12 @@ const Sidebar = () => {
 
   return (
     <div className="min-h-screen bg-white shadow-lg border border-gray-300">
-      {/* Hamburger Menu for Small Screens */}
       <div className="lg:hidden p-4 flex   justify-between items-center">
         <button onClick={toggleSidebar} className="text-2xl">
           <Icon icon="mdi:hamburger-menu" />
         </button>
       </div>
 
-      {/* Sidebar Menu */}
       <div
         className={`${
           isOpen ? "block" : "hidden"
@@ -31,7 +29,6 @@ const Sidebar = () => {
           Admin Menu
         </h2>
 
-        {/* Restaurant Link */}
         <NavLink
           onClick={handleScrollToTop}
           to="/restaurant"
@@ -50,7 +47,6 @@ const Sidebar = () => {
           <p className="font-semibold text-lg hidden lg:block">Restaurant</p>
         </NavLink>
 
-        {/* Category Link */}
         <NavLink
           onClick={handleScrollToTop}
           to="/category"
@@ -69,7 +65,6 @@ const Sidebar = () => {
           <p className="font-semibold text-lg hidden lg:block">Category</p>
         </NavLink>
 
-        {/* Item Link */}
         <NavLink
           onClick={handleScrollToTop}
           to="/item"
@@ -88,7 +83,6 @@ const Sidebar = () => {
           <p className="font-semibold text-lg hidden lg:block">Item</p>
         </NavLink>
 
-        {/* Orders Link */}
         <NavLink
           onClick={handleScrollToTop}
           to="/orderPage"
@@ -107,7 +101,6 @@ const Sidebar = () => {
           <p className="font-semibold text-lg hidden lg:block">Orders</p>
         </NavLink>
 
-        {/* Sidebar Footer (optional) */}
         <div className="mt-auto pt-6 border-t border-gray-200 text-center">
           <p className="text-sm text-gray-500">Powered by FOODIE</p>
         </div>

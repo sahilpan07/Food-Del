@@ -33,7 +33,6 @@ const EditCategory = ({ url }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-
     const formData = new FormData();
     formData.append("name", category.name);
 
@@ -83,11 +82,12 @@ const EditCategory = ({ url }) => {
             className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
-  
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Current Image Display */}
           <div className="flex flex-col items-center shadow-lg border border-gray-300 rounded-lg p-4">
-            <label className="block font-semibold text-gray-700 mb-2">Current Image:</label>
+            <label className="block font-semibold text-gray-700 mb-2">
+              Current Image:
+            </label>
             {category.image && (
               <img
                 src={`${url}/images/${category.image}`}
@@ -96,10 +96,11 @@ const EditCategory = ({ url }) => {
               />
             )}
           </div>
-  
-          {/* Image Upload Area */}
+
           <div className="flex flex-col items-center shadow-lg border border-gray-300 rounded-lg p-4">
-            <label className="block font-semibold text-gray-700 mb-2">New Image:</label>
+            <label className="block font-semibold text-gray-700 mb-2">
+              New Image:
+            </label>
             <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-8 rounded-xl cursor-pointer hover:bg-gray-100 transition-all">
               <input
                 onChange={(e) => setNewImage(e.target.files[0])}
@@ -112,7 +113,9 @@ const EditCategory = ({ url }) => {
                 <img
                   className="w-32 h-32 object-cover rounded-lg shadow-sm"
                   src={
-                    newImage ? URL.createObjectURL(newImage) : assets.upload_area
+                    newImage
+                      ? URL.createObjectURL(newImage)
+                      : assets.upload_area
                   }
                   alt="Upload Area"
                 />
@@ -123,11 +126,11 @@ const EditCategory = ({ url }) => {
             </div>
           </div>
         </div>
-  
+
         {errorMessage && (
           <span className="text-red-500 text-sm">{errorMessage}</span>
         )}
-  
+
         <div className="flex justify-between items-center mt-6">
           <button
             type="submit"
@@ -139,8 +142,6 @@ const EditCategory = ({ url }) => {
       </form>
     </div>
   );
-  
 };
 
 export default EditCategory;
-  

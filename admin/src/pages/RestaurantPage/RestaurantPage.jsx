@@ -13,13 +13,13 @@ const RestaurantPage = () => {
           Restaurant Management
         </h1>
         <p className="text-center text-lg text-gray-600 mb-6">
-          Manage your restaurant details with ease. Add, view, and organize your restaurants here.
+          Manage your restaurant details with ease. Add, view, and organize your
+          restaurants here.
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 mb-8">
-          {/* Add Restaurant Button */}
           <Link
-          onClick={handleScrollToTop}
+            onClick={handleScrollToTop}
             to="addrestaurant" // Use relative path for nested routes
             className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white text-lg rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition duration-300 transform hover:scale-105 w-full sm:w-auto"
           >
@@ -27,9 +27,8 @@ const RestaurantPage = () => {
             <span>Add Restaurant</span>
           </Link>
 
-          {/* List Restaurant Button */}
           <Link
-          onClick={handleScrollToTop}
+            onClick={handleScrollToTop}
             to="listrestaurant" // Use relative path for nested routes
             className="flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white text-lg rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg transition duration-300 transform hover:scale-105 w-full sm:w-auto"
           >

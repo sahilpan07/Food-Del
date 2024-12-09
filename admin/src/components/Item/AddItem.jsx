@@ -23,7 +23,10 @@ const AddItem = ({ url }) => {
         if (response.data.success) {
           setCategories(response.data.data);
           if (response.data.data.length > 0) {
-            setData((prevData) => ({ ...prevData, category: response.data.data[0].name }));
+            setData((prevData) => ({
+              ...prevData,
+              category: response.data.data[0].name,
+            }));
           }
         } else {
           toast.error("Failed to load Categories.");
@@ -32,14 +35,17 @@ const AddItem = ({ url }) => {
         toast.error("Error fetching Categories.");
       }
     };
-    
+
     const fetchRestaurants = async () => {
       try {
         const response = await axios.get(`${url}/api/restaurants`);
         if (response.data.success) {
           setRestaurants(response.data.data);
           if (response.data.data.length > 0) {
-            setData((prevData) => ({ ...prevData, restaurant: response.data.data[0].name }));
+            setData((prevData) => ({
+              ...prevData,
+              restaurant: response.data.data[0].name,
+            }));
           }
         } else {
           toast.error("Failed to load Restaurants.");
@@ -92,11 +98,20 @@ const AddItem = ({ url }) => {
   };
   return (
     <div className="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 text-gray-800">Add New Product</h2>
-      <form onSubmit={onSubmitHandler} className="space-y-6 bg-white shadow-lg p-8 rounded-lg border">
-        {/* Image Upload */}
+      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 text-gray-800">
+        Add New Product
+      </h2>
+      <form
+        onSubmit={onSubmitHandler}
+        className="space-y-6 bg-white shadow-lg p-8 rounded-lg border"
+      >
         <div className="flex flex-col">
-          <label htmlFor="image" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Upload Image</label>
+          <label
+            htmlFor="image"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
+            Upload Image
+          </label>
           <div className="flex items-center justify-center border-2 border-dashed border-gray-300 p-6 sm:p-8 rounded-xl cursor-pointer hover:bg-gray-200 transition">
             <input
               onChange={(e) => setImage(e.target.files[0])}
@@ -112,14 +127,20 @@ const AddItem = ({ url }) => {
                 src={image ? URL.createObjectURL(image) : assets.upload_area}
                 alt="Upload Area"
               />
-              <span className="text-gray-500 mt-2">{image ? image.name : "Click to upload an image"}</span>
+              <span className="text-gray-500 mt-2">
+                {image ? image.name : "Click to upload an image"}
+              </span>
             </label>
           </div>
         </div>
-  
-        {/* Product Name */}
+
         <div className="flex flex-col">
-          <label htmlFor="name" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Name</label>
+          <label
+            htmlFor="name"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
+            Product Name
+          </label>
           <input
             className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
@@ -130,10 +151,14 @@ const AddItem = ({ url }) => {
             required
           />
         </div>
-  
-        {/* Product Description */}
+
         <div className="flex flex-col">
-          <label htmlFor="description" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Description</label>
+          <label
+            htmlFor="description"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
+            Product Description
+          </label>
           <textarea
             className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
@@ -144,12 +169,15 @@ const AddItem = ({ url }) => {
             required
           ></textarea>
         </div>
-  
-        {/* Product Restaurant and Category */}
+
         <div className="flex flex-col sm:flex-row sm:gap-6">
-          {/* Restaurant */}
           <div className="w-full sm:w-1/2">
-            <label htmlFor="restaurant" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Restaurant</label>
+            <label
+              htmlFor="restaurant"
+              className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+            >
+              Product Restaurant
+            </label>
             <select
               onChange={onChangeHandler}
               className="w-full p-3 border rounded-md"
@@ -158,14 +186,20 @@ const AddItem = ({ url }) => {
               required
             >
               {restaurants.map((restaurant, index) => (
-                <option key={index} value={restaurant.name}>{restaurant.name}</option>
+                <option key={index} value={restaurant.name}>
+                  {restaurant.name}
+                </option>
               ))}
             </select>
           </div>
-  
-          {/* Category */}
+
           <div className="w-full sm:w-1/2">
-            <label htmlFor="category" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Category</label>
+            <label
+              htmlFor="category"
+              className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+            >
+              Product Category
+            </label>
             <select
               onChange={onChangeHandler}
               className="w-full p-3 border rounded-md"
@@ -174,15 +208,21 @@ const AddItem = ({ url }) => {
               required
             >
               {categories.map((category, index) => (
-                <option key={index} value={category.name}>{category.name}</option>
+                <option key={index} value={category.name}>
+                  {category.name}
+                </option>
               ))}
             </select>
           </div>
         </div>
-  
-        {/* Product Price */}
+
         <div className="flex flex-col w-full sm:w-1/2">
-          <label htmlFor="price" className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Product Price</label>
+          <label
+            htmlFor="price"
+            className="text-base sm:text-lg font-semibold text-gray-700 mb-2"
+          >
+            Product Price
+          </label>
           <input
             className="w-full p-3 border rounded-md"
             onChange={onChangeHandler}
@@ -193,8 +233,7 @@ const AddItem = ({ url }) => {
             required
           />
         </div>
-  
-        {/* Submit Button */}
+
         <button
           type="submit"
           className="w-full p-4 bg-blue-500 text-white font-bold rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
@@ -204,7 +243,6 @@ const AddItem = ({ url }) => {
       </form>
     </div>
   );
-  
 };
 
 export default AddItem;

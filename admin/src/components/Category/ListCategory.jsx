@@ -50,7 +50,6 @@ const ListCategory = ({ url }) => {
         List of Categories
       </h2>
 
-      {/* Table view for larger screens */}
       <div className="overflow-x-auto">
         <table className="w-full table-auto border-collapse hidden sm:block">
           <thead>
@@ -108,7 +107,6 @@ const ListCategory = ({ url }) => {
           </tbody>
         </table>
 
-        {/* Mobile view */}
         <div className="sm:hidden">
           {categories.map((category, index) => (
             <div

@@ -31,7 +31,7 @@ const CategoryDetail = ({ url }) => {
       <h3 className="text-4xl font-semibold text-center mb-8 text-blue-600">
         Food Item Details
       </h3>
-  
+
       <div className="bg-white shadow-2xl rounded-lg p-8 space-y-6 border border-gray-200">
         <div className="text-center">
           <img
@@ -40,14 +40,13 @@ const CategoryDetail = ({ url }) => {
             alt={item.name}
           />
         </div>
-  
+
         <div className="text-center text-2xl font-bold text-gray-800 mb-4">
           {item.name}
         </div>
       </div>
     </div>
   );
-  
 };
 
 export default CategoryDetail;

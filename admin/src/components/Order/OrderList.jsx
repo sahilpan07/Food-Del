@@ -55,12 +55,8 @@ const OrderList = ({ url, status }) => {
       <h2 className="text-3xl font-bold text-gray-800 mb-8">{status} Orders</h2>
       <div className="flex flex-col gap-8">
         {orders.map((order, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-md rounded-lg p-6"
-          >
+          <div key={index} className="bg-white shadow-md rounded-lg p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-              {/* Order Header */}
               <div className="flex items-center mb-4 lg:mb-0">
                 <img
                   src={assets.parcel_icon}
@@ -77,7 +73,6 @@ const OrderList = ({ url, status }) => {
                 </div>
               </div>
 
-              {/* Items Column */}
               <div className="flex flex-col">
                 <p className="text-lg font-semibold text-gray-700">Items:</p>
                 {order.items.map((item, itemIndex) => (
@@ -87,7 +82,6 @@ const OrderList = ({ url, status }) => {
                 ))}
               </div>
 
-              {/* Shipping Address Column */}
               <div className="flex flex-col">
                 <p className="text-lg font-semibold text-gray-700">
                   Shipping Address:
@@ -100,7 +94,6 @@ const OrderList = ({ url, status }) => {
                 <p className="text-gray-600">Phone: {order.address.phone}</p>
               </div>
 
-              {/* Order Summary Column */}
               <div className="flex flex-col">
                 <p className="text-lg font-semibold text-gray-700">
                   Order Summary:
@@ -109,7 +102,6 @@ const OrderList = ({ url, status }) => {
                 <p className="text-gray-600">Amount: Rs {order.amount}</p>
               </div>
 
-              {/* Order Status Column */}
               <div className="flex flex-col">
                 <p className="text-lg font-semibold text-gray-700">
                   Order Status:

@@ -18,7 +18,6 @@ const CategoryPage = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 mb-8">
-          {/* Add Category Button */}
           <Link
             onClick={handleScrollToTop}
             to="addCategory" // Use relative path for nested routes
@@ -28,7 +27,6 @@ const CategoryPage = () => {
             <span>Add Category</span>
           </Link>
 
-          {/* List Category Button */}
           <Link
             onClick={handleScrollToTop}
             to="listCategory" // Use relative path for nested routes
