@@ -32,8 +32,8 @@ router.delete("/:id", removeRestaurant);
 
 // Route for nearest restaurants
 // Fetch restaurant by ID
-router.get("/restaurant/:id", getRestaurantById);  // Use a more specific route for restaurant by ID
+router.get("/restaurant/:id", getRestaurantById); // Use a more specific route for restaurant by ID
 
 // Fetch nearest restaurants
-router.get("/nearest", getNearestRestaurants);  
+router.get("/nearest", getNearestRestaurants);
 export default router;

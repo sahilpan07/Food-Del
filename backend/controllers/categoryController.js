@@ -23,7 +23,7 @@ export const getCategories = async (req, res) => {
   try {
     const categories = await categoryModel.find({});
     const count = await categoryModel.countDocuments();
-    res.json({ success: true, data: categories, count });  
+    res.json({ success: true, data: categories, count });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: "Error" });
@@ -102,14 +102,10 @@ export const updateCategory = async (req, res) => {
   }
 };
 
-
-
 export const getCategorySearchResults = async (query) => {
-  const regex = new RegExp(query, 'i');
+  const regex = new RegExp(query, "i");
   const results = await categoryModel.find({
-    $or: [
-      { name: { $regex: regex } },
-    ]
+    $or: [{ name: { $regex: regex } }],
   });
   return results;
 };

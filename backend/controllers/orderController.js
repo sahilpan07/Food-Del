@@ -50,7 +50,7 @@ const placeOrder = async (req, res) => {
     res.json({ success: true, session_url: session.url });
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"});
+    res.json({ success: false, message: "Error" });
   }
 };
 
@@ -58,7 +58,7 @@ const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;
 
   try {
-    if (success === "true") { 
+    if (success === "true") {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
       res.json({ success: true, message: "Paid" });
     } else {
@@ -74,14 +74,13 @@ const verifyOrder = async (req, res) => {
 //user order for frontend
 const userOrders = async (req, res) => {
   try {
-    const orders = await orderModel.find({userId:req.body.userId})
-    res.json({success:true,data:orders})
+    const orders = await orderModel.find({ userId: req.body.userId });
+    res.json({ success: true, data: orders });
   } catch (error) {
     console.log(error);
-    req.json({success:false,message:"Error"})
-    
+    req.json({ success: false, message: "Error" });
   }
-}
+};
 
 //find all orders of all user for admin
 const listOrders = async (req, res) => {
@@ -112,7 +111,11 @@ const updateStatus = async (req, res) => {
       order.status = "Delivered";
       await order.save();
 
-      res.json({ success: true, message: "Status updated to Delivered. Will remove order after 2 minutes." });
+      res.json({
+        success: true,
+        message:
+          "Status updated to Delivered. Will remove order after 2 minutes.",
+      });
 
       setTimeout(async () => {
         try {
@@ -121,12 +124,17 @@ const updateStatus = async (req, res) => {
 
           await orderModel.findByIdAndDelete(req.body.orderId);
         } catch (error) {
-          console.error("Error transferring order to completeOrderModel:", error);
+          console.error(
+            "Error transferring order to completeOrderModel:",
+            error
+          );
         }
       }, 1200); // 2-minute delay
     } else {
       // Just update the status if it's not "Delivered"
-      await orderModel.findByIdAndUpdate(req.body.orderId, { status: req.body.status });
+      await orderModel.findByIdAndUpdate(req.body.orderId, {
+        status: req.body.status,
+      });
       res.json({ success: true, message: "Status Updated" });
     }
   } catch (error) {
@@ -134,6 +142,5 @@ const updateStatus = async (req, res) => {
     res.json({ success: false, message: "Error in updating status" });
   }
 };
-
 
 export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };

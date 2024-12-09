@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 
-
 const contactController = async (req, res) => {
   const {
     first_name,
@@ -10,9 +9,8 @@ const contactController = async (req, res) => {
     address,
     subject,
     message,
-    
   } = req.body;
-const userEmail = req.body.email;
+  const userEmail = req.body.email;
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

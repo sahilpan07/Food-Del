@@ -5,9 +5,35 @@ import { haversineDistance } from "../Haversine/haversine.js";
 
 export const addRestaurant = async (req, res) => {
   try {
-    const {name, ownerName, email, phone, liscense, tax, type, time, description, lat, lng, address} = req.body;
+    const {
+      name,
+      ownerName,
+      email,
+      phone,
+      liscense,
+      tax,
+      type,
+      time,
+      description,
+      lat,
+      lng,
+      address,
+    } = req.body;
 
-    if (!name || !ownerName || !email || !phone || !liscense || !tax || !type || !time || !description || !address || !lat || !lng ) {
+    if (
+      !name ||
+      !ownerName ||
+      !email ||
+      !phone ||
+      !liscense ||
+      !tax ||
+      !type ||
+      !time ||
+      !description ||
+      !address ||
+      !lat ||
+      !lng
+    ) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
@@ -18,7 +44,8 @@ export const addRestaurant = async (req, res) => {
     const newRestaurant = new restaurantModel({
       name,
       ownerName,
-      email, phone,
+      email,
+      phone,
       liscense,
       tax,
       type,
@@ -34,13 +61,11 @@ export const addRestaurant = async (req, res) => {
 
     await newRestaurant.save();
 
-    res
-      .status(201)
-      .json({
-        success: true,
-        message: "Restaurant added successfully",
-        restaurant: newRestaurant,
-      });
+    res.status(201).json({
+      success: true,
+      message: "Restaurant added successfully",
+      restaurant: newRestaurant,
+    });
   } catch (error) {
     console.error("Error in addRestaurant:", error);
     res.status(500).json({ success: false, message: "Server Error" });
@@ -51,7 +76,7 @@ export const getRestaurant = async (req, res) => {
   try {
     const restaurants = await restaurantModel.find({});
     const count = await restaurantModel.countDocuments();
-    res.json({ success: true, data: restaurants, count });  
+    res.json({ success: true, data: restaurants, count });
   } catch (error) {
     console.error("Error in getRestaurant:", error);
     res
@@ -81,7 +106,20 @@ export const getRestaurantById = async (req, res) => {
 export const updateRestaurant = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, ownerName, email, phone, liscense, tax, type, time, description, address, lat, lng } = req.body;
+    const {
+      name,
+      ownerName,
+      email,
+      phone,
+      liscense,
+      tax,
+      type,
+      time,
+      description,
+      address,
+      lat,
+      lng,
+    } = req.body;
 
     const restaurant = await restaurantModel.findById(id);
     if (!restaurant)
@@ -144,7 +182,7 @@ export const removeRestaurant = async (req, res) => {
 };
 
 export const getRestaurantSearchResults = async (query) => {
-  const regex = new RegExp(query, 'i');
+  const regex = new RegExp(query, "i");
   const results = await restaurantModel.find({
     $or: [
       { name: { $regex: regex } },
@@ -153,7 +191,7 @@ export const getRestaurantSearchResults = async (query) => {
       { address: { $regex: regex } },
       { type: { $regex: regex } },
       { time: { $regex: regex } },
-    ]
+    ],
   });
   return results;
 };
@@ -162,14 +200,21 @@ export const getNearestRestaurants = async (req, res) => {
     const { lat, lng } = req.query;
 
     if (!lat || !lng) {
-      return res.status(400).json({ success: false, message: "Latitude and Longitude are required" });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "Latitude and Longitude are required",
+        });
     }
 
     const userLat = parseFloat(lat);
     const userLng = parseFloat(lng);
 
     if (isNaN(userLat) || isNaN(userLng)) {
-      return res.status(400).json({ success: false, message: "Invalid latitude or longitude" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid latitude or longitude" });
     }
 
     const restaurants = await restaurantModel.find({});
@@ -191,7 +236,7 @@ export const getNearestRestaurants = async (req, res) => {
     // Return the nearest restaurants along with their calculated distances
     const nearestRestaurants = distances.map((item) => ({
       ...item.restaurant._doc, // Spread restaurant data
-      distance: item.distance // Add calculated distance
+      distance: item.distance, // Add calculated distance
     }));
 
     res.status(200).json({ success: true, data: nearestRestaurants });

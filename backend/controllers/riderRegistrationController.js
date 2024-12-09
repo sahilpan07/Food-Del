@@ -9,7 +9,7 @@ const riderRegistrationController = async (req, res) => {
     vehicle_type,
     vehicle_number,
     description,
-    location
+    location,
   } = req.body;
 
   // Check if location exists and split it into latitude and longitude
@@ -55,12 +55,10 @@ const riderRegistrationController = async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    return res
-      .status(200)
-      .json({
-        success: true,
-        message: "Restaurant details sent successfully!",
-      });
+    return res.status(200).json({
+      success: true,
+      message: "Restaurant details sent successfully!",
+    });
   } catch (error) {
     return res
       .status(500)

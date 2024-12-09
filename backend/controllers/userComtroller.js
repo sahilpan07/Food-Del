@@ -5,29 +5,29 @@ import validator from "validator";
 
 //for login user
 const loginUser = async (req, res) => {
-    const {email,password} = req.body;
-    try {
-        const user = await userModel.findOne({email});
-        if (!user) {
-            return res.json({success:false,message:"User Doesn't exist"})
-        }
-        const isMatch = await bcrypt.compare(password,user.password);
-
-        if (!isMatch) {
-            return res.json({success:false,message:"Invalid credentials"})
-        }
-        //if paswword is mattched then generate one token
-        const token = createToken(user._id);
-        res.json({success:true,token})
-    } catch (error) {
-        console.log(error);
-        res.json({success:false,message:"Error"})
+  const { email, password } = req.body;
+  try {
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.json({ success: false, message: "User Doesn't exist" });
     }
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.json({ success: false, message: "Invalid credentials" });
+    }
+    //if paswword is mattched then generate one token
+    const token = createToken(user._id);
+    res.json({ success: true, token });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
 };
 
 //create token and send token using res to user
 const createToken = (id) => {
-  return jwt.sign({id}, process.env.JWT_SECRET);
+  return jwt.sign({ id }, process.env.JWT_SECRET);
 };
 
 //register user
@@ -65,19 +65,18 @@ const registerUser = async (req, res) => {
       name: name,
       email: email,
       password: hashedPassword,
-      phoneNumber:phoneNumber,
+      phoneNumber: phoneNumber,
       address: address,
     });
 
     //save user in database
     const user = await newUser.save();
     //taken user id and generate one token
-    const token = createToken(user._id)
-    res.json({success:true,token})//send the token as response
+    const token = createToken(user._id);
+    res.json({ success: true, token }); //send the token as response
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"})
-    
+    res.json({ success: false, message: "Error" });
   }
 };
 
@@ -85,20 +84,26 @@ const getUserDetails = async (req, res) => {
   try {
     const token = req.headers.authorization?.split(" ")[1]; // Extract token from Authorization header
     if (!token) {
-      return res.status(401).json({ success: false, message: 'Authorization token is missing' });
+      return res
+        .status(401)
+        .json({ success: false, message: "Authorization token is missing" });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await userModel.findById(decoded.id).select('-password'); // Don't send password in response
+    const user = await userModel.findById(decoded.id).select("-password"); // Don't send password in response
 
     if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     res.json({ success: true, user });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: 'Error fetching user details' });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching user details" });
   }
 };
 
@@ -110,7 +115,9 @@ const updateUserProfile = async (req, res) => {
     const user = await userModel.findById(userId);
 
     if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     // Update user information

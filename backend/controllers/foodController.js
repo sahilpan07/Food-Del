@@ -15,28 +15,26 @@ export const addFood = async (req, res) => {
     restaurant: req.body.restaurant,
     image: image_filename,
   });
-  try{
+  try {
     await food.save();
-    res.json({success:true, message:"Food Added"})
-  }
-  catch(error){
-    console.log(error)
-    res.json({success:false,message:"Error"})
+    res.json({ success: true, message: "Food Added" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
   }
 };
 
 //all food list
-export const listFood = async (req,res) =>{
-    try{
-        const foods = await foodModel.find({});
-        const count = await foodModel.countDocuments(); 
-        res.json({ success: true, data: foods, count });  
-    }
-    catch(error){
-        console.log(error);
-        res.json({success:false,message:"Error"})
-    }
-}
+export const listFood = async (req, res) => {
+  try {
+    const foods = await foodModel.find({});
+    const count = await foodModel.countDocuments();
+    res.json({ success: true, data: foods, count });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
 
 export const getFoodById = async (req, res) => {
   try {
@@ -57,19 +55,19 @@ export const getFoodById = async (req, res) => {
 };
 
 //remove foo item
-export const removeFood = async(req,res) => {
-    try {
-        const food = await foodModel.findById(req.body.id);
+export const removeFood = async (req, res) => {
+  try {
+    const food = await foodModel.findById(req.body.id);
 
-        fs.unlink(`uploads/foodItem/${food.image}`,()=>{})
+    fs.unlink(`uploads/foodItem/${food.image}`, () => {});
 
-        await foodModel.findByIdAndDelete(req.body.id);
-        res.json({success:true,message:"Food Removed"})
-    } catch (error) {
-        console.log(error)
-        res.json({success:false,message:"Error"})
-    }
-}
+    await foodModel.findByIdAndDelete(req.body.id);
+    res.json({ success: true, message: "Food Removed" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
 
 export const updateFood = async (req, res) => {
   try {
@@ -98,7 +96,6 @@ export const updateFood = async (req, res) => {
     food.category = category;
     food.restaurant = restaurant;
 
-
     await food.save();
 
     res.status(200).json({ success: true, data: food });
@@ -108,22 +105,24 @@ export const updateFood = async (req, res) => {
   }
 };
 
-
 export const getFoodSearchResults = async (query) => {
-  const regex = new RegExp(query, 'i');
+  const regex = new RegExp(query, "i");
   const results = await foodModel.find({
-    $or: [
-      { name: { $regex: regex } },
-    ]
+    $or: [{ name: { $regex: regex } }],
   });
   return results;
 };
 
 export const getRecentFoods = async (req, res) => {
   try {
-    const recentFoods = await foodModel.find().sort({ createdAt: -1 }).limit(70);
+    const recentFoods = await foodModel
+      .find()
+      .sort({ createdAt: -1 })
+      .limit(70);
     res.json({ success: true, data: recentFoods });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error fetching recent food items." });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching recent food items." });
   }
 };
