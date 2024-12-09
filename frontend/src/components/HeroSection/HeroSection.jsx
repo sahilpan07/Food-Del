@@ -44,7 +44,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Overlay for Text */}
       <div className="relative z-10 flex items-center justify-center text-center text-white bg-gradient-to-t from-black to-transparent h-screen">
         <div>
           <h1 className="text-5xl md:text-6xl font-bold tracking-wide">
@@ -58,7 +57,6 @@ const HeroSection = () => {
             your doorsteps!
           </p>
 
-          {/* Input and Button */}
           <div className="mt-6 flex items-center justify-center md:justify-start">
             <input
               type="text"

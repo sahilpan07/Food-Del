@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const OrderCount = () => {
   const data = [
-    { label: 'Register Riders', value: 567 },
-    { label: 'Orders Delivered', value: 854843 },
-    { label: 'Restaurant Partners', value: 345 },
-    { label: 'Food Items', value: 235 },
+    { label: "Register Riders", value: 567 },
+    { label: "Orders Delivered", value: 854843 },
+    { label: "Restaurant Partners", value: 345 },
+    { label: "Food Items", value: 235 },
   ];
 
-  const [counts, setCounts] = useState(data.map(item => ({ ...item, current: 0 })));
+  const [counts, setCounts] = useState(
+    data.map((item) => ({ ...item, current: 0 }))
+  );
 
   useEffect(() => {
     const animateCount = (index, endValue, duration) => {
@@ -19,13 +21,13 @@ const OrderCount = () => {
         startValue += increment;
         if (startValue >= endValue) {
           clearInterval(interval);
-          setCounts(prevCounts => {
+          setCounts((prevCounts) => {
             const newCounts = [...prevCounts];
             newCounts[index].current = endValue;
             return newCounts;
           });
         } else {
-          setCounts(prevCounts => {
+          setCounts((prevCounts) => {
             const newCounts = [...prevCounts];
             newCounts[index].current = startValue;
             return newCounts;
@@ -40,11 +42,14 @@ const OrderCount = () => {
   }, []);
 
   return (
-    <div className='grid grid-cols-2 mx-12 md:mx-20 sm:grid-cols-4 gap-4 justify-around py-6 px-2 bg-[#040A27] text-white rounded-lg shadow-md'>
+    <div className="grid grid-cols-2 mx-12 md:mx-20 sm:grid-cols-4 gap-4 justify-around py-6 px-2 bg-[#040A27] text-white rounded-lg shadow-md">
       {counts.map((item, index) => (
-        <div key={index} className='text-center text-xs flex flex-col gap-3  font-semibold'>
-          <p className='md:text-2xl'>{item.current}+</p>
-          <p className='md:text-base lg:text-xl'>{item.label}</p>
+        <div
+          key={index}
+          className="text-center text-xs flex flex-col gap-3  font-semibold"
+        >
+          <p className="md:text-2xl">{item.current}+</p>
+          <p className="md:text-base lg:text-xl">{item.label}</p>
         </div>
       ))}
     </div>

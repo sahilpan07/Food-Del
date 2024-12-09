@@ -126,7 +126,6 @@ const RecentFood = () => {
         </div>
       )}
 
-      {/* Load More Button */}
       {recentFoods.length > visibleCount && (
         <div className="text-center mt-6">
           <button

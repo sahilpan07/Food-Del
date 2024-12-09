@@ -11,7 +11,6 @@ import Restaurant from "./pages/Restaurant/Restaurant";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ExploreRestaurant from "./components/ExploreRestaurant/ExploreRestaurant";
 import FAQ from "./components/aboutUsComponents/FAQ";
-import HelpSupport from "./components/aboutUsComponents/HelpSupport";
 import OrderStep from "./components/aboutUsComponents/OrderStep";
 import AboutPage from "./pages/Aboutus/AboutPage";
 import AboutUs from "./components/aboutUsComponents/AboutUs";
@@ -25,7 +24,7 @@ import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import RecentFood from "./components/RecentFood/RecentFood";
 import Chatbot from "./components/ChatBot/ChatBot";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import ScrollToTop from "./components/Atomic/ScrollToTop";
 import PrivacyPolicy from "./components/aboutUsComponents/PrivacyPolicy";
 
@@ -86,7 +85,6 @@ const App = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="aboutUs" element={<AboutUs />} />
           <Route path="/orderStep" element={<OrderStep />} />
-          <Route path="/Help" element={<HelpSupport />} />
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />

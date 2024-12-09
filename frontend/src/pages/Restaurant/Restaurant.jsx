@@ -20,7 +20,6 @@ const Restaurant = () => {
 
   return (
     <div className="mx-12 md:mx-20 mt-10">
-      {/* Restaurant Banner */}
       <div
         className="relative w-full h-96 bg-cover bg-center rounded-lg"
         style={{ backgroundImage: `url(${url}/images/${image})` }}
@@ -29,7 +28,6 @@ const Restaurant = () => {
         <div className="absolute top-1/3 left-1/4 text-white">
           <h1 className="text-4xl font-extrabold text-shadow-md">{name}</h1>
           <p className="text-xl mt-4">{address}</p>
-          {/* Display type and time here */}
           <div className="flex gap-4 mt-2 text-lg">
             <p className="font-semibold">{type}</p>
             <p className="text-gray-300">{time}</p>
@@ -37,21 +35,23 @@ const Restaurant = () => {
         </div>
       </div>
 
-      {/* Restaurant Details Section */}
       <div className="mt-8">
         <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
           <p className="text-lg text-gray-800">{description}</p>
           <div className="mt-4 flex gap-4 text-gray-600">
-            <span>Type: <strong>{type}</strong></span>
-            <span>Delivery Time: <strong>{time}</strong></span>
+            <span>
+              Type: <strong>{type}</strong>
+            </span>
+            <span>
+              Delivery Time: <strong>{time}</strong>
+            </span>
           </div>
           <div className="mt-6 flex gap-6 justify-between items-center">
-            <Link to='/cart'>
+            <Link to="/cart">
               <button className="bg-[#040A27] text-white py-3 px-8 rounded-lg shadow-lg text-lg hover:bg-violet-800 transition-all">
                 Order Now
               </button>
             </Link>
-            {/* Triggering View Menu */}
             <button
               onClick={handleViewMenuClick}
               className="bg-transparent border-2 border-[#040A27] text-[#040A27] py-3 px-8 rounded-lg shadow-lg text-lg hover:bg-[#040A27] hover:text-white transition-all"
@@ -62,15 +62,15 @@ const Restaurant = () => {
         </div>
       </div>
 
-      {/* Food Display Section */}
       <div ref={foodDisplayRef} className="mt-8">
         <h2 className="text-2xl font-bold text-[#040A27] mb-4">Our Menu</h2>
         <FoodDisplay restaurant={name} />
       </div>
 
-      {/* Rating and Reviews Section */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-[#040A27] mb-4">Customer Reviews</h2>
+        <h2 className="text-2xl font-bold text-[#040A27] mb-4">
+          Customer Reviews
+        </h2>
         <div className="bg-white shadow-lg rounded-lg p-6">
           <div className="flex items-center gap-3">
             <Icon icon="fa-solid:star" className="text-yellow-500 text-xl" />
@@ -81,7 +81,9 @@ const Restaurant = () => {
               <span className="font-semibold">John Doe</span>
               <span className="text-sm text-gray-600">2 hours ago</span>
             </div>
-            <p className="text-md text-gray-700">The food was absolutely delicious, and the delivery was quick!</p>
+            <p className="text-md text-gray-700">
+              The food was absolutely delicious, and the delivery was quick!
+            </p>
           </div>
         </div>
       </div>

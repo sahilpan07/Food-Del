@@ -4,7 +4,7 @@ import FoodDisplay from "../FoodDisplay/FoodDisplay";
 
 const MenuFood = () => {
   const [category, setCategory] = useState("All"); // Default category is "All"
-  
+
   return (
     <div>
       <ExploreMenu category={category} setCategory={setCategory} />

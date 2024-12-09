@@ -59,7 +59,6 @@ const Navbar = ({ setShowLogin }) => {
         />
       </Link>
 
-      {/* Desktop Menu */}
       <ul className="hidden 2xl:flex 2xl:gap-5 2xl:text-lg 2xl:text-[#49557e] xl:text-lg md:gap-4 lg:text-base lg:gap-4 md:flex">
         {menuItems.map(({ path, label }) => (
           <Link
@@ -77,7 +76,6 @@ const Navbar = ({ setShowLogin }) => {
         ))}
       </ul>
 
-      {/* Mobile Menu List */}
       {isMobileMenuOpen && (
         <ul className="absolute top-full left-0 w-full bg-white shadow-md md:hidden">
           {menuItems.map(({ path, label }) => (
@@ -98,14 +96,12 @@ const Navbar = ({ setShowLogin }) => {
       )}
 
       <div className="flex gap-2 sm:gap-3 md:gap-2 lg:gap-5 items-center">
-        {/* Search Icon */}
         <Icon
           className="text-2xl cursor-pointer"
           icon="mingcute:search-line"
           onClick={() => setSearchOpen(!searchOpen)} // Toggle search dropdown
         />
 
-        {/* Search Dropdown */}
         {searchOpen && (
           <div
             className={`${
@@ -152,7 +148,6 @@ const Navbar = ({ setShowLogin }) => {
             />
             {isDropdownOpen && (
               <ul className="absolute right-0 mt-2 w-52 bg-white rounded-xl border border-gray-300 shadow-lg z-10 transition-transform transform scale-95 origin-top-right duration-200 ease-in-out">
-                {/* Profile */}
                 <Link to="/profile">
                   <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer rounded-t-xl transition-all duration-200 ease-in-out">
                     <Icon
@@ -165,7 +160,6 @@ const Navbar = ({ setShowLogin }) => {
                   </li>
                 </Link>
 
-                {/* Orders */}
                 <Link to="/myorders">
                   <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
                     <Icon
@@ -178,7 +172,6 @@ const Navbar = ({ setShowLogin }) => {
                   </li>
                 </Link>
 
-                {/* Settings */}
                 <Link to="/settings">
                   <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
                     <Icon className="text-cyan-700 text-2xl" icon="mdi:cog" />
@@ -188,7 +181,6 @@ const Navbar = ({ setShowLogin }) => {
                   </li>
                 </Link>
 
-                {/* Help */}
                 <Link to="/chatbot">
                   <li className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer transition-all duration-200 ease-in-out">
                     <Icon
@@ -202,7 +194,7 @@ const Navbar = ({ setShowLogin }) => {
                 </Link>
 
                 <hr className="border-t border-gray-200 mx-3" />
-                {/* Logout */}
+
                 <li
                   onClick={logout}
                   className="flex items-center p-4 gap-4 hover:bg-cyan-50 cursor-pointer rounded-b-xl transition-all duration-200 ease-in-out"
@@ -221,7 +213,6 @@ const Navbar = ({ setShowLogin }) => {
         )}
       </div>
 
-      {/* Mobile Menu Button */}
       <button
         onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
         className="md:hidden text-2xl text-[#49557e]"

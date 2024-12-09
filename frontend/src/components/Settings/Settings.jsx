@@ -5,7 +5,7 @@ const Settings = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [address, setAddress] = useState("Kathmandu, Nepal");
-  
+
   const handlePasswordChange = () => {
     // Logic for password change
     if (password !== confirmPassword) {
@@ -25,12 +25,16 @@ const Settings = () => {
   return (
     <div className="settings bg-white p-6 rounded-xl shadow-md mx-12 md:mx-20">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Settings</h2>
-      
+
       {/* Change Password Section */}
       <div className="mb-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-2">Change Password</h3>
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+          Change Password
+        </h3>
         <div>
-          <label className="block text-gray-600 font-medium">New Password</label>
+          <label className="block text-gray-600 font-medium">
+            New Password
+          </label>
           <input
             type="password"
             placeholder="Enter new password"
@@ -40,7 +44,9 @@ const Settings = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-600 font-medium mt-4">Confirm Password</label>
+          <label className="block text-gray-600 font-medium mt-4">
+            Confirm Password
+          </label>
           <input
             type="password"
             placeholder="Confirm new password"
@@ -57,11 +63,14 @@ const Settings = () => {
         </button>
       </div>
 
-      {/* Email Notifications Section */}
       <div className="mb-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-2">Email Notifications</h3>
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+          Email Notifications
+        </h3>
         <div>
-          <label className="block text-gray-600 font-medium">Notification Preferences</label>
+          <label className="block text-gray-600 font-medium">
+            Notification Preferences
+          </label>
           <select
             className="w-full p-3 border rounded-md mt-2"
             value={emailNotifications}
@@ -74,11 +83,14 @@ const Settings = () => {
         </div>
       </div>
 
-      {/* Address Section */}
       <div className="mb-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-2">Delivery Address</h3>
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+          Delivery Address
+        </h3>
         <div>
-          <label className="block text-gray-600 font-medium">Update Address</label>
+          <label className="block text-gray-600 font-medium">
+            Update Address
+          </label>
           <input
             type="text"
             placeholder="Enter new delivery address"
@@ -89,7 +101,6 @@ const Settings = () => {
         </div>
       </div>
 
-      {/* Save Button */}
       <button
         onClick={handleSaveChanges}
         className="w-autol bg-[#040A27] text-white p-3 rounded-md mt-4"

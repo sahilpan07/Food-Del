@@ -4,34 +4,33 @@ import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 
 const Verify = () => {
-
   const [searchParams, setSearchParams] = useSearchParams();
   const success = searchParams.get("success");
   const orderId = searchParams.get("orderId");
-  const {url} = useContext(StoreContext); 
-  const navigate  = useNavigate();
+  const { url } = useContext(StoreContext);
+  const navigate = useNavigate();
 
-    const verifyPayment = async() => {
-        const response = await axios.post(url+"/api/order/verify",{success,orderId})
-        if (response.data.success) {
-            navigate("/myorders");
-        }
-        else{
-            navigate("/");
-        }
+  const verifyPayment = async () => {
+    const response = await axios.post(url + "/api/order/verify", {
+      success,
+      orderId,
+    });
+    if (response.data.success) {
+      navigate("/myorders");
+    } else {
+      navigate("/");
     }
+  };
 
-    useEffect(()=>{
-        verifyPayment();
-    },[])
+  useEffect(() => {
+    verifyPayment();
+  }, []);
 
   return (
     <div className="min-h-[60vh] grid">
-      <div className="w-[100px] h-[100px] place-self-center border-[5px] border-gray-400 border-t-blue-500 rounded-full animate-rotate">
-
-        </div>
+      <div className="w-[100px] h-[100px] place-self-center border-[5px] border-gray-400 border-t-blue-500 rounded-full animate-rotate"></div>
     </div>
-  )
+  );
 };
 
 export default Verify;

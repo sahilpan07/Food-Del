@@ -11,7 +11,7 @@ const Login = ({ setShowLogin }) => {
 
   const [data, setData] = useState({
     name: "",
-    phoneNumber: "", 
+    phoneNumber: "",
     address: "",
     email: "",
     password: "",
@@ -77,7 +77,7 @@ const Login = ({ setShowLogin }) => {
           {currState === "Sign Up" && (
             <>
               <input
-              id="name"
+                id="name"
                 name="name"
                 onChange={onChangeHandler}
                 value={data.name}
@@ -87,7 +87,7 @@ const Login = ({ setShowLogin }) => {
                 className="border border-gray-300 bg-gray-100 px-4 py-3 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-300 transition duration-200"
               />
               <input
-              id="phoneNumber"
+                id="phoneNumber"
                 name="phoneNumber"
                 onChange={onChangeHandler}
                 value={data.phoneNumber}
@@ -97,7 +97,7 @@ const Login = ({ setShowLogin }) => {
                 className="border border-gray-300 bg-gray-100 px-4 py-3 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-300 transition duration-200"
               />
               <input
-              id="address"
+                id="address"
                 name="address"
                 onChange={onChangeHandler}
                 value={data.address}
@@ -109,7 +109,7 @@ const Login = ({ setShowLogin }) => {
             </>
           )}
           <input
-          id="email"
+            id="email"
             name="email"
             onChange={onChangeHandler}
             value={data.email}
@@ -119,7 +119,7 @@ const Login = ({ setShowLogin }) => {
             className="border border-gray-300 bg-gray-100 px-4 py-3 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-300 transition duration-200"
           />
           <input
-          id="password"
+            id="password"
             name="password"
             onChange={onChangeHandler}
             value={data.password}

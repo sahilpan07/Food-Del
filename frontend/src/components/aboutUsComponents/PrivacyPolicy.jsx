@@ -30,7 +30,6 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="mx-12 md:mx-20 min-h-screen py-10">
-
       <div className=" mx-auto bg-white shadow-lg rounded-xl p-10">
         <div className="flex items-center gap-4 mb-8">
           <Icon icon="mdi:lock" className="text-blue-600 text-4xl" />
