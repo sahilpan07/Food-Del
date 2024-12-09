@@ -75,8 +75,31 @@ const PlaceOrder = () => {
 
   const LocationMarker = () => {
     useMapEvents({
-      click(e) {
-        setSelectedLocation({ lat: e.latlng.lat, lng: e.latlng.lng });
+      click: async (e) => {
+        const { lat, lng } = e.latlng;
+        setSelectedLocation({ lat, lng });
+
+        // Fetch detailed address information from OpenStreetMap's Nominatim API
+        try {
+          const response = await axios.get(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`
+          );
+          const address = response.data.address;
+
+          // Automatically fill form fields with the fetched location details
+          setData((prevData) => ({
+            ...prevData,
+            street: address.road || "",
+            city: address.city || "",
+            state: address.state || "",
+            country: address.country || "",
+            location: `${address.road || ""}, ${address.suburb || ""}, ${
+              address.city || ""
+            }, ${address.state || ""}, ${address.country || ""}`.trim(),
+          }));
+        } catch (error) {
+          console.error("Failed to fetch location details:", error);
+        }
       },
     });
 
@@ -170,7 +193,29 @@ const PlaceOrder = () => {
             />
           </div>
         </div>
-
+        <div className="py-6">
+          <label className="block text-gray-700">Select Location on Map</label>
+          <MapContainer
+            center={[27.7172, 85.324]} // Default to Kathmandu, Nepal
+            zoom={13}
+            style={{ height: "350px", width: "100%" }}
+            className="rounded shadow"
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <LocationMarker />
+          </MapContainer>
+          {selectedLocation && (
+            <p className="text-gray-600 mt-2">
+              Selected Location: <br />
+              {data.location && (
+                <span className="mt-2">Address: {data.location}</span>
+              )}
+            </p>
+          )}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
           <div className="relative">
             <input
@@ -230,30 +275,6 @@ const PlaceOrder = () => {
               icon="bi:map"
               className="absolute left-3 top-3 text-gray-500"
             />
-          </div>
-          <div>
-            <label className="block text-gray-700">
-              Select Location on Map
-            </label>
-            <MapContainer
-              center={[27.7172, 85.324]} // Kathmandu, Nepal
-              zoom={13}
-              style={{ height: "350px", width: "100%" }}
-              className="rounded shadow"
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <LocationMarker />
-            </MapContainer>
-            {selectedLocation && (
-              <p className="text-gray-600 mt-2">
-                Selected Location: <br />
-                Latitude {selectedLocation.lat}, Longitude{" "}
-                {selectedLocation.lng}
-              </p>
-            )}
           </div>
         </div>
       </div>
