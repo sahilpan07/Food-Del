@@ -78,11 +78,8 @@ const Footer = () => {
               >
                 <p className="text-base">About Us</p>
               </Link>
-
-              <li className="cursor-pointer hover:text-white">
-                <p className="text-base">Delivery</p>
-              </li>
               <Link
+                onClick={handleScrollToTop}
                 className="cursor-pointer hover:text-white"
                 to="/privacy"
               >
