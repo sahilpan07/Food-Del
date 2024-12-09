@@ -27,6 +27,7 @@ import Chatbot from "./components/ChatBot/ChatBot";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import ScrollToTop from "./components/Atomic/ScrollToTop";
 import PrivacyPolicy from "./components/aboutUsComponents/PrivacyPolicy";
+import Register from "./components/Register/Register";
 
 const App = () => {
   window.onload = function () {
@@ -90,6 +91,7 @@ const App = () => {
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/recentFood" element={<RecentFood />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/RestaurantRegistration"
             element={<RestaurantRegistration />}
