@@ -16,7 +16,7 @@ const FoodDetail = () => {
           <img
             src={`${url}/images/${image}`}
             alt={name}
-            className="w-full h-80 md:h-[400px] object-cover rounded-2xl shadow-lg transform transition duration-500 hover:scale-105"
+            className="w-full h-80 md:h-[400px] object-cover rounded-2xl shadow-lg "
           />
         </div>
 
