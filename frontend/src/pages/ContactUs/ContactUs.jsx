@@ -269,7 +269,7 @@ const ContactUs = () => {
                         <Field
                           type="radio"
                           name="subject"
-                          value="customer_support"
+                          value="feedback"
                           className="mr-2"
                         />
                         Feedback
@@ -278,7 +278,7 @@ const ContactUs = () => {
                         <Field
                           type="radio"
                           name="subject"
-                          value="customer_support"
+                          value="other"
                           className="mr-2"
                         />
                         Others
