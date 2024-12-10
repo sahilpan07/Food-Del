@@ -8,14 +8,18 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 //placing user order form frontend
 const placeOrder = async (req, res) => {
   const frontend_url = "http://localhost:5173";
+
   try {
     const newOrder = new orderModel({
       userId: req.body.userId,
       items: req.body.items,
       amount: req.body.amount,
       address: req.body.address,
+      status: "On Process", // Set initial status to "On Process"
     });
+
     await newOrder.save();
+    // Reset the user's cart after the order is saved
     await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
     const line_items = req.body.items.map((item) => ({
@@ -40,17 +44,17 @@ const placeOrder = async (req, res) => {
       quantity: 1,
     });
 
+    // Create Stripe session
     const session = await stripe.checkout.sessions.create({
       line_items: line_items,
       mode: "payment",
       success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
       cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
     });
-
     res.json({ success: true, session_url: session.url });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "Error" });
+    res.json({ success: false, message: "Error placing order" });
   }
 };
 
@@ -129,7 +133,7 @@ const updateStatus = async (req, res) => {
             error
           );
         }
-      }, 1200); // 2-minute delay
+      }, 300000); // 5-minute delay
     } else {
       // Just update the status if it's not "Delivered"
       await orderModel.findByIdAndUpdate(req.body.orderId, {
