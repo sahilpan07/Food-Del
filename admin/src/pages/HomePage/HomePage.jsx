@@ -121,7 +121,7 @@ const HomePage = ({ url }) => {
           <li className="flex items-center justify-between text-gray-700">
             <p>
               New restaurant{" "}
-              <span className="font-semibold">"Hari Ganesh"</span> added.
+              <span className="font-semibold">"Burger House and Crunchy Fried Chicken"</span> added.
             </p>
             <span className="text-sm text-gray-500">2 hours ago</span>
           </li>
