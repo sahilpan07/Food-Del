@@ -30,13 +30,18 @@ const MyOrders = () => {
       <div className="max-w-screen-xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">My Orders</h2>
         {data.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-64 bg-white p-10 rounded-lg shadow-md">
-            <Icon
-              icon="mdi:cart-off"
-              className="text-gray-400"
-              width="64"
-              height="64"
-            />
+          <div className="flex flex-col gap-6 items-center justify-center bg-white p-10 px-20 rounded-lg shadow-md">
+            <div className="relative">
+              <div className="absolute top-0 left-0 w-20 h-20 rounded-full bg-gradient-to-br from-violet-300 to-violet-500 blur-xl opacity-40"></div>
+              <div className="absolute bottom-0 right-0 w-32 h-32 rounded-full bg-gradient-to-br from-indigo-300 to-purple-500 blur-2xl opacity-30"></div>
+              <Icon
+                icon="mdi:cart-off"
+                width="120"
+                height="120"
+                className="text-violet-500 relative z-10"
+              />
+            </div>
+
             <p className="text-lg text-gray-600">You have no orders yet.</p>
             <button
               onClick={() => navigate("/menu")}

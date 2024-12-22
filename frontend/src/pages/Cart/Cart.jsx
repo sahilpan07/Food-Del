@@ -11,7 +11,8 @@ const Cart = () => {
   const isCartEmpty = getTotalCartAmount() === 0;
 
   return (
-    <div className="flex flex-col gap-20 mx-12 md:mx-20 mt-12">
+    <div className="flex flex-col gap-10 mx-12 md:mx-20 bg-gray-50 p-4 md:p-8">
+      <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-6">Your Cart</h2>
       <div className="cart-items">
         {isCartEmpty ? (
           <div className="flex flex-col items-center text-center gap-6 p-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg shadow-md">
@@ -93,7 +94,6 @@ const Cart = () => {
           </>
         )}
       </div>
-
       {!isCartEmpty && (
         <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-20">
           <div className="flex-1 flex flex-col gap-3">
