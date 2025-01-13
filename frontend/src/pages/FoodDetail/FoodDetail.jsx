@@ -8,7 +8,8 @@ const FoodDetail = () => {
   const { id, name, price, description, image, restaurant } = location.state;
   const { cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
-
+  // Check for token in localStorage
+  const token = localStorage.getItem("token");
   return (
     <div className="food-detail-container mx-6 sm:mx-12 md:mx-20 mt-12 mb-16">
       <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -34,35 +35,39 @@ const FoodDetail = () => {
               </p>
             </div>
             <div className="flex items-center gap-6">
-              {!cartItems[id] ? (
-                <button
-                  onClick={() => addToCart(id)}
-                  className="bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-5 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-110 hover:from-green-600 hover:to-green-700 hover:shadow-xl flex items-center gap-3"
-                >
-                  <Icon
-                    icon="carbon:add-filled"
-                    className="text-white text-2xl"
-                  />
-                  <span className="text-lg font-semibold">Add to Cart</span>
-                </button>
-              ) : (
-                <div className="bg-white text-[#040A27] flex items-center gap-4 px-3 py-2 rounded-lg shadow-xl transition-transform duration-300 cursor-pointer hover:scale-105">
-                  <button
-                    onClick={() => removeFromCart(id)}
-                    className="bg-red-500 text-white p-1 rounded-full flex items-center justify-center transition-transform duration-300 transform hover:scale-110"
-                  >
-                    <Icon className="text-2xl" icon="ep:remove-filled" />
-                  </button>
-
-                  <p className="text-xl">{cartItems[id]}</p>
-
+              {token ? (
+                !cartItems[id] ? (
                   <button
                     onClick={() => addToCart(id)}
-                    className="bg-green-500 text-white p-1 rounded-full flex items-center justify-center transition-transform duration-300 transform hover:scale-110"
+                    className="bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-5 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-110 hover:from-green-600 hover:to-green-700 hover:shadow-xl flex items-center gap-3"
                   >
-                    <Icon className="text-2xl" icon="carbon:add-filled" />
+                    <Icon
+                      icon="carbon:add-filled"
+                      className="text-white text-2xl"
+                    />
+                    <span className="text-lg font-semibold">Add to Cart</span>
                   </button>
-                </div>
+                ) : (
+                  <div className="bg-white text-[#040A27] flex items-center gap-4 px-3 py-2 rounded-lg shadow-xl transition-transform duration-300 cursor-pointer hover:scale-105">
+                    <button
+                      onClick={() => removeFromCart(id)}
+                      className="bg-red-500 text-white p-1 rounded-full flex items-center justify-center transition-transform duration-300 transform hover:scale-110"
+                    >
+                      <Icon className="text-2xl" icon="ep:remove-filled" />
+                    </button>
+
+                    <p className="text-xl">{cartItems[id]}</p>
+
+                    <button
+                      onClick={() => addToCart(id)}
+                      className="bg-green-500 text-white p-1 rounded-full flex items-center justify-center transition-transform duration-300 transform hover:scale-110"
+                    >
+                      <Icon className="text-2xl" icon="carbon:add-filled" />
+                    </button>
+                  </div>
+                )
+              ) : (
+                <p className="text-sm text-gray-400 italic">Login</p>
               )}
             </div>
           </div>

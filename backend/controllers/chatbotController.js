@@ -21,8 +21,10 @@ export const getBotResponse = (req, res) => {
   } else if (userMessage === "account problem") {
     botResponse =
       "For account-related issues, go to 'Account Settings' in your profile or contact us for assistance.";
+  } else if (userMessage === "add to cart problem") {
+    botResponse =
+      "You might haven't login to your account. Please login to your account and try again.";
   }
-
   // Send response
   res.json({ response: botResponse });
 };

@@ -37,24 +37,28 @@ const App = () => {
           <Route path="/" element={<HomePage url={url} />} />
           {/* Nested Category Routes */}
           <Route path="/restaurant" element={<RestaurantPage url={url} />}>
+            <Route index element={<AddRestaurant url={url} />} /> 
             <Route path="addrestaurant" element={<AddRestaurant url={url} />} />
             <Route path="listRestaurant" element={<ListRestaurant url={url} />} />
             <Route path="restaurant/:id" element={<RestaurantDetail url={url} />} />
             <Route path="editrestaurant/:id" element={<EditRestaurant url={url} />} />
           </Route>
           <Route path="/category" element={<CategoryPage url={url} />}>
+            <Route index element={<AddCategory url={url} />} /> 
             <Route path="addCategory" element={<AddCategory url={url} />} />
             <Route path="listCategory" element={<ListCategory url={url} />} />
             <Route path="categoryDetail/:id" element={<CategoryDetail url={url} />} />
             <Route path="editCategory/:id" element={<EditCategory url={url} />}/>
           </Route>
           <Route path="/item" element={<ItemPage url={url} />}>
+            <Route index element={<AddItem url={url} />} /> 
             <Route path="addItem" element={<AddItem url={url} />} />
             <Route path="itemList" element={<ItemList url={url} />} />
             <Route path="list/:id" element={<ItemDetail url={url} />} />
             <Route path="editFood/:id" element={<EditfoodItem url={url} />} />
           </Route>
           <Route path="/orderPage" element={<OrderPage url={url} />}>
+            <Route index element={<OrderList url={url} />} /> 
             <Route path="onProcess" element={<OrderList url={url} status="On Process" />}/>
             <Route path="foodProcessing" element={<OrderList url={url} status="Food Processing" />}/>
             <Route path="outForDelivery" element={<OrderList url={url} status="Out for Delivery" />}/>

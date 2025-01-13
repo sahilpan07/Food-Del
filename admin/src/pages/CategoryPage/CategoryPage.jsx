@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { FaPlusCircle, FaListUl } from "react-icons/fa"; // Icons for Add and List actions
+import { FaPlusCircle, FaListUl } from "react-icons/fa";
 
 const CategoryPage = () => {
   const handleScrollToTop = () => {

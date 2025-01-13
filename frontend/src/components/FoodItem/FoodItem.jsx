@@ -16,6 +16,9 @@ const FoodItem = ({
   const { cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
 
+  // Check for token in localStorage
+  const token = localStorage.getItem("token");
+
   return (
     <div className="w-full rounded-lg text-white bg-[#040A27] shadow-md transition-transform duration-300 sm:max-w-xs md:max-w-sm lg:max-w-md">
       <Link
@@ -34,7 +37,7 @@ const FoodItem = ({
           <p className="text-lg font-medium truncate">{name}</p>
         </div>
         <p className="text-xs truncate">{description}</p>
-        {restaurant && ( // Only render if restaurant name is present
+        {restaurant && (
           <Link
             to="/restaurant"
             state={{
@@ -55,27 +58,31 @@ const FoodItem = ({
           </Link>
         )}
         <div className="flex justify-between items-center">
-          <p className="text-tomato text-xl font-medium">Rs{price}</p>
-          {!cartItems[id] ? (
-            <Icon
-              className="text-green-500 text-3xl cursor-pointer"
-              onClick={() => addToCart(id)}
-              icon="carbon:add-filled"
-            />
-          ) : (
-            <div className="bg-white text-[#040A27] flex items-center gap-1 md:gap-2 rounded-full transition-transform duration-500 cursor-pointer hover:scale-105">
+          <p className="text-tomato text-xl font-medium">Rs {price}</p>
+          {token ? (
+            !cartItems[id] ? (
               <Icon
-                className="text-red-500 text-2xl lg:text-3xl"
-                onClick={() => removeFromCart(id)}
-                icon="ep:remove-filled"
-              />
-              <p>{cartItems[id]}</p>
-              <Icon
-                className="text-green-500 text-2xl lg:text-3xl"
+                className="text-green-500 text-3xl cursor-pointer"
                 onClick={() => addToCart(id)}
                 icon="carbon:add-filled"
               />
-            </div>
+            ) : (
+              <div className="bg-white text-[#040A27] flex items-center gap-1 md:gap-2 rounded-full transition-transform duration-500 cursor-pointer hover:scale-105">
+                <Icon
+                  className="text-red-500 text-2xl lg:text-3xl"
+                  onClick={() => removeFromCart(id)}
+                  icon="ep:remove-filled"
+                />
+                <p>{cartItems[id]}</p>
+                <Icon
+                  className="text-green-500 text-2xl lg:text-3xl"
+                  onClick={() => addToCart(id)}
+                  icon="carbon:add-filled"
+                />
+              </div>
+            )
+          ) : (
+            <p className="text-sm text-gray-400 italic">Login</p>
           )}
         </div>
       </div>

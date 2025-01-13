@@ -15,6 +15,7 @@ const Chatbot = () => {
     "Delivery Time",
     "Payment Issue",
     "Account Problem",
+    "Add To Cart Problem",
   ];
 
   const chatbotRef = useRef(null);
