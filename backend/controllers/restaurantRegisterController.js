@@ -29,8 +29,8 @@ const restaurantRegistrationController = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "test423559@gmail.com",
-      pass: "bknaqrqdyiewltem",
+      user: "foodienepal067@gmail.com",
+      pass: "kklv ylod qwev ghll",
     },
   });
 
@@ -43,7 +43,7 @@ const restaurantRegistrationController = async (req, res) => {
   // Create email content
   const mailOptions = {
     from: userEmail,
-    to: "test423559@gmail.com",
+    to: "foodienepal067@gmail.com",
     subject: `Restaurant registration request`,
     text: `
             Restaurant Name: ${restaurant_name}

@@ -14,14 +14,14 @@ const contactController = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "test423559@gmail.com",
-      pass: "bknaqrqdyiewltem",
+      user: "foodienepal067@gmail.com",
+      pass: "kklv ylod qwev ghll",
     },
   });
 
   const mailOptions = {
     from: userEmail,
-    to: "test423559@gmail.com",
+    to: "foodienepal067@gmail.com",
     subject: `New message from ${first_name} ${last_name}: ${subject}`,
     text: `
             Name: ${first_name} ${last_name}
