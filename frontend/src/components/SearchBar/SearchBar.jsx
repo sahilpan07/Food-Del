@@ -8,7 +8,6 @@ const SearchBar = ({ setSearchOpen, setCategory }) => {
   const [results, setResults] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
   const [foodItems, setFoodItems] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
   const { url } = useContext(StoreContext);
@@ -23,7 +22,6 @@ const SearchBar = ({ setSearchOpen, setCategory }) => {
         if (data.success) {
           setRestaurants(data.data.restaurants);
           setFoodItems(data.data.foodItems);
-          setCategories(data.data.categories);
           setResults(
             data.data.restaurants.concat(
               data.data.foodItems,
@@ -82,16 +80,8 @@ const SearchBar = ({ setSearchOpen, setCategory }) => {
     setSearchOpen(false);
   };
 
-  const handleCategoryClick = (categoryName) => {
-    setCategory(categoryName);
-    setShowResults(false);
-    setSearchOpen(false);
-
-    navigate(`/menu`);
-  };
-
   return (
-    <div className="relative mx-4 sm:mx-6 lg:mx-20">
+    <div className="relative mx-4 sm:mx-10 lg:mx-20">
       <input
         type="text"
         value={query}
@@ -102,7 +92,7 @@ const SearchBar = ({ setSearchOpen, setCategory }) => {
 
       {query && (
         <button
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition duration-200"
+          className="absolute top-7 right-4 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition duration-200"
           onClick={() => setQuery("")}
         >
           <Icon icon="mdi:close" />
@@ -131,28 +121,6 @@ const SearchBar = ({ setSearchOpen, setCategory }) => {
                     {restaurant.name}
                   </p>
                   <p className="text-sm text-gray-600">{restaurant.address}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div>
-            <p className="px-4 py-2 text-lg font-semibold text-gray-800">
-              Categories
-            </p>
-            {categories.map((category) => (
-              <div
-                key={category._id}
-                className="flex items-center p-4 hover:bg-gray-100 cursor-pointer transition-all duration-200"
-                onClick={() => handleCategoryClick(category)}
-              >
-                <img
-                  className="w-16 h-16 object-cover rounded-full mr-4"
-                  src={`${url}/images/${category.image}`}
-                  alt={category.name}
-                />
-                <div className="">
-                  <p className="font-semibold text-gray-800">{category.name}</p>
                 </div>
               </div>
             ))}

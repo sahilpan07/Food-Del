@@ -1,19 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { StoreContext } from "../../context/StoreContext"; // Adjust path based on your project structure
+import { StoreContext } from "../../context/StoreContext";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 
 const NearestRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [error, setError] = useState("");
-  const [showMore, setShowMore] = useState(false);
-  const { url } = useContext(StoreContext); // Assuming you have a StoreContext for the base URL
-
-  // Determine the number of restaurants to show
-  const displayedRestaurants = showMore
-    ? restaurants
-    : restaurants.slice(0, 12);
+  const { url } = useContext(StoreContext);
 
   useEffect(() => {
     const fetchNearestRestaurants = async () => {
@@ -32,7 +26,8 @@ const NearestRestaurants = () => {
                 }
               );
 
-              setRestaurants(response.data.data);
+              // Set only the first 12 restaurants
+              setRestaurants(response.data.data.slice(0, 12));
             } catch (error) {
               setError("Error fetching nearest restaurants");
             }
@@ -49,10 +44,6 @@ const NearestRestaurants = () => {
     fetchNearestRestaurants();
   }, [url]); // Dependency on url context, so it updates if the base URL changes
 
-  const handleExploreMore = () => {
-    setShowMore(true);
-  };
-
   return (
     <div className="flex flex-col gap-10 mx-12 md:mx-20 mt-10">
       <div className="text-center">
@@ -66,7 +57,7 @@ const NearestRestaurants = () => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 mt-8">
-        {displayedRestaurants.map((restaurant) => (
+        {restaurants.map((restaurant) => (
           <Link
             key={restaurant._id}
             to="/restaurant" // Adjust route to the correct restaurant detail page
@@ -115,27 +106,10 @@ const NearestRestaurants = () => {
                   km
                 </p>
               </div>
-
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button className="bg-[#040A27] text-white px-6 py-2 rounded-full border-2 border-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#040A27] hover:border-[#040A27]">
-                  Explore Menu
-                </button>
-              </div>
             </div>
           </Link>
         ))}
       </div>
-
-      {restaurants.length > 6 && !showMore && (
-        <div className="text-center mt-6">
-          <button
-            onClick={handleExploreMore}
-            className="border-2 border-[#040A27] text-[#040A27] py-2 px-6 rounded-lg shadow-lg text-lg hover:bg-gray-200 transition-all"
-          >
-            Explore More
-          </button>
-        </div>
-      )}
 
       <hr className="my-8 h-[2px] bg-gray-300 border-0" />
     </div>

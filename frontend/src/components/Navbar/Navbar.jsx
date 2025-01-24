@@ -10,11 +10,12 @@ const Navbar = ({ setShowLogin }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [navbarBg, setNavbarBg] = useState(false);
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
-  const [category, setCategory] = useState(null);
 
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+  const searchRef = useRef(null); // Ref for the search dropdown
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -29,27 +30,47 @@ const Navbar = ({ setShowLogin }) => {
     { path: "/contact", label: "Contact Us" },
   ];
 
+  // Change navbar background color on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setNavbarBg(true);
+      } else {
+        setNavbarBg(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   // Close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
       }
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchOpen(false); // Close search dropdown
+      }
     };
 
-    if (isDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isDropdownOpen]);
+  }, []);
 
   return (
-    <div className="navbar flex py-3 px-12 md:px-20 justify-between items-center">
+    <div
+      className={`navbar flex py-3 px-12 md:px-20 justify-between items-center transition-all duration-300 ${
+        navbarBg ? "bg-gray-300 shadow-lg" : "bg-transparent"
+      }`}
+    >
       <Link to="/" onClick={() => setMenu("home")}>
         <img className="hidden sm:block w-36" src={assets.logo} alt="Logo" />
         <img
@@ -104,21 +125,21 @@ const Navbar = ({ setShowLogin }) => {
 
         {searchOpen && (
           <div
+            ref={searchRef} // Attach ref to the search dropdown container
             className={`${
               searchOpen ? "h-screen opacity-100" : " opacity-0"
             } overflow-hidden transition-all duration-300 ease-in-out absolute top-full left-0 right-0 bg-white shadow-lg`}
           >
-            <div className="relative p-4 mx-20">
-              <button
+            <div className="flex relative p-4 mx-0">
+              <div className="w-full">
+                <SearchBar setSearchOpen={setSearchOpen} />
+              </div>
+              <div
                 onClick={() => setSearchOpen(false)}
-                className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+                className="mr-20 flex justify-center items-center"
               >
-                <Icon icon="mdi:close" className="text-2xl" />
-              </button>
-              <SearchBar
-                setSearchOpen={setSearchOpen}
-                setCategory={setCategory}
-              />
+                <button className="text-red-400">Close</button>
+              </div>
             </div>
           </div>
         )}
